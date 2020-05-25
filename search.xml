@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Record of building HexoBlog on Github page</title>
+    <url>/2020/05/25/Record-of-building-HexoBlog-on-Github-page/</url>
+    <content><![CDATA[<h1 id="Record-of-building-a-free-blog-with-Hexo-Github-and-Node-js"><a href="#Record-of-building-a-free-blog-with-Hexo-Github-and-Node-js" class="headerlink" title="Record of building a free blog with Hexo, Github and Node.js"></a>Record of building a free blog with Hexo, Github and Node.js</h1><h2 id="Installations"><a href="#Installations" class="headerlink" title="Installations"></a>Installations</h2><ul>
+<li>Git<ul>
+<li>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</li>
+<li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Download</a></li>
+</ul>
+</li>
+<li>Node.js<ul>
+<li>As an asynchronous event driven JavaScript runtime, Node.js is designed to build scalable network applications.</li>
+<li><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Download</a></li>
+</ul>
+</li>
+<li>Hexo<ul>
+<li>Hexo is a fast, simple and powerful blog framework. Hexo parses your article by Markdown rendering engin, it can produce static files with beautiful theme in a few second.</li>
+<li>install Hexo by npm(node package management)<ul>
+<li><code>npm install -g hexo-cli</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>hexo-deployer-git<ul>
+<li>this is a plugin for deploying hexo blog on github</li>
+<li><code>npm install hexo-deployer-git --save</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Create-Github-repository"><a href="#Create-Github-repository" class="headerlink" title="Create Github repository"></a>Create Github repository</h2><ul>
+<li><p>initialise a <strong>Github repository</strong></p>
+</li>
+<li><p>login github locally</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.email &lt;xxx@163.com&gt;</span><br><span class="line">git config --global user.name &lt;xxx&gt;</span><br><span class="line">ssh-keygen -t rsa -C &lt;xxx@163.com&gt;     // generate ssh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>open .ssh folder, copy the ssh key string by <code>cat id_rsa.pub</code></p>
+</li>
+<li><p>open github webpage - settings - SSH keys - add ssh keys</p>
+</li>
+<li><p>paste the ssh key here</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Hexo-server"><a href="#Hexo-server" class="headerlink" title="Hexo server"></a>Hexo server</h2><ul>
+<li>initiate <strong>hexo</strong><ul>
+<li><strong>initialise</strong> a new blog by <code>hexo init blog</code></li>
+<li><strong>generate</strong> the blog with modifications by <code>hexo generate</code> or <code>hexo g</code></li>
+<li>run the blog <strong>server</strong> locally for preview by <code>hexo server</code> or <code>hexo s</code></li>
+<li><strong>deploy</strong> the blog by <code>hexo deploy</code> or <code>hexo d</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Connecting-local-Hexo-with-Github-repository"><a href="#Connecting-local-Hexo-with-Github-repository" class="headerlink" title="Connecting local Hexo with Github repository"></a>Connecting local Hexo with Github repository</h2><p>This step help us to deploy the generated static web templates to Github page server</p>
+<p>Modify the configuration of <code>hexo deploy</code> command</p>
+<ol>
+<li><p>cd <code>&lt;root of hexo folder&gt;</code></p>
+</li>
+<li><p>modify <code>_config.yml</code> file</p>
+ <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">    type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">    repo:</span> <span class="string">'&lt;address of your github reporsitory&gt;'</span></span><br><span class="line"><span class="attr">    branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Restart the server to update the configurations with following cmd in order</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>Now the Hexo blog is running on Github server.</p>
+<p>Blog url: <code>&lt;username&gt;.gitbub.io</code></p>
+<h2 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h2><ul>
+<li>Add post</li>
+</ul>
+<p>In Hexo, post means articles that we wrote, post inherits the format of scaffold</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new &lt;scaffold name&gt; &lt;post name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Hexo will first <strong>scan</strong> <code>scaffolds/</code> folder and find <code>&lt;scaffold name&gt;.md</code>, then Hexo <strong>copy the format</strong> of <code>&lt;scaffold name&gt;.md</code> to a <strong>new file</strong> <code>&lt;post name&gt;.md</code> and put it in <code>source/_posts/</code></p>
+<ul>
+<li>Add page</li>
+</ul>
+<p>In Hexo, page means web page in hexo blog, such as about, categories, tags, archive(built-in with hexo)</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page &lt;page name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Hexo will create a new dir <code>source/&lt;page name&gt;/index.md</code></p>
+<ul>
+<li>Category and tag</li>
+</ul>
+<p>Hexo also supports categories and tags for categorizing posts. First we need to create pages for displaying categories and tags.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+
+<p>Then hexo will create a folder named (categories) and a folder named (tags), with (index.md) inside both of them.</p>
+<h2 id="Search-engine-for-Next-theme"><a href="#Search-engine-for-Next-theme" class="headerlink" title="Search engine for Next theme"></a>Search engine for Next theme</h2><ol>
+<li><p>first install hexo-generator-searchdb (<code>npm install hexo-generator-searchdb --save</code>)</p>
+</li>
+<li><p>configure <code>&lt;hexo folder&gt;/_config.yml</code></p>
+ <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line"><span class="attr">  path:</span> <span class="string">search.xml</span></span><br><span class="line"><span class="attr">  field:</span> <span class="string">post</span></span><br><span class="line"><span class="attr">  format:</span> <span class="string">html</span></span><br><span class="line"><span class="attr">  limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>configure <code>/theme/next/_config.yml</code></p>
+ <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 官网</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">GitHub + Hexo 搭建个人网站详细教程</a></li>
+<li><a href="https://blog.csdn.net/u011475210/article/details/79023429" target="_blank" rel="noopener">我的个人博客之旅：从jekyll到hexo</a></li>
+<li><a href="http://coderunthings.com/2017/08/20/howhexoworks/" target="_blank" rel="noopener">hexo是怎么工作的</a></li>
+<li><a href="http://ijiaober.github.io/2014/08/05/hexo/hexo-04/" target="_blank" rel="noopener">多级分类</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>record</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Node.js</tag>
+        <tag>Github Page</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mashupSite</title>
+    <url>/2020/05/25/mashupSite/</url>
+    <content><![CDATA[<h1 id="Mashup-site-by-Django"><a href="#Mashup-site-by-Django" class="headerlink" title="Mashup site by Django"></a>Mashup site by Django</h1><p align="center">
+    <img src="https://i.loli.net/2019/09/28/O2rgluRnKFBiqmD.png" width="400" height="400">
+</p>
+
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This is a team project about developing a web application of introduction of Marvel characters. The technologies we used are <strong>Django</strong> for web dev, <strong>beautifulsoup</strong> for parsing html, <strong>Bootstrap</strong> for frontend design and <strong>json</strong> for storage, <strong>Google Statistic</strong> for SEO.</p>
+<h2 id="Problem-statement"><a href="#Problem-statement" class="headerlink" title="Problem statement"></a>Problem statement</h2><ul>
+<li>choosing technologies</li>
+<li>techniques of web crawling</li>
+<li>indexing by google in the first page result</li>
+</ul>
+<h2 id="Design-and-implementation"><a href="#Design-and-implementation" class="headerlink" title="Design and implementation"></a>Design and implementation</h2><ul>
+<li><p>Architechture of our mashup</p>
+<p><img src="https://i.loli.net/2019/09/28/QpLcz8hZw46O9Nn.png" alt="architecture of the mashup page.png"></p>
+<p>The home page is a mashup of differnt kinds of information. and we have specific categories for displaying only one kind of data.</p>
+<p>In the home page and hero page, we implemmented a voting function. Users can vote a superhero if user think that the hero will appear in Avengers 4 movie.</p>
+</li>
+<li><p>Infomation collecting techniques</p>
+<ul>
+<li><p>Web crawling</p>
+<p><img src="https://i.loli.net/2019/09/28/SQO3fqRWby6FjtH.png" alt="DataCollection.png"></p>
+<p>We used requests package to send HTTP request for getting html text from the target website, than we leverage beautifulsoup to parse the html text into html object, it helps us to locate the information we want.</p>
+<p>Once we found the desire information, we store it into a json file, such that we finish collecting web information</p>
+<ul>
+<li><p>APIs introduction</p>
+<p>  Some sources provide their own APIs, it saved our time on locating target information. In this project, we have used youtube, and marvel.com APIs.</p>
+<ul>
+<li>Marvel.com API<ul>
+<li>apply for an account, get public key, private key</li>
+<li>sum = random num + 2 keys</li>
+<li>hash by md5 algorithm</li>
+<li>concatenate all the above information into url</li>
+</ul>
+</li>
+<li>Youtube API<ul>
+<li>connect to youtube iframe_api server</li>
+<li>input the video_id</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Techniques uesd to show the data</p>
+<ul>
+<li>Data flow inside the webapp<ul>
+<li>We collect information from sources like rotten tomato, Marvel.com and Youtube into Json file for storage</li>
+<li>We use service to manipulate the data and choose the data that we need</li>
+<li>The Views will receive the data, it decide what data can be shown in template,</li>
+<li>The template decide how the data display on the screen</li>
+</ul>
+</li>
+<li>Data display techniques<ul>
+<li>Bootstrap give us powerful library for beautiful and neat UI layout.</li>
+<li>Card element and</li>
+<li>Popup function in bootstrap</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Web server setup and web page development</p>
+<ul>
+<li><p>Django framework</p>
+<ul>
+<li><p>Why Django</p>
+<p>It is simple, it is easy to scaffold out a web app server, so that we can concentrate on the functionalities of the application. Also We need to do web crawling stuffs by using python, and Django is a popular framework for web development in python. So we decide to learn using Django as our web framework.</p>
+</li>
+<li><p>layout</p>
+<ul>
+<li><p>Bootstrap and font-awesome</p>
+<p>Bootstrap is a popular front-end library to build responsive website, it means that the website can tranfrom its layout to suit different size of screen, it can be simoutaniously suitable for computer screen and mobile phone screen which have huge difference in screen size.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Functionalities</p>
+<p><img src="https://i.loli.net/2019/09/28/jA7M4bqt5dNfKTD.png" alt="CharacterCard.png"></p>
+<ul>
+<li><p>Mashup of avengers4 information</p>
+<ul>
+<li>marvel API heroes</li>
+<li>rotten tomato News</li>
+<li>reddit posts</li>
+<li>Youtube trailer</li>
+</ul>
+</li>
+<li><p>Main functions</p>
+<p>The main function of our web app is to collect avengers4 relevant information shuch as text, image, and video, from different web sources including</p>
+<ul>
+<li>Marvel official site <strong>marvel.com</strong>,</li>
+<li>the popular film review aggregation website <strong>rotten-tomatoes</strong>,</li>
+<li>The famous social media forum <strong>reddit</strong></li>
+<li>and <strong>youtube</strong>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="SEO"><a href="#SEO" class="headerlink" title="SEO"></a>SEO</h2><ul>
+<li><p>On-page</p>
+<p>  First, we have used On-page optimization techniques. Second, we added some meta information (HTML head tag), optimized the title of our website, added related description of our website, for the keywords (we added such as ‘marvel movie’, ‘mashup’, ‘ma4’, ‘marvel avengers 4’ and more). Third, for the contents, the contents in tags such as in <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;p&gt;</code> are important for SEO. Fourth, created XML Sitemap. Fifth, we made Mobile device adapation. Keywords Meta information, Contents, Sitemap, Mobile device adapation are important for Google SEO in which descripted in Google SEO guide.</p>
+</li>
+<li><p>Off-page</p>
+<p>  We created a sitemap for our web page. It is an xml file of a language that is specifically used to read a computer. Sitemap is the search engine that uses this specification to allow website owners to use it to create a directory file containing all the pages in the site and provide crawler reading to the search engine. Just like a map, let the search engine know what pages are in the site.</p>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2019/09/28/1VFmbuBJDU8fMwr.png" alt="searchingscreenshot.png"></p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In conclusions, the design of web page is advanced, but lack of characteristics. Second, we did some SEO optimizations, but still have some work can be done. Third, We rank at the good positions when search ‘mashup page for marvel’, ‘ma4 mashup’ and ‘marvel avenger 4 mashup’ on Google. Finally, We used 3 sources, but there are more sources can be added. We also made a button for ticket purchase, so that users can go directly to purchase tickets after reading our website.</p>
+]]></content>
+      <categories>
+        <category>Record</category>
+      </categories>
+      <tags>
+        <tag>Django</tag>
+        <tag>SEO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MacOS_shortcut</title>
+    <url>/2020/05/25/MacOS-shortcut/</url>
+    <content><![CDATA[<h1 id="MacOS-快捷键"><a href="#MacOS-快捷键" class="headerlink" title="MacOS 快捷键"></a>MacOS 快捷键</h1><h2 id="全局"><a href="#全局" class="headerlink" title="全局"></a>全局</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Shift + P / F1 显示命令面板</span><br><span class="line">Command + P 快速打开</span><br><span class="line">Command + Shift + N 打开新窗口</span><br><span class="line">Command + W 关闭窗口</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + X 剪切（未选中文本的情况下，剪切光标所在行）</span><br><span class="line">Command + C 复制（未选中文本的情况下，复制光标所在行）</span><br><span class="line">Option + Up 向上移动行</span><br><span class="line">Option + Down 向下移动行</span><br><span class="line">Option + Shift + Up 向上复制行</span><br><span class="line">Option + Shift + Down 向下复制行</span><br><span class="line">Command + Shift + K 删除行</span><br><span class="line">Command + Enter 下一行插入</span><br><span class="line">Command + Shift + Enter 上一行插入</span><br><span class="line">Command + Shift + \ 跳转到匹配的括号</span><br><span class="line">Command + [ 减少缩进</span><br><span class="line">Command + ] 增加缩进</span><br><span class="line">Home 跳转至行首</span><br><span class="line">End 跳转到行尾</span><br><span class="line">Command + Up 跳转至文件开头</span><br><span class="line">Command + Down 跳转至文件结尾</span><br><span class="line">Ctrl + PgUp 按行向上滚动</span><br><span class="line">Ctrl + PgDown 按行向下滚动</span><br><span class="line">Command + PgUp 按屏向上滚动</span><br><span class="line">Command + PgDown 按屏向下滚动</span><br><span class="line">Command + Shift + [ 折叠代码块</span><br><span class="line">Command + Shift + ] 展开代码块</span><br><span class="line">Command + K Command + [ 折叠全部子代码块</span><br><span class="line">Command + K Command + ] 展开全部子代码块</span><br><span class="line">Command + K Command + 0 折叠全部代码块</span><br><span class="line">Command + K Command + J 展开全部代码块</span><br><span class="line">Command + K Command + C 添加行注释</span><br><span class="line">Command + K Command + U 移除行注释</span><br><span class="line">Command + / 添加、移除行注释</span><br><span class="line">Option + Shift + A 添加、移除块注释</span><br><span class="line">Option + Z 自动换行、取消自动换行</span><br></pre></td></tr></table></figure>
+
+<h2 id="多光标与选择"><a href="#多光标与选择" class="headerlink" title="多光标与选择"></a>多光标与选择</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Option + 点击 插入多个光标</span><br><span class="line">Command + Option + Up 向上插入光标</span><br><span class="line">Command + Option + Down 向下插入光标</span><br><span class="line">Command + U 撤销上一个光标操作</span><br><span class="line">Option + Shift + I 在所选行的行尾插入光标</span><br><span class="line">Command + I 选中当前行</span><br><span class="line">Command + Shift + L 选中所有与当前选中内容相同部分</span><br><span class="line">Command + F2 选中所有与当前选中单词相同的单词</span><br><span class="line">Command + Ctrl + Shift + Left 折叠选中</span><br><span class="line">Command + Ctrl + Shift + Right 展开选中</span><br><span class="line">Alt + Shift + 拖动鼠标 选中代码块</span><br><span class="line">Command + Shift + Option + Up 列选择 向上</span><br><span class="line">Command + Shift + Option + Down 列选择 向下</span><br><span class="line">Command + Shift + Option + Left 列选择 向左</span><br><span class="line">Command + Shift + Option + Right 列选择 向右</span><br><span class="line">Command + Shift + Option + PgUp 列选择 向上翻页</span><br><span class="line">Command + Shift + Option + PgDown 列选择 向下翻页</span><br></pre></td></tr></table></figure>
+
+<h2 id="查找替换"><a href="#查找替换" class="headerlink" title="查找替换"></a>查找替换</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + F 查找</span><br><span class="line">Command + Option + F 替换</span><br><span class="line">Command + G 查找下一个</span><br><span class="line">Command + Shift + G 查找上一个</span><br><span class="line">Option + Enter 选中所有匹配项</span><br><span class="line">Command + D 向下选中相同内容</span><br><span class="line">Command + K Command + D 移除前一个向下选中相同内容</span><br></pre></td></tr></table></figure>
+
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Ctrl + Space 打开建议</span><br><span class="line">Command + Shift + Space 参数提示</span><br><span class="line">Tab Emmet插件缩写补全</span><br><span class="line">Option + Shift + F 格式化</span><br><span class="line">Command + K Command + F 格式化选中内容</span><br><span class="line">F12 跳转到声明位置</span><br><span class="line">Option + F12 查看具体声明内容</span><br><span class="line">Command + K F12 分屏查看具体声明内容</span><br><span class="line">Command + . 快速修复</span><br><span class="line">Shift + F12 显示引用</span><br><span class="line">F2 重命名符号</span><br><span class="line">Command + Shift + . 替换为上一个值</span><br><span class="line">Command + Shift + , 替换为下一个值</span><br><span class="line">Command + K Command + X 删除行尾多余空格</span><br><span class="line">Command + K M 更改文件语言</span><br></pre></td></tr></table></figure>
+
+<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + T 显示所有符号</span><br><span class="line">Ctrl + G 跳转至某行</span><br><span class="line">Command + P 跳转到某个文件</span><br><span class="line">Command + Shift + O 跳转到某个符号</span><br><span class="line">Command + Shift + M 打开问题面板</span><br><span class="line">F8 下一个错误或警告位置</span><br><span class="line">Shift + F8 上一个错误或警告位置</span><br><span class="line">Ctrl + Shift + Tab 编辑器历史记录</span><br><span class="line">Ctrl + - 后退</span><br><span class="line">Ctrl + Shift + - 前进</span><br><span class="line">Ctrl + Shift + M Tab 切换焦点</span><br></pre></td></tr></table></figure>
+
+<h2 id="编辑器管理"><a href="#编辑器管理" class="headerlink" title="编辑器管理"></a>编辑器管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + W 关闭编辑器</span><br><span class="line">Command + K F 关闭文件夹</span><br><span class="line">Command + \ 编辑器分屏</span><br><span class="line">Command + 1 切换到第一分组</span><br><span class="line">Command + 2 切换到第二分组</span><br><span class="line">Command + 3 切换到第三分组</span><br><span class="line">Command + K Command + Left 切换到上一分组</span><br><span class="line">Command + K Command + Right 切换到下一分组</span><br><span class="line">Command + K Command + Shift + Left 左移编辑器</span><br><span class="line">Command + K Command + Shift + Right 右移编辑器</span><br><span class="line">Command + K Left 激活左侧编辑组</span><br><span class="line">Command + K Right 激活右侧编辑组</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + N 新建文件</span><br><span class="line">Command + O 打开文件</span><br><span class="line">Command + S 保存文件</span><br><span class="line">Command + Shift + S 另存为</span><br><span class="line">Command + Option + S 全部保存</span><br><span class="line">Command + W 关闭</span><br><span class="line">Command + K Command + W 全部关闭</span><br><span class="line">Command + Shift + T 重新打开被关闭的编辑器</span><br><span class="line">Command + K Enter 保持打开</span><br><span class="line">Ctrl + Tab 打开下一个</span><br><span class="line">Ctrl + Shift + Tab 打开上一个</span><br><span class="line">Command + K P 复制当前文件路径</span><br><span class="line">Command + K R 在资源管理器中查看当前文件</span><br><span class="line">Command + K O 新窗口打开当前文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Ctrl + F 全屏、退出全屏</span><br><span class="line">Command + Option + 1 切换编辑器分屏方式（横、竖）</span><br><span class="line">Command + + 放大</span><br><span class="line">Command + - 缩小</span><br><span class="line">Command + B 显示、隐藏侧边栏</span><br><span class="line">Command + Shift + E 显示资源管理器 或 切换焦点</span><br><span class="line">Command + Shift + F 显示搜索框</span><br><span class="line">Ctrl + Shift + G 显示Git面板</span><br><span class="line">Command + Shift + D 显示调试面板</span><br><span class="line">Command + Shift + X 显示插件面板</span><br><span class="line">Command + Shift + H 全局搜索替换</span><br><span class="line">Command + Shift + J 显示、隐藏高级搜索</span><br><span class="line">Command + Shift + C 打开新终端</span><br><span class="line">Command + Shift + U 显示输出面板</span><br><span class="line">Command + Shift + V Markdown预览窗口</span><br><span class="line">Command + K V 分屏显示 Markdown预览窗口</span><br></pre></td></tr></table></figure>
+
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">F9 设置 或 取消断点</span><br><span class="line">F5 开始 或 继续</span><br><span class="line">F11 进入</span><br><span class="line">Shift + F11 跳出</span><br><span class="line">F10 跳过</span><br><span class="line">Command + K Command + I 显示悬停信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="集成终端"><a href="#集成终端" class="headerlink" title="集成终端"></a>集成终端</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Ctrl + ` 显示终端</span><br><span class="line">Ctrl + Shift + ` 新建终端</span><br><span class="line">Command + Up 向上滚动</span><br><span class="line">Command + Down 向下滚动</span><br><span class="line">PgUp 向上翻页</span><br><span class="line">PgDown 向下翻页</span><br><span class="line">Command + Home 滚动到顶部</span><br><span class="line">Command + End 滚动到底部</span><br></pre></td></tr></table></figure>
+
+<p>转至<a href="https://segmentfault.com/a/1190000012811886" target="_blank" rel="noopener">小谷xg</a></p>
+]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
+      <tags>
+        <tag>MacOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test_leetcode</title>
+    <url>/2020/05/25/test-leetcode/</url>
+    <content><![CDATA[<h1 id="title"><a href="#title" class="headerlink" title="title"></a>title</h1><h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1"><a href="#Sol-1" class="headerlink" title="Sol 1"></a>Sol 1</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Sol-2"><a href="#Sol-2" class="headerlink" title="Sol 2"></a>Sol 2</h3><pre><code class="python"></code></pre>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2020/02/12/test/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+</search>
