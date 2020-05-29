@@ -3,7 +3,10 @@
   <entry>
     <title>Record of building HexoBlog on Github page</title>
     <url>/2020/05/25/Record-of-building-HexoBlog-on-Github-page/</url>
-    <content><![CDATA[<h1 id="Record-of-building-a-free-blog-with-Hexo-Github-and-Node-js"><a href="#Record-of-building-a-free-blog-with-Hexo-Github-and-Node-js" class="headerlink" title="Record of building a free blog with Hexo, Github and Node.js"></a>Record of building a free blog with Hexo, Github and Node.js</h1><h2 id="Installations"><a href="#Installations" class="headerlink" title="Installations"></a>Installations</h2><ul>
+    <content><![CDATA[<p>This article contains step by step tutorial to set up a tech blog on Github server, basic operations of Hexo blog, and some useful plugins.</p>
+<a id="more"></a>
+
+<h2 id="Installations"><a href="#Installations" class="headerlink" title="Installations"></a>Installations</h2><ul>
 <li>Git<ul>
 <li>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</li>
 <li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Download</a></li>
@@ -100,6 +103,19 @@
 
 </li>
 </ol>
+<h2 id="Word-counting"><a href="#Word-counting" class="headerlink" title="Word counting"></a>Word counting</h2><p>This feature is supported by the Next theme with dependancy <code>hexo-wordcount</code></p>
+<p>it supports word count and reading minutes estimation</p>
+<ol>
+<li><p>Install the dependancy by <code>npm i --save hexo-wordcount</code></p>
+</li>
+<li><p>configure <code>themes/next/_config.yml</code></p>
+ <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post wordcount display settings</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/willin/hexo-wordcount</span></span><br><span class="line"><span class="attr">post_wordcount:</span></span><br><span class="line"><span class="attr">    item_text:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    wordcount:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    min2read:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    totalcount:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    separated_meta:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="other-skills"><a href="#other-skills" class="headerlink" title="other skills"></a>other skills</h2><ul>
+<li>put <code>&lt;!-- more --&gt;</code> in your post to show <strong>read more</strong> button at that exact position.</li>
+</ul>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
 <li><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 官网</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">GitHub + Hexo 搭建个人网站详细教程</a></li>
@@ -118,13 +134,222 @@
       </tags>
   </entry>
   <entry>
+    <title>MacOS_shortcut</title>
+    <url>/2020/05/25/MacOS-shortcut/</url>
+    <content><![CDATA[<h1 id="MacOS-快捷键"><a href="#MacOS-快捷键" class="headerlink" title="MacOS 快捷键"></a>MacOS 快捷键</h1><h2 id="全局"><a href="#全局" class="headerlink" title="全局"></a>全局</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Shift + P / F1 显示命令面板</span><br><span class="line">Command + P 快速打开</span><br><span class="line">Command + Shift + N 打开新窗口</span><br><span class="line">Command + W 关闭窗口</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + X 剪切（未选中文本的情况下，剪切光标所在行）</span><br><span class="line">Command + C 复制（未选中文本的情况下，复制光标所在行）</span><br><span class="line">Option + Up 向上移动行</span><br><span class="line">Option + Down 向下移动行</span><br><span class="line">Option + Shift + Up 向上复制行</span><br><span class="line">Option + Shift + Down 向下复制行</span><br><span class="line">Command + Shift + K 删除行</span><br><span class="line">Command + Enter 下一行插入</span><br><span class="line">Command + Shift + Enter 上一行插入</span><br><span class="line">Command + Shift + \ 跳转到匹配的括号</span><br><span class="line">Command + [ 减少缩进</span><br><span class="line">Command + ] 增加缩进</span><br><span class="line">Home 跳转至行首</span><br><span class="line">End 跳转到行尾</span><br><span class="line">Command + Up 跳转至文件开头</span><br><span class="line">Command + Down 跳转至文件结尾</span><br><span class="line">Ctrl + PgUp 按行向上滚动</span><br><span class="line">Ctrl + PgDown 按行向下滚动</span><br><span class="line">Command + PgUp 按屏向上滚动</span><br><span class="line">Command + PgDown 按屏向下滚动</span><br><span class="line">Command + Shift + [ 折叠代码块</span><br><span class="line">Command + Shift + ] 展开代码块</span><br><span class="line">Command + K Command + [ 折叠全部子代码块</span><br><span class="line">Command + K Command + ] 展开全部子代码块</span><br><span class="line">Command + K Command + 0 折叠全部代码块</span><br><span class="line">Command + K Command + J 展开全部代码块</span><br><span class="line">Command + K Command + C 添加行注释</span><br><span class="line">Command + K Command + U 移除行注释</span><br><span class="line">Command + / 添加、移除行注释</span><br><span class="line">Option + Shift + A 添加、移除块注释</span><br><span class="line">Option + Z 自动换行、取消自动换行</span><br></pre></td></tr></table></figure>
+
+<h2 id="多光标与选择"><a href="#多光标与选择" class="headerlink" title="多光标与选择"></a>多光标与选择</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Option + 点击 插入多个光标</span><br><span class="line">Command + Option + Up 向上插入光标</span><br><span class="line">Command + Option + Down 向下插入光标</span><br><span class="line">Command + U 撤销上一个光标操作</span><br><span class="line">Option + Shift + I 在所选行的行尾插入光标</span><br><span class="line">Command + I 选中当前行</span><br><span class="line">Command + Shift + L 选中所有与当前选中内容相同部分</span><br><span class="line">Command + F2 选中所有与当前选中单词相同的单词</span><br><span class="line">Command + Ctrl + Shift + Left 折叠选中</span><br><span class="line">Command + Ctrl + Shift + Right 展开选中</span><br><span class="line">Alt + Shift + 拖动鼠标 选中代码块</span><br><span class="line">Command + Shift + Option + Up 列选择 向上</span><br><span class="line">Command + Shift + Option + Down 列选择 向下</span><br><span class="line">Command + Shift + Option + Left 列选择 向左</span><br><span class="line">Command + Shift + Option + Right 列选择 向右</span><br><span class="line">Command + Shift + Option + PgUp 列选择 向上翻页</span><br><span class="line">Command + Shift + Option + PgDown 列选择 向下翻页</span><br></pre></td></tr></table></figure>
+
+<h2 id="查找替换"><a href="#查找替换" class="headerlink" title="查找替换"></a>查找替换</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + F 查找</span><br><span class="line">Command + Option + F 替换</span><br><span class="line">Command + G 查找下一个</span><br><span class="line">Command + Shift + G 查找上一个</span><br><span class="line">Option + Enter 选中所有匹配项</span><br><span class="line">Command + D 向下选中相同内容</span><br><span class="line">Command + K Command + D 移除前一个向下选中相同内容</span><br></pre></td></tr></table></figure>
+
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Ctrl + Space 打开建议</span><br><span class="line">Command + Shift + Space 参数提示</span><br><span class="line">Tab Emmet插件缩写补全</span><br><span class="line">Option + Shift + F 格式化</span><br><span class="line">Command + K Command + F 格式化选中内容</span><br><span class="line">F12 跳转到声明位置</span><br><span class="line">Option + F12 查看具体声明内容</span><br><span class="line">Command + K F12 分屏查看具体声明内容</span><br><span class="line">Command + . 快速修复</span><br><span class="line">Shift + F12 显示引用</span><br><span class="line">F2 重命名符号</span><br><span class="line">Command + Shift + . 替换为上一个值</span><br><span class="line">Command + Shift + , 替换为下一个值</span><br><span class="line">Command + K Command + X 删除行尾多余空格</span><br><span class="line">Command + K M 更改文件语言</span><br></pre></td></tr></table></figure>
+
+<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + T 显示所有符号</span><br><span class="line">Ctrl + G 跳转至某行</span><br><span class="line">Command + P 跳转到某个文件</span><br><span class="line">Command + Shift + O 跳转到某个符号</span><br><span class="line">Command + Shift + M 打开问题面板</span><br><span class="line">F8 下一个错误或警告位置</span><br><span class="line">Shift + F8 上一个错误或警告位置</span><br><span class="line">Ctrl + Shift + Tab 编辑器历史记录</span><br><span class="line">Ctrl + - 后退</span><br><span class="line">Ctrl + Shift + - 前进</span><br><span class="line">Ctrl + Shift + M Tab 切换焦点</span><br></pre></td></tr></table></figure>
+
+<h2 id="编辑器管理"><a href="#编辑器管理" class="headerlink" title="编辑器管理"></a>编辑器管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + W 关闭编辑器</span><br><span class="line">Command + K F 关闭文件夹</span><br><span class="line">Command + \ 编辑器分屏</span><br><span class="line">Command + 1 切换到第一分组</span><br><span class="line">Command + 2 切换到第二分组</span><br><span class="line">Command + 3 切换到第三分组</span><br><span class="line">Command + K Command + Left 切换到上一分组</span><br><span class="line">Command + K Command + Right 切换到下一分组</span><br><span class="line">Command + K Command + Shift + Left 左移编辑器</span><br><span class="line">Command + K Command + Shift + Right 右移编辑器</span><br><span class="line">Command + K Left 激活左侧编辑组</span><br><span class="line">Command + K Right 激活右侧编辑组</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + N 新建文件</span><br><span class="line">Command + O 打开文件</span><br><span class="line">Command + S 保存文件</span><br><span class="line">Command + Shift + S 另存为</span><br><span class="line">Command + Option + S 全部保存</span><br><span class="line">Command + W 关闭</span><br><span class="line">Command + K Command + W 全部关闭</span><br><span class="line">Command + Shift + T 重新打开被关闭的编辑器</span><br><span class="line">Command + K Enter 保持打开</span><br><span class="line">Ctrl + Tab 打开下一个</span><br><span class="line">Ctrl + Shift + Tab 打开上一个</span><br><span class="line">Command + K P 复制当前文件路径</span><br><span class="line">Command + K R 在资源管理器中查看当前文件</span><br><span class="line">Command + K O 新窗口打开当前文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Ctrl + F 全屏、退出全屏</span><br><span class="line">Command + Option + 1 切换编辑器分屏方式（横、竖）</span><br><span class="line">Command + + 放大</span><br><span class="line">Command + - 缩小</span><br><span class="line">Command + B 显示、隐藏侧边栏</span><br><span class="line">Command + Shift + E 显示资源管理器 或 切换焦点</span><br><span class="line">Command + Shift + F 显示搜索框</span><br><span class="line">Ctrl + Shift + G 显示Git面板</span><br><span class="line">Command + Shift + D 显示调试面板</span><br><span class="line">Command + Shift + X 显示插件面板</span><br><span class="line">Command + Shift + H 全局搜索替换</span><br><span class="line">Command + Shift + J 显示、隐藏高级搜索</span><br><span class="line">Command + Shift + C 打开新终端</span><br><span class="line">Command + Shift + U 显示输出面板</span><br><span class="line">Command + Shift + V Markdown预览窗口</span><br><span class="line">Command + K V 分屏显示 Markdown预览窗口</span><br></pre></td></tr></table></figure>
+
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">F9 设置 或 取消断点</span><br><span class="line">F5 开始 或 继续</span><br><span class="line">F11 进入</span><br><span class="line">Shift + F11 跳出</span><br><span class="line">F10 跳过</span><br><span class="line">Command + K Command + I 显示悬停信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="集成终端"><a href="#集成终端" class="headerlink" title="集成终端"></a>集成终端</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Ctrl + ` 显示终端</span><br><span class="line">Ctrl + Shift + ` 新建终端</span><br><span class="line">Command + Up 向上滚动</span><br><span class="line">Command + Down 向下滚动</span><br><span class="line">PgUp 向上翻页</span><br><span class="line">PgDown 向下翻页</span><br><span class="line">Command + Home 滚动到顶部</span><br><span class="line">Command + End 滚动到底部</span><br></pre></td></tr></table></figure>
+
+<p>转至<a href="https://segmentfault.com/a/1190000012811886" target="_blank" rel="noopener">小谷xg</a></p>
+]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
+      <tags>
+        <tag>MacOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>98. Validate Binary Search Tree</title>
+    <url>/2020/05/28/98-Validate-Binary-Search-Tree/</url>
+    <content><![CDATA[<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Given a binary tree, determine if it is a valid binary search tree (BST).</span><br><span class="line"></span><br><span class="line">Assume a BST is defined as follows:</span><br><span class="line"></span><br><span class="line">The left subtree of a node contains only nodes with keys less than the node&apos;s key.</span><br><span class="line">The right subtree of a node contains only nodes with keys greater than the node&apos;s key.</span><br><span class="line">Both the left and right subtrees must also be binary search trees.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line">   / \</span><br><span class="line">  1   3</span><br><span class="line"></span><br><span class="line">Input: [2,1,3]</span><br><span class="line">Output: true</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  1   4</span><br><span class="line">     / \</span><br><span class="line">    3   6</span><br><span class="line"></span><br><span class="line">Input: [5,1,4,null,null,3,6]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: The root node&apos;s value is 5 but its right child&apos;s value is 4.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1-recusive"><a href="#Sol-1-recusive" class="headerlink" title="Sol 1 recusive"></a>Sol 1 recusive</h3><!-- Thinking -->
+<p>pass upper and lower bound into recursive function and return a boolean value</p>
+<!-- Coding -->
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root: TreeNode)</span> -&gt; bool:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(root, lower, upper)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> root.left != <span class="literal">None</span> :</span><br><span class="line">                <span class="keyword">if</span> root.left.val &gt;= root.val <span class="keyword">or</span> root.left.val &lt;= lower:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> root.right != <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">if</span> root.right.val &lt;= root.val <span class="keyword">or</span> root.right.val &gt;= upper:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> helper(root.left, lower, root.val) <span class="keyword">and</span> helper(root.right, root.val, upper)</span><br><span class="line">        <span class="keyword">return</span> helper(root, float(<span class="string">'-inf'</span>), float(<span class="string">'+inf'</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Sol-2"><a href="#Sol-2" class="headerlink" title="Sol 2"></a>Sol 2</h3><!-- Thinking -->
+<p>traverse the tree by inorder traverse, then check if the order is sorted.</p>
+<!-- Coding -->
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Record of deploying a Flask project on cloud server</title>
+    <url>/2020/05/29/Record-of-deploying-a-Flask-project-on-cloud-server/</url>
+    <content><![CDATA[<p>This is a record of deploying a Flask application on a CentOS7 CVM server. This article includes basic environment setting, tools installation and some tutorial links. Python3.6, Flask, Gunicorn, Supervisor will be used here.</p>
+<a id="more"></a>
+
+<h2 id="Environment-setting"><a href="#Environment-setting" class="headerlink" title="Environment setting"></a>Environment setting</h2><p>Aliyun cloud virtual machine (CVM)</p>
+<p>Server os: CentOS 7.3</p>
+<h2 id="Install-Python3-6"><a href="#Install-Python3-6" class="headerlink" title="Install Python3.6"></a>Install Python3.6</h2><p>The packages management tool <code>Yum</code> is based on Python2, we need to install Python3 without influencing Python2</p>
+<ul>
+<li><p>Install dependencies</p>
+<blockquote>
+<p><code>yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel</code></p>
+</blockquote>
+</li>
+<li><p>Download python3.6</p>
+<blockquote>
+<p><code>wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz</code></p>
+</blockquote>
+<p>Unzip <code>Python-3.6.0.tg</code> by <code>tar</code> command</p>
+<blockquote>
+<p><code>tar -xzvf Python-3.6.0.tgz -C  /tmp</code></p>
+</blockquote>
+<p>Install Python</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>  /tmp/Python-3.6.0/\</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>\</span><br><span class="line">make\</span><br><span class="line">make altinstall</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Configuration</p>
+<ul>
+<li><p>add soft link (添加软连接)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>/usr/bin\</span><br><span class="line">mv  python python.backup\</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/bin/python3.6 /usr/bin/python\</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/bin/python3.6 /usr/bin/python3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>modify python dependencies in yum from python2 to python3.6</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/bin\</span><br><span class="line">ls yum*</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>change the headers from <code>!/usr/bin/python</code> to <code>!/usr/bin/python2</code> inside each yum* files</p>
+</li>
+<li><p>also do the same modifications to <code>/usr/bin/gnome-tweak-tool</code> and <code>/usr/libexec/urlgrabber-ext-down</code></p>
+</li>
+</ul>
+</li>
+<li><p>Bugs may encounter</p>
+<ul>
+<li><code>zipimport.ZipImportError: can&#39;t decompress data; zlib not available</code></li>
+<li><code>./Modules/zlibmodule.c:10:10: fatal error: zlib.h: No such file or directory</code></li>
+</ul>
+</li>
+<li><p>references</p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000015628625" target="_blank" rel="noopener">CentOS 7 下 安装 Python3.7</a></li>
+<li><a href="https://blog.csdn.net/hobohero/article/details/54381475" target="_blank" rel="noopener">CentOS7安装Python3.6</a></li>
+<li><a href="https://blog.csdn.net/jaket5219999/article/details/80894517" target="_blank" rel="noopener">linux 一行命令安装python3.7</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="WSGI-container-–-Gunicorn"><a href="#WSGI-container-–-Gunicorn" class="headerlink" title="WSGI container – Gunicorn"></a>WSGI container – <strong>Gunicorn</strong></h2><p>WSGI is an interface between python web framework and HTTP server.<br>WSGI helps Python to regconise HTTP requests.<br>Gunicorn is a WSGI container, it helps create a Python web server.<br><em>simple conf, high performance, multi-thread, open-source</em></p>
+<ul>
+<li><p>Copy local project to cloud server</p>
+<ul>
+<li>connect cloud server by <code>ssh</code><blockquote>
+<p><code>ssh &lt;username&gt;@&lt;host-num&gt;</code></p>
+</blockquote>
+</li>
+<li>create folder<blockquote>
+<p><code>mkdir &lt;project name&gt;</code><br><code>cd &lt;project name&gt;</code></p>
+</blockquote>
+</li>
+<li>create venv<blockquote>
+<p><code>python3 -m venv env</code></p>
+</blockquote>
+</li>
+<li>transfer project folder recursively<blockquote>
+<p><code>scp -r &lt;path of project&gt; root@&lt;host&gt;:/&lt;dir&gt;</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Set up Gunicorn</p>
+<ul>
+<li><p>get into virtual env</p>
+<blockquote>
+<p>source venv/bin/activate</p>
+</blockquote>
+</li>
+<li><p>install Gunicorn</p>
+<blockquote>
+<p>pip3 install gunicorn</p>
+</blockquote>
+</li>
+<li><p>setting</p>
+<blockquote>
+<p>vim gunicorn.conf</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># gunicorn.conf</span><br><span class="line">worker = 3</span><br><span class="line">bind = &apos;0.0.0.0:8000&apos;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>pip3.6 install -r requirements.txt</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>References</p>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/22126999" target="_blank" rel="noopener">第二期 · 阿里云Python+Flask环境搭建</a></li>
+<li><a href="https://www.jianshu.com/p/52d8e3deaa16" target="_blank" rel="noopener">gunicorn学习介绍</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Supervisor"><a href="#Supervisor" class="headerlink" title="Supervisor"></a><strong>Supervisor</strong></h2><p>Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems. Supervisor has advantages of auto-recovery and auto-restart.</p>
+<ul>
+<li><p>Set up Supervisor</p>
+<ul>
+<li><p>install Supervisor</p>
+<blockquote>
+<p>yum install supervisor</p>
+</blockquote>
+</li>
+<li><p>setting</p>
+<ul>
+<li>go to supervisor conf path<blockquote>
+<p>cd /etc/supervisord.d</p>
+</blockquote>
+</li>
+<li>create <code>&lt;project-name&gt;.ini</code></li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[program:&lt;project name&gt;]</span></span><br><span class="line"><span class="attr">command</span>=&lt;path of gunicorn&gt; run:app -c &lt;path of gunicorn&gt;/gunicorn.conf</span><br><span class="line"><span class="attr">directory</span>=&lt;path of project&gt;</span><br><span class="line"><span class="attr">user</span>=&lt;username&gt;</span><br><span class="line"><span class="attr">autostart</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">autorestart</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">stdout_logfile</span>=&lt;path of project&gt;/logs/gunicorn_supervisor.log</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>load supervisor setting</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">supervisorctl reread\</span><br><span class="line">supervisorctl update\</span><br><span class="line">supervisorctl start &lt;project&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>References</p>
+<ul>
+<li><a href="https://www.centos.bz/2018/06/centos7-3%E9%85%8D%E7%BD%AEsupervisor%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">Centos7.3配置Supervisor遇到的一些小问题</a></li>
+<li><a href="https://hooklife.me/linux/Supervisor%E5%9C%A8deepin%E5%AE%89%E8%A3%85%E3%80%81%E5%8D%B8%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">supervisor在deepin安装、使用与卸载</a></li>
+<li><a href="https://www.chengxulvtu.com/supervisor-on-centos-7/" target="_blank" rel="noopener">CentOS 7 配置 Supervisor</a></li>
+<li><a href="https://www.restran.net/2015/10/04/supervisord-tutorial/" target="_blank" rel="noopener">Python 进程管理工具 Supervisor 使用教程</a></li>
+<li><a href="https://philipzheng.gitbooks.io/docker_practice/content/cases/supervisor.html" target="_blank" rel="noopener">使用 Supervisor 來管理程式</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><ul>
+<li>references<ul>
+<li><a href="https://www.zhihu.com/question/38528616" target="_blank" rel="noopener">Nginx、Gunicorn在服务器中分别起什么作用？</a></li>
+<li><a href="https://www.zhihu.com/question/20709415" target="_blank" rel="noopener">nginx能否不借助wsgi直接部署Python应用？</a></li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>mashupSite</title>
     <url>/2020/05/25/mashupSite/</url>
-    <content><![CDATA[<h1 id="Mashup-site-by-Django"><a href="#Mashup-site-by-Django" class="headerlink" title="Mashup site by Django"></a>Mashup site by Django</h1><p align="center">
+    <content><![CDATA[<p>This is a team project about developing a web application of introduction of Marvel characters. The technologies we used are <strong>Django</strong> for web dev, <strong>beautifulsoup</strong> for parsing html, <strong>Bootstrap</strong> for frontend design and <strong>json</strong> for storage, <strong>Google Statistic</strong> for SEO.</p>
+<a id="more"></a>
+
+<p align="center">
     <img src="https://i.loli.net/2019/09/28/O2rgluRnKFBiqmD.png" width="400" height="400">
 </p>
 
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This is a team project about developing a web application of introduction of Marvel characters. The technologies we used are <strong>Django</strong> for web dev, <strong>beautifulsoup</strong> for parsing html, <strong>Bootstrap</strong> for frontend design and <strong>json</strong> for storage, <strong>Google Statistic</strong> for SEO.</p>
 <h2 id="Problem-statement"><a href="#Problem-statement" class="headerlink" title="Problem statement"></a>Problem statement</h2><ul>
 <li>choosing technologies</li>
 <li>techniques of web crawling</li>
@@ -234,66 +459,11 @@
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>In conclusions, the design of web page is advanced, but lack of characteristics. Second, we did some SEO optimizations, but still have some work can be done. Third, We rank at the good positions when search ‘mashup page for marvel’, ‘ma4 mashup’ and ‘marvel avenger 4 mashup’ on Google. Finally, We used 3 sources, but there are more sources can be added. We also made a button for ticket purchase, so that users can go directly to purchase tickets after reading our website.</p>
 ]]></content>
       <categories>
-        <category>Record</category>
+        <category>record</category>
       </categories>
       <tags>
         <tag>Django</tag>
         <tag>SEO</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>MacOS_shortcut</title>
-    <url>/2020/05/25/MacOS-shortcut/</url>
-    <content><![CDATA[<h1 id="MacOS-快捷键"><a href="#MacOS-快捷键" class="headerlink" title="MacOS 快捷键"></a>MacOS 快捷键</h1><h2 id="全局"><a href="#全局" class="headerlink" title="全局"></a>全局</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Shift + P / F1 显示命令面板</span><br><span class="line">Command + P 快速打开</span><br><span class="line">Command + Shift + N 打开新窗口</span><br><span class="line">Command + W 关闭窗口</span><br></pre></td></tr></table></figure>
-
-<h2 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + X 剪切（未选中文本的情况下，剪切光标所在行）</span><br><span class="line">Command + C 复制（未选中文本的情况下，复制光标所在行）</span><br><span class="line">Option + Up 向上移动行</span><br><span class="line">Option + Down 向下移动行</span><br><span class="line">Option + Shift + Up 向上复制行</span><br><span class="line">Option + Shift + Down 向下复制行</span><br><span class="line">Command + Shift + K 删除行</span><br><span class="line">Command + Enter 下一行插入</span><br><span class="line">Command + Shift + Enter 上一行插入</span><br><span class="line">Command + Shift + \ 跳转到匹配的括号</span><br><span class="line">Command + [ 减少缩进</span><br><span class="line">Command + ] 增加缩进</span><br><span class="line">Home 跳转至行首</span><br><span class="line">End 跳转到行尾</span><br><span class="line">Command + Up 跳转至文件开头</span><br><span class="line">Command + Down 跳转至文件结尾</span><br><span class="line">Ctrl + PgUp 按行向上滚动</span><br><span class="line">Ctrl + PgDown 按行向下滚动</span><br><span class="line">Command + PgUp 按屏向上滚动</span><br><span class="line">Command + PgDown 按屏向下滚动</span><br><span class="line">Command + Shift + [ 折叠代码块</span><br><span class="line">Command + Shift + ] 展开代码块</span><br><span class="line">Command + K Command + [ 折叠全部子代码块</span><br><span class="line">Command + K Command + ] 展开全部子代码块</span><br><span class="line">Command + K Command + 0 折叠全部代码块</span><br><span class="line">Command + K Command + J 展开全部代码块</span><br><span class="line">Command + K Command + C 添加行注释</span><br><span class="line">Command + K Command + U 移除行注释</span><br><span class="line">Command + / 添加、移除行注释</span><br><span class="line">Option + Shift + A 添加、移除块注释</span><br><span class="line">Option + Z 自动换行、取消自动换行</span><br></pre></td></tr></table></figure>
-
-<h2 id="多光标与选择"><a href="#多光标与选择" class="headerlink" title="多光标与选择"></a>多光标与选择</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Option + 点击 插入多个光标</span><br><span class="line">Command + Option + Up 向上插入光标</span><br><span class="line">Command + Option + Down 向下插入光标</span><br><span class="line">Command + U 撤销上一个光标操作</span><br><span class="line">Option + Shift + I 在所选行的行尾插入光标</span><br><span class="line">Command + I 选中当前行</span><br><span class="line">Command + Shift + L 选中所有与当前选中内容相同部分</span><br><span class="line">Command + F2 选中所有与当前选中单词相同的单词</span><br><span class="line">Command + Ctrl + Shift + Left 折叠选中</span><br><span class="line">Command + Ctrl + Shift + Right 展开选中</span><br><span class="line">Alt + Shift + 拖动鼠标 选中代码块</span><br><span class="line">Command + Shift + Option + Up 列选择 向上</span><br><span class="line">Command + Shift + Option + Down 列选择 向下</span><br><span class="line">Command + Shift + Option + Left 列选择 向左</span><br><span class="line">Command + Shift + Option + Right 列选择 向右</span><br><span class="line">Command + Shift + Option + PgUp 列选择 向上翻页</span><br><span class="line">Command + Shift + Option + PgDown 列选择 向下翻页</span><br></pre></td></tr></table></figure>
-
-<h2 id="查找替换"><a href="#查找替换" class="headerlink" title="查找替换"></a>查找替换</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + F 查找</span><br><span class="line">Command + Option + F 替换</span><br><span class="line">Command + G 查找下一个</span><br><span class="line">Command + Shift + G 查找上一个</span><br><span class="line">Option + Enter 选中所有匹配项</span><br><span class="line">Command + D 向下选中相同内容</span><br><span class="line">Command + K Command + D 移除前一个向下选中相同内容</span><br></pre></td></tr></table></figure>
-
-<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Ctrl + Space 打开建议</span><br><span class="line">Command + Shift + Space 参数提示</span><br><span class="line">Tab Emmet插件缩写补全</span><br><span class="line">Option + Shift + F 格式化</span><br><span class="line">Command + K Command + F 格式化选中内容</span><br><span class="line">F12 跳转到声明位置</span><br><span class="line">Option + F12 查看具体声明内容</span><br><span class="line">Command + K F12 分屏查看具体声明内容</span><br><span class="line">Command + . 快速修复</span><br><span class="line">Shift + F12 显示引用</span><br><span class="line">F2 重命名符号</span><br><span class="line">Command + Shift + . 替换为上一个值</span><br><span class="line">Command + Shift + , 替换为下一个值</span><br><span class="line">Command + K Command + X 删除行尾多余空格</span><br><span class="line">Command + K M 更改文件语言</span><br></pre></td></tr></table></figure>
-
-<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + T 显示所有符号</span><br><span class="line">Ctrl + G 跳转至某行</span><br><span class="line">Command + P 跳转到某个文件</span><br><span class="line">Command + Shift + O 跳转到某个符号</span><br><span class="line">Command + Shift + M 打开问题面板</span><br><span class="line">F8 下一个错误或警告位置</span><br><span class="line">Shift + F8 上一个错误或警告位置</span><br><span class="line">Ctrl + Shift + Tab 编辑器历史记录</span><br><span class="line">Ctrl + - 后退</span><br><span class="line">Ctrl + Shift + - 前进</span><br><span class="line">Ctrl + Shift + M Tab 切换焦点</span><br></pre></td></tr></table></figure>
-
-<h2 id="编辑器管理"><a href="#编辑器管理" class="headerlink" title="编辑器管理"></a>编辑器管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + W 关闭编辑器</span><br><span class="line">Command + K F 关闭文件夹</span><br><span class="line">Command + \ 编辑器分屏</span><br><span class="line">Command + 1 切换到第一分组</span><br><span class="line">Command + 2 切换到第二分组</span><br><span class="line">Command + 3 切换到第三分组</span><br><span class="line">Command + K Command + Left 切换到上一分组</span><br><span class="line">Command + K Command + Right 切换到下一分组</span><br><span class="line">Command + K Command + Shift + Left 左移编辑器</span><br><span class="line">Command + K Command + Shift + Right 右移编辑器</span><br><span class="line">Command + K Left 激活左侧编辑组</span><br><span class="line">Command + K Right 激活右侧编辑组</span><br></pre></td></tr></table></figure>
-
-<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + N 新建文件</span><br><span class="line">Command + O 打开文件</span><br><span class="line">Command + S 保存文件</span><br><span class="line">Command + Shift + S 另存为</span><br><span class="line">Command + Option + S 全部保存</span><br><span class="line">Command + W 关闭</span><br><span class="line">Command + K Command + W 全部关闭</span><br><span class="line">Command + Shift + T 重新打开被关闭的编辑器</span><br><span class="line">Command + K Enter 保持打开</span><br><span class="line">Ctrl + Tab 打开下一个</span><br><span class="line">Ctrl + Shift + Tab 打开上一个</span><br><span class="line">Command + K P 复制当前文件路径</span><br><span class="line">Command + K R 在资源管理器中查看当前文件</span><br><span class="line">Command + K O 新窗口打开当前文件</span><br></pre></td></tr></table></figure>
-
-<h2 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Ctrl + F 全屏、退出全屏</span><br><span class="line">Command + Option + 1 切换编辑器分屏方式（横、竖）</span><br><span class="line">Command + + 放大</span><br><span class="line">Command + - 缩小</span><br><span class="line">Command + B 显示、隐藏侧边栏</span><br><span class="line">Command + Shift + E 显示资源管理器 或 切换焦点</span><br><span class="line">Command + Shift + F 显示搜索框</span><br><span class="line">Ctrl + Shift + G 显示Git面板</span><br><span class="line">Command + Shift + D 显示调试面板</span><br><span class="line">Command + Shift + X 显示插件面板</span><br><span class="line">Command + Shift + H 全局搜索替换</span><br><span class="line">Command + Shift + J 显示、隐藏高级搜索</span><br><span class="line">Command + Shift + C 打开新终端</span><br><span class="line">Command + Shift + U 显示输出面板</span><br><span class="line">Command + Shift + V Markdown预览窗口</span><br><span class="line">Command + K V 分屏显示 Markdown预览窗口</span><br></pre></td></tr></table></figure>
-
-<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">F9 设置 或 取消断点</span><br><span class="line">F5 开始 或 继续</span><br><span class="line">F11 进入</span><br><span class="line">Shift + F11 跳出</span><br><span class="line">F10 跳过</span><br><span class="line">Command + K Command + I 显示悬停信息</span><br></pre></td></tr></table></figure>
-
-<h2 id="集成终端"><a href="#集成终端" class="headerlink" title="集成终端"></a>集成终端</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Ctrl + ` 显示终端</span><br><span class="line">Ctrl + Shift + ` 新建终端</span><br><span class="line">Command + Up 向上滚动</span><br><span class="line">Command + Down 向下滚动</span><br><span class="line">PgUp 向上翻页</span><br><span class="line">PgDown 向下翻页</span><br><span class="line">Command + Home 滚动到顶部</span><br><span class="line">Command + End 滚动到底部</span><br></pre></td></tr></table></figure>
-
-<p>转至<a href="https://segmentfault.com/a/1190000012811886" target="_blank" rel="noopener">小谷xg</a></p>
-]]></content>
-      <categories>
-        <category>note</category>
-      </categories>
-      <tags>
-        <tag>MacOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>test_leetcode</title>
-    <url>/2020/05/25/test-leetcode/</url>
-    <content><![CDATA[<h1 id="title"><a href="#title" class="headerlink" title="title"></a>title</h1><h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1"><a href="#Sol-1" class="headerlink" title="Sol 1"></a>Sol 1</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="Sol-2"><a href="#Sol-2" class="headerlink" title="Sol 2"></a>Sol 2</h3><pre><code class="python"></code></pre>
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>Algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>test</title>
-    <url>/2020/02/12/test/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>
