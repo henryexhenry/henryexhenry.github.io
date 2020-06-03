@@ -1,6 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>107. Binary Tree Level Order Traversal II</title>
+    <url>/2020/06/03/107-Binary-Tree-Level-Order-Traversal-II/</url>
+    <content><![CDATA[<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Given a binary tree, return the bottom-up level order traversal of its nodes&apos; values. (ie, from left to right, level by level from leaf to root).</span><br><span class="line"></span><br><span class="line">For example:</span><br><span class="line">Given binary tree [3,9,20,null,null,15,7],</span><br><span class="line"></span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7</span><br><span class="line">return its bottom-up level order traversal as:</span><br><span class="line"></span><br><span class="line">[</span><br><span class="line">  [15,7],</span><br><span class="line">  [9,20],</span><br><span class="line">  [3]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1-BFS"><a href="#Sol-1-BFS" class="headerlink" title="Sol 1 BFS"></a>Sol 1 BFS</h3><!-- Thinking -->
+
+
+<!-- Coding -->
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">levelOrderBottom</span><span class="params">(self, root: TreeNode)</span> -&gt; List[List[int]]:</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        q = collections.deque([root])</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            ans.insert(<span class="number">0</span>,[])</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(q)):</span><br><span class="line">                node = q.popleft()</span><br><span class="line">                ans[<span class="number">0</span>].append(node.val)</span><br><span class="line">                <span class="keyword">if</span> node.left != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.right)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Record of deploying a Flask project on cloud server</title>
+    <url>/2020/05/29/Record-of-deploying-a-Flask-project-on-cloud-server/</url>
+    <content><![CDATA[<p>This is a record of deploying a Flask application on a CentOS7 CVM server. This article includes basic environment setting, tools installation and some tutorial links. Python3.6, Flask, Gunicorn, Supervisor will be used here.</p>
+<a id="more"></a>
+
+<h2 id="Environment-setting"><a href="#Environment-setting" class="headerlink" title="Environment setting"></a>Environment setting</h2><p>Aliyun cloud virtual machine (CVM)</p>
+<p>Server os: CentOS 7.3</p>
+<h2 id="Install-Python3-6"><a href="#Install-Python3-6" class="headerlink" title="Install Python3.6"></a>Install Python3.6</h2><p>The packages management tool <code>Yum</code> is based on Python2, we need to install Python3 without influencing Python2</p>
+<ul>
+<li><p>Install dependencies</p>
+<blockquote>
+<p><code>yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel</code></p>
+</blockquote>
+</li>
+<li><p>Download python3.6</p>
+<blockquote>
+<p><code>wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz</code></p>
+</blockquote>
+<p>Unzip <code>Python-3.6.0.tg</code> by <code>tar</code> command</p>
+<blockquote>
+<p><code>tar -xzvf Python-3.6.0.tgz -C  /tmp</code></p>
+</blockquote>
+<p>Install Python</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>  /tmp/Python-3.6.0/\</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>\</span><br><span class="line">make\</span><br><span class="line">make altinstall</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Configuration</p>
+<ul>
+<li><p>add soft link (添加软连接)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>/usr/bin\</span><br><span class="line">mv  python python.backup\</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/bin/python3.6 /usr/bin/python\</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/bin/python3.6 /usr/bin/python3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>modify python dependencies in yum from python2 to python3.6</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/bin\</span><br><span class="line">ls yum*</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>change the headers from <code>!/usr/bin/python</code> to <code>!/usr/bin/python2</code> inside each yum* files</p>
+</li>
+<li><p>also do the same modifications to <code>/usr/bin/gnome-tweak-tool</code> and <code>/usr/libexec/urlgrabber-ext-down</code></p>
+</li>
+</ul>
+</li>
+<li><p>Bugs may encounter</p>
+<ul>
+<li><code>zipimport.ZipImportError: can&#39;t decompress data; zlib not available</code></li>
+<li><code>./Modules/zlibmodule.c:10:10: fatal error: zlib.h: No such file or directory</code></li>
+</ul>
+</li>
+<li><p>references</p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000015628625" target="_blank" rel="noopener">CentOS 7 下 安装 Python3.7</a></li>
+<li><a href="https://blog.csdn.net/hobohero/article/details/54381475" target="_blank" rel="noopener">CentOS7安装Python3.6</a></li>
+<li><a href="https://blog.csdn.net/jaket5219999/article/details/80894517" target="_blank" rel="noopener">linux 一行命令安装python3.7</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="WSGI-container-–-Gunicorn"><a href="#WSGI-container-–-Gunicorn" class="headerlink" title="WSGI container – Gunicorn"></a>WSGI container – <strong>Gunicorn</strong></h2><p>WSGI is an interface between python web framework and HTTP server.<br>WSGI helps Python to regconise HTTP requests.<br>Gunicorn is a WSGI container, it helps create a Python web server.<br><em>simple conf, high performance, multi-thread, open-source</em></p>
+<ul>
+<li><p>Copy local project to cloud server</p>
+<ul>
+<li>connect cloud server by <code>ssh</code><blockquote>
+<p><code>ssh &lt;username&gt;@&lt;host-num&gt;</code></p>
+</blockquote>
+</li>
+<li>create folder<blockquote>
+<p><code>mkdir &lt;project name&gt;</code><br><code>cd &lt;project name&gt;</code></p>
+</blockquote>
+</li>
+<li>create venv<blockquote>
+<p><code>python3 -m venv env</code></p>
+</blockquote>
+</li>
+<li>transfer project folder recursively<blockquote>
+<p><code>scp -r &lt;path of project&gt; root@&lt;host&gt;:/&lt;dir&gt;</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Set up Gunicorn</p>
+<ul>
+<li><p>get into virtual env</p>
+<blockquote>
+<p>source venv/bin/activate</p>
+</blockquote>
+</li>
+<li><p>install Gunicorn</p>
+<blockquote>
+<p>pip3 install gunicorn</p>
+</blockquote>
+</li>
+<li><p>setting</p>
+<blockquote>
+<p>vim gunicorn.conf</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># gunicorn.conf</span><br><span class="line">worker = 3</span><br><span class="line">bind = &apos;0.0.0.0:8000&apos;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>pip3.6 install -r requirements.txt</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>References</p>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/22126999" target="_blank" rel="noopener">第二期 · 阿里云Python+Flask环境搭建</a></li>
+<li><a href="https://www.jianshu.com/p/52d8e3deaa16" target="_blank" rel="noopener">gunicorn学习介绍</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Supervisor"><a href="#Supervisor" class="headerlink" title="Supervisor"></a><strong>Supervisor</strong></h2><p>Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems. Supervisor has advantages of auto-recovery and auto-restart.</p>
+<ul>
+<li><p>Set up Supervisor</p>
+<ul>
+<li><p>install Supervisor</p>
+<blockquote>
+<p>yum install supervisor</p>
+</blockquote>
+</li>
+<li><p>setting</p>
+<ul>
+<li>go to supervisor conf path<blockquote>
+<p>cd /etc/supervisord.d</p>
+</blockquote>
+</li>
+<li>create <code>&lt;project-name&gt;.ini</code></li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[program:&lt;project name&gt;]</span></span><br><span class="line"><span class="attr">command</span>=&lt;path of gunicorn&gt; run:app -c &lt;path of gunicorn&gt;/gunicorn.conf</span><br><span class="line"><span class="attr">directory</span>=&lt;path of project&gt;</span><br><span class="line"><span class="attr">user</span>=&lt;username&gt;</span><br><span class="line"><span class="attr">autostart</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">autorestart</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">stdout_logfile</span>=&lt;path of project&gt;/logs/gunicorn_supervisor.log</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>load supervisor setting</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">supervisorctl reread\</span><br><span class="line">supervisorctl update\</span><br><span class="line">supervisorctl start &lt;project&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>References</p>
+<ul>
+<li><a href="https://www.centos.bz/2018/06/centos7-3%E9%85%8D%E7%BD%AEsupervisor%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">Centos7.3配置Supervisor遇到的一些小问题</a></li>
+<li><a href="https://hooklife.me/linux/Supervisor%E5%9C%A8deepin%E5%AE%89%E8%A3%85%E3%80%81%E5%8D%B8%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">supervisor在deepin安装、使用与卸载</a></li>
+<li><a href="https://www.chengxulvtu.com/supervisor-on-centos-7/" target="_blank" rel="noopener">CentOS 7 配置 Supervisor</a></li>
+<li><a href="https://www.restran.net/2015/10/04/supervisord-tutorial/" target="_blank" rel="noopener">Python 进程管理工具 Supervisor 使用教程</a></li>
+<li><a href="https://philipzheng.gitbooks.io/docker_practice/content/cases/supervisor.html" target="_blank" rel="noopener">使用 Supervisor 來管理程式</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><ul>
+<li>references<ul>
+<li><a href="https://www.zhihu.com/question/38528616" target="_blank" rel="noopener">Nginx、Gunicorn在服务器中分别起什么作用？</a></li>
+<li><a href="https://www.zhihu.com/question/20709415" target="_blank" rel="noopener">nginx能否不借助wsgi直接部署Python应用？</a></li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>98. Validate Binary Search Tree</title>
+    <url>/2020/05/28/98-Validate-Binary-Search-Tree/</url>
+    <content><![CDATA[<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Given a binary tree, determine if it is a valid binary search tree (BST).</span><br><span class="line"></span><br><span class="line">Assume a BST is defined as follows:</span><br><span class="line"></span><br><span class="line">The left subtree of a node contains only nodes with keys less than the node&apos;s key.</span><br><span class="line">The right subtree of a node contains only nodes with keys greater than the node&apos;s key.</span><br><span class="line">Both the left and right subtrees must also be binary search trees.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line">   / \</span><br><span class="line">  1   3</span><br><span class="line"></span><br><span class="line">Input: [2,1,3]</span><br><span class="line">Output: true</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  1   4</span><br><span class="line">     / \</span><br><span class="line">    3   6</span><br><span class="line"></span><br><span class="line">Input: [5,1,4,null,null,3,6]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: The root node&apos;s value is 5 but its right child&apos;s value is 4.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1-recusive"><a href="#Sol-1-recusive" class="headerlink" title="Sol 1 recusive"></a>Sol 1 recusive</h3><!-- Thinking -->
+<p>pass upper and lower bound into recursive function and return a boolean value</p>
+<!-- Coding -->
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root: TreeNode)</span> -&gt; bool:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(root, lower, upper)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> root.left != <span class="literal">None</span> :</span><br><span class="line">                <span class="keyword">if</span> root.left.val &gt;= root.val <span class="keyword">or</span> root.left.val &lt;= lower:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> root.right != <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">if</span> root.right.val &lt;= root.val <span class="keyword">or</span> root.right.val &gt;= upper:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> helper(root.left, lower, root.val) <span class="keyword">and</span> helper(root.right, root.val, upper)</span><br><span class="line">        <span class="keyword">return</span> helper(root, float(<span class="string">'-inf'</span>), float(<span class="string">'+inf'</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Sol-2"><a href="#Sol-2" class="headerlink" title="Sol 2"></a>Sol 2</h3><!-- Thinking -->
+<p>traverse the tree by inorder traverse, then check if the order is sorted.</p>
+<!-- Coding -->
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>111. Minimum Depth of Binary Tree</title>
+    <url>/2020/06/01/111-Minimum-Depth-of-Binary-Tree/</url>
+    <content><![CDATA[<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Given a binary tree, find its minimum depth.</span><br><span class="line"></span><br><span class="line">The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.</span><br><span class="line"></span><br><span class="line">Note: A leaf is a node with no children.</span><br><span class="line"></span><br><span class="line">Example:</span><br><span class="line"></span><br><span class="line">Given binary tree [3,9,20,null,null,15,7],</span><br><span class="line"></span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7</span><br><span class="line">return its minimum depth = 2.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1-recursion"><a href="#Sol-1-recursion" class="headerlink" title="Sol 1 recursion"></a>Sol 1 recursion</h3><!-- Thinking -->
+<p>recursively find the smaller counting of child nodes.<br>if both children exist:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  A</span><br><span class="line"> / \</span><br><span class="line">L   R</span><br></pre></td></tr></table></figure>
+
+<p>minDepth of A should be 2 (take min)</p>
+<p>if only one child exist:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  B</span><br><span class="line"> /</span><br><span class="line">L</span><br></pre></td></tr></table></figure>
+
+<p>minDepth of B should be 2 (take max)</p>
+<!-- Coding -->
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDepth</span><span class="params">(self, root: TreeNode)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> root.left == <span class="literal">None</span> <span class="keyword">or</span> root.right == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> max(<span class="number">1</span>+self.minDepth(root.left), <span class="number">1</span>+self.minDepth(root.right))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> min(<span class="number">1</span>+self.minDepth(root.left), <span class="number">1</span>+self.minDepth(root.right))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Sol-2"><a href="#Sol-2" class="headerlink" title="Sol 2"></a>Sol 2</h3><!-- Thinking -->
+<p>BFS should be faster in this problem.</p>
+<!-- Coding -->
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDepth</span><span class="params">(self, root: TreeNode)</span> -&gt; int:</span></span><br><span class="line">        q = collections.deque([root])</span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        level = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            level += <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(q)):</span><br><span class="line">                node = q.popleft()</span><br><span class="line">                <span class="keyword">if</span> node.left != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.right)</span><br><span class="line">                <span class="keyword">if</span> node.left == <span class="literal">None</span> <span class="keyword">and</span> node.right == <span class="literal">None</span>:</span><br><span class="line">                    <span class="keyword">return</span> level</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>celery 分布式任务队列</title>
+    <url>/2020/06/03/celery-%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/</url>
+    <content><![CDATA[<p>celery 是基于 分布式信息传递 的 异步任务队列。他主要应用于 实时任务，但也支持 定时任务 (使用 celery beat 作为 scheduler)。celery 简单，高效，可扩展 的优点使它成为最主流的 Python 分布式框架。</p>
+<p><img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2435759940,1913677322&fm=26&gp=0.jpg" alt="Celery"></p>
+<a id="more"></a>
+
+<h2 id="celery-的结构"><a href="#celery-的结构" class="headerlink" title="celery 的结构"></a>celery 的结构</h2><p>celery 主要由前三个部分组成：</p>
+<ol>
+<li>celery client (连接 web app 和 celery task)</li>
+<li>celery worker (运行 task 的进程，可以存在多个)</li>
+<li>celery broker (经纪人) (client 和 worker 之间的消息管道，需要选用第三方工具 Redis / RabbitMQ / MongoDB)</li>
+<li>Beat (定时任务调度器) [optional]</li>
+<li>Result Backend (保存任务的执行结果) [optional]</li>
+</ol>
+<h2 id="celery-原理"><a href="#celery-原理" class="headerlink" title="celery 原理"></a>celery 原理</h2><p>celery 将 tasks 移出 WSGI 的 HTTP req-res 进程，tasks 会被发送到 broker，然后 celery 的子进程 workers 会从 broker 获得 task 并进行处理，处理结果会被放到 result backend。另外计时任务会在 celery beat 中被执行。</p>
+<h2 id="celery-使用场景"><a href="#celery-使用场景" class="headerlink" title="celery 使用场景"></a>celery 使用场景</h2><ol>
+<li><p>可用于账号注册过程中的激活邮件发送的步骤</p>
+<p> 将邮件发送的步骤外包到 celery 异步进行。</p>
+</li>
+<li><p>设定后台定时任务</p>
+</li>
+<li><p>高并发的场景，如电商平台</p>
+</li>
+</ol>
+<h2 id="celery-quick-start"><a href="#celery-quick-start" class="headerlink" title="celery quick start"></a>celery quick start</h2><ol>
+<li><p>创建 Celery 实例</p>
+ <figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line"></span><br><span class="line">app = Celery(<span class="string">'task_name'</span>, broker=<span class="string">'ip_addr_of_broker'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 task 函数</p>
+ <figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task_function</span><span class="params">(arg)</span>:</span></span><br><span class="line">    print(arg)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动 worker</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">celery -A tasks worker --loglevel=info</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用 task 函数</p>
+ <figure class="highlight py"><table><tr><td class="code"><pre><span class="line">task_function.delay(<span class="string">'arg'</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><p>Celery 需要第三方中间件为其提供消息管道，开发者可以选择 Redis / RabbitMQ / MongoDB 等。</p>
+<h2 id="refs"><a href="#refs" class="headerlink" title="refs"></a>refs</h2><ul>
+<li><a href="https://docs.celeryproject.org/en/latest/userguide/monitoring.html#flower-real-time-celery-web-monitor" target="_blank" rel="noopener">Celery Flower - Monitoring and Management Guide</a></li>
+<li><a href="https://denibertovic.com/posts/celery-best-practices/" target="_blank" rel="noopener">Celery Best practice</a></li>
+<li><a href="http://allynh.com/blog/flask-asynchronous-background-tasks-with-celery-and-redis/" target="_blank" rel="noopener">Flask, celery, Redis</a></li>
+<li><a href="https://www.fullstackpython.com/celery.html" target="_blank" rel="noopener">Celery research</a></li>
+<li><a href="https://blog.csdn.net/FENGQIYUNRAN/article/details/87547699" target="_blank" rel="noopener">中间件—分布式任务调度—Celery</a></li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>Record of building HexoBlog on Github page</title>
     <url>/2020/05/25/Record-of-building-HexoBlog-on-Github-page/</url>
     <content><![CDATA[<p>This article contains step by step tutorial to set up a tech blog on Github server, basic operations of Hexo blog, and some useful plugins.</p>
@@ -166,179 +432,6 @@
       <tags>
         <tag>MacOS</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>98. Validate Binary Search Tree</title>
-    <url>/2020/05/28/98-Validate-Binary-Search-Tree/</url>
-    <content><![CDATA[<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Given a binary tree, determine if it is a valid binary search tree (BST).</span><br><span class="line"></span><br><span class="line">Assume a BST is defined as follows:</span><br><span class="line"></span><br><span class="line">The left subtree of a node contains only nodes with keys less than the node&apos;s key.</span><br><span class="line">The right subtree of a node contains only nodes with keys greater than the node&apos;s key.</span><br><span class="line">Both the left and right subtrees must also be binary search trees.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line">   / \</span><br><span class="line">  1   3</span><br><span class="line"></span><br><span class="line">Input: [2,1,3]</span><br><span class="line">Output: true</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  1   4</span><br><span class="line">     / \</span><br><span class="line">    3   6</span><br><span class="line"></span><br><span class="line">Input: [5,1,4,null,null,3,6]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: The root node&apos;s value is 5 but its right child&apos;s value is 4.</span><br></pre></td></tr></table></figure>
-
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1-recusive"><a href="#Sol-1-recusive" class="headerlink" title="Sol 1 recusive"></a>Sol 1 recusive</h3><!-- Thinking -->
-<p>pass upper and lower bound into recursive function and return a boolean value</p>
-<!-- Coding -->
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root: TreeNode)</span> -&gt; bool:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(root, lower, upper)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> root.left != <span class="literal">None</span> :</span><br><span class="line">                <span class="keyword">if</span> root.left.val &gt;= root.val <span class="keyword">or</span> root.left.val &lt;= lower:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> root.right != <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">if</span> root.right.val &lt;= root.val <span class="keyword">or</span> root.right.val &gt;= upper:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> helper(root.left, lower, root.val) <span class="keyword">and</span> helper(root.right, root.val, upper)</span><br><span class="line">        <span class="keyword">return</span> helper(root, float(<span class="string">'-inf'</span>), float(<span class="string">'+inf'</span>))</span><br></pre></td></tr></table></figure>
-
-<h3 id="Sol-2"><a href="#Sol-2" class="headerlink" title="Sol 2"></a>Sol 2</h3><!-- Thinking -->
-<p>traverse the tree by inorder traverse, then check if the order is sorted.</p>
-<!-- Coding -->
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Record of deploying a Flask project on cloud server</title>
-    <url>/2020/05/29/Record-of-deploying-a-Flask-project-on-cloud-server/</url>
-    <content><![CDATA[<p>This is a record of deploying a Flask application on a CentOS7 CVM server. This article includes basic environment setting, tools installation and some tutorial links. Python3.6, Flask, Gunicorn, Supervisor will be used here.</p>
-<a id="more"></a>
-
-<h2 id="Environment-setting"><a href="#Environment-setting" class="headerlink" title="Environment setting"></a>Environment setting</h2><p>Aliyun cloud virtual machine (CVM)</p>
-<p>Server os: CentOS 7.3</p>
-<h2 id="Install-Python3-6"><a href="#Install-Python3-6" class="headerlink" title="Install Python3.6"></a>Install Python3.6</h2><p>The packages management tool <code>Yum</code> is based on Python2, we need to install Python3 without influencing Python2</p>
-<ul>
-<li><p>Install dependencies</p>
-<blockquote>
-<p><code>yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel</code></p>
-</blockquote>
-</li>
-<li><p>Download python3.6</p>
-<blockquote>
-<p><code>wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz</code></p>
-</blockquote>
-<p>Unzip <code>Python-3.6.0.tg</code> by <code>tar</code> command</p>
-<blockquote>
-<p><code>tar -xzvf Python-3.6.0.tgz -C  /tmp</code></p>
-</blockquote>
-<p>Install Python</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>  /tmp/Python-3.6.0/\</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>\</span><br><span class="line">make\</span><br><span class="line">make altinstall</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Configuration</p>
-<ul>
-<li><p>add soft link (添加软连接)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>/usr/bin\</span><br><span class="line">mv  python python.backup\</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/bin/python3.6 /usr/bin/python\</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/bin/python3.6 /usr/bin/python3</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>modify python dependencies in yum from python2 to python3.6</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/bin\</span><br><span class="line">ls yum*</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>change the headers from <code>!/usr/bin/python</code> to <code>!/usr/bin/python2</code> inside each yum* files</p>
-</li>
-<li><p>also do the same modifications to <code>/usr/bin/gnome-tweak-tool</code> and <code>/usr/libexec/urlgrabber-ext-down</code></p>
-</li>
-</ul>
-</li>
-<li><p>Bugs may encounter</p>
-<ul>
-<li><code>zipimport.ZipImportError: can&#39;t decompress data; zlib not available</code></li>
-<li><code>./Modules/zlibmodule.c:10:10: fatal error: zlib.h: No such file or directory</code></li>
-</ul>
-</li>
-<li><p>references</p>
-<ul>
-<li><a href="https://segmentfault.com/a/1190000015628625" target="_blank" rel="noopener">CentOS 7 下 安装 Python3.7</a></li>
-<li><a href="https://blog.csdn.net/hobohero/article/details/54381475" target="_blank" rel="noopener">CentOS7安装Python3.6</a></li>
-<li><a href="https://blog.csdn.net/jaket5219999/article/details/80894517" target="_blank" rel="noopener">linux 一行命令安装python3.7</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="WSGI-container-–-Gunicorn"><a href="#WSGI-container-–-Gunicorn" class="headerlink" title="WSGI container – Gunicorn"></a>WSGI container – <strong>Gunicorn</strong></h2><p>WSGI is an interface between python web framework and HTTP server.<br>WSGI helps Python to regconise HTTP requests.<br>Gunicorn is a WSGI container, it helps create a Python web server.<br><em>simple conf, high performance, multi-thread, open-source</em></p>
-<ul>
-<li><p>Copy local project to cloud server</p>
-<ul>
-<li>connect cloud server by <code>ssh</code><blockquote>
-<p><code>ssh &lt;username&gt;@&lt;host-num&gt;</code></p>
-</blockquote>
-</li>
-<li>create folder<blockquote>
-<p><code>mkdir &lt;project name&gt;</code><br><code>cd &lt;project name&gt;</code></p>
-</blockquote>
-</li>
-<li>create venv<blockquote>
-<p><code>python3 -m venv env</code></p>
-</blockquote>
-</li>
-<li>transfer project folder recursively<blockquote>
-<p><code>scp -r &lt;path of project&gt; root@&lt;host&gt;:/&lt;dir&gt;</code></p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>Set up Gunicorn</p>
-<ul>
-<li><p>get into virtual env</p>
-<blockquote>
-<p>source venv/bin/activate</p>
-</blockquote>
-</li>
-<li><p>install Gunicorn</p>
-<blockquote>
-<p>pip3 install gunicorn</p>
-</blockquote>
-</li>
-<li><p>setting</p>
-<blockquote>
-<p>vim gunicorn.conf</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># gunicorn.conf</span><br><span class="line">worker = 3</span><br><span class="line">bind = &apos;0.0.0.0:8000&apos;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>pip3.6 install -r requirements.txt</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>References</p>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/22126999" target="_blank" rel="noopener">第二期 · 阿里云Python+Flask环境搭建</a></li>
-<li><a href="https://www.jianshu.com/p/52d8e3deaa16" target="_blank" rel="noopener">gunicorn学习介绍</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="Supervisor"><a href="#Supervisor" class="headerlink" title="Supervisor"></a><strong>Supervisor</strong></h2><p>Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems. Supervisor has advantages of auto-recovery and auto-restart.</p>
-<ul>
-<li><p>Set up Supervisor</p>
-<ul>
-<li><p>install Supervisor</p>
-<blockquote>
-<p>yum install supervisor</p>
-</blockquote>
-</li>
-<li><p>setting</p>
-<ul>
-<li>go to supervisor conf path<blockquote>
-<p>cd /etc/supervisord.d</p>
-</blockquote>
-</li>
-<li>create <code>&lt;project-name&gt;.ini</code></li>
-</ul>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[program:&lt;project name&gt;]</span></span><br><span class="line"><span class="attr">command</span>=&lt;path of gunicorn&gt; run:app -c &lt;path of gunicorn&gt;/gunicorn.conf</span><br><span class="line"><span class="attr">directory</span>=&lt;path of project&gt;</span><br><span class="line"><span class="attr">user</span>=&lt;username&gt;</span><br><span class="line"><span class="attr">autostart</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">autorestart</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">stdout_logfile</span>=&lt;path of project&gt;/logs/gunicorn_supervisor.log</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>load supervisor setting</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">supervisorctl reread\</span><br><span class="line">supervisorctl update\</span><br><span class="line">supervisorctl start &lt;project&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>References</p>
-<ul>
-<li><a href="https://www.centos.bz/2018/06/centos7-3%E9%85%8D%E7%BD%AEsupervisor%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">Centos7.3配置Supervisor遇到的一些小问题</a></li>
-<li><a href="https://hooklife.me/linux/Supervisor%E5%9C%A8deepin%E5%AE%89%E8%A3%85%E3%80%81%E5%8D%B8%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">supervisor在deepin安装、使用与卸载</a></li>
-<li><a href="https://www.chengxulvtu.com/supervisor-on-centos-7/" target="_blank" rel="noopener">CentOS 7 配置 Supervisor</a></li>
-<li><a href="https://www.restran.net/2015/10/04/supervisord-tutorial/" target="_blank" rel="noopener">Python 进程管理工具 Supervisor 使用教程</a></li>
-<li><a href="https://philipzheng.gitbooks.io/docker_practice/content/cases/supervisor.html" target="_blank" rel="noopener">使用 Supervisor 來管理程式</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><ul>
-<li>references<ul>
-<li><a href="https://www.zhihu.com/question/38528616" target="_blank" rel="noopener">Nginx、Gunicorn在服务器中分别起什么作用？</a></li>
-<li><a href="https://www.zhihu.com/question/20709415" target="_blank" rel="noopener">nginx能否不借助wsgi直接部署Python应用？</a></li>
-</ul>
-</li>
-</ul>
-]]></content>
   </entry>
   <entry>
     <title>mashupSite</title>
