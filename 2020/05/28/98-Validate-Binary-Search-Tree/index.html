@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="BST,recusion,">
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="Problem12345678910111213141516171819202122232425262728Given a binary tree, determine if it is a valid binary search tree (BST).Assume a BST is defined as follows:The left subtree of a node contains on">
+<meta name="keywords" content="BST,recusion">
 <meta property="og:type" content="article">
 <meta property="og:title" content="98. Validate Binary Search Tree">
 <meta property="og:url" content="http://henryexhenry.github.io/2020/05/28/98-Validate-Binary-Search-Tree/index.html">
 <meta property="og:site_name" content="Hy">
 <meta property="og:description" content="Problem12345678910111213141516171819202122232425262728Given a binary tree, determine if it is a valid binary search tree (BST).Assume a BST is defined as follows:The left subtree of a node contains on">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-05-29T05:03:59.310Z">
+<meta property="og:updated_time" content="2020-06-06T15:10:53.764Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="98. Validate Binary Search Tree">
 <meta name="twitter:description" content="Problem12345678910111213141516171819202122232425262728Given a binary tree, determine if it is a valid binary search tree (BST).Assume a BST is defined as follows:The left subtree of a node contains on">
@@ -380,7 +381,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  2
                 </span>
               
             </div>
@@ -404,14 +405,15 @@
         <h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Given a binary tree, determine if it is a valid binary search tree (BST).</span><br><span class="line"></span><br><span class="line">Assume a BST is defined as follows:</span><br><span class="line"></span><br><span class="line">The left subtree of a node contains only nodes with keys less than the node&apos;s key.</span><br><span class="line">The right subtree of a node contains only nodes with keys greater than the node&apos;s key.</span><br><span class="line">Both the left and right subtrees must also be binary search trees.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line">   / \</span><br><span class="line">  1   3</span><br><span class="line"></span><br><span class="line">Input: [2,1,3]</span><br><span class="line">Output: true</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  1   4</span><br><span class="line">     / \</span><br><span class="line">    3   6</span><br><span class="line"></span><br><span class="line">Input: [5,1,4,null,null,3,6]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: The root node&apos;s value is 5 but its right child&apos;s value is 4.</span><br></pre></td></tr></table></figure>
 
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1-recusive"><a href="#Sol-1-recusive" class="headerlink" title="Sol 1 recusive"></a>Sol 1 recusive</h3><!-- Thinking -->
-<p>pass upper and lower bound into recursive function and return a boolean value</p>
+<p>Acording to rule of BST, the current node must be larger than its left child and all of its offspring.</p>
+<p>we can to pass the upper and lower boundary into a recursive function</p>
 <!-- Coding -->
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root: TreeNode)</span> -&gt; bool:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(root, lower, upper)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> root.left != <span class="literal">None</span> :</span><br><span class="line">                <span class="keyword">if</span> root.left.val &gt;= root.val <span class="keyword">or</span> root.left.val &lt;= lower:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> root.right != <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">if</span> root.right.val &lt;= root.val <span class="keyword">or</span> root.right.val &gt;= upper:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> helper(root.left, lower, root.val) <span class="keyword">and</span> helper(root.right, root.val, upper)</span><br><span class="line">        <span class="keyword">return</span> helper(root, float(<span class="string">'-inf'</span>), float(<span class="string">'+inf'</span>))</span><br></pre></td></tr></table></figure>
 
 <h3 id="Sol-2"><a href="#Sol-2" class="headerlink" title="Sol 2"></a>Sol 2</h3><!-- Thinking -->
-<p>traverse the tree by inorder traverse, then check if the order is sorted.</p>
+<p>traverse the tree by inorder traverse, and check if the order is sorted.</p>
 <!-- Coding -->
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root: TreeNode)</span> -&gt; bool:</span></span><br><span class="line">        stack, last = [], float(<span class="string">'-inf'</span>)</span><br><span class="line">        <span class="keyword">while</span> stack <span class="keyword">or</span> root:</span><br><span class="line">            <span class="keyword">while</span> root:</span><br><span class="line">                stack.append(root)</span><br><span class="line">                root = root.left</span><br><span class="line">            root = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> root.val &lt;= last:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            last = root.val</span><br><span class="line">            root = root.right</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
 
 
       
@@ -427,6 +429,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BST/" rel="tag"># BST</a>
+          
+            <a href="/tags/recusion/" rel="tag"># recusion</a>
+          
+        </div>
       
 
       
@@ -526,7 +536,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -548,7 +558,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
