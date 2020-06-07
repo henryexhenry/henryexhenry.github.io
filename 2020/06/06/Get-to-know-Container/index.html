@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Container,Docker,">
 
 
 
@@ -80,6 +80,7 @@
 
 
 <meta name="description" content="What is containerContainer isolate application from its environment and ensure that it works on different environments.">
+<meta name="keywords" content="Container,Docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Get to know Container">
 <meta property="og:url" content="http://henryexhenry.github.io/2020/06/06/Get-to-know-Container/index.html">
@@ -87,7 +88,7 @@
 <meta property="og:description" content="What is containerContainer isolate application from its environment and ensure that it works on different environments.">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1104696765,4217423537&fm=11&gp=0.jpg">
-<meta property="og:updated_time" content="2020-06-06T12:06:33.116Z">
+<meta property="og:updated_time" content="2020-06-07T10:13:54.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Get to know Container">
 <meta name="twitter:description" content="What is containerContainer isolate application from its environment and ensure that it works on different environments.">
@@ -336,6 +337,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/note/" itemprop="url" rel="index">
+                    <span itemprop="name">note</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -404,7 +427,7 @@
 <li>allows developers to use suitable tools for each service, because container can isolate each service</li>
 <li>helps optimising the infrastructure usage, because containers allow running serveral different applications on a single machine without any conflict</li>
 </ol>
-<h2 id="Container-vs-Virtual-Machine"><a href="#Container-vs-Virtual-Machine" class="headerlink" title="Container vs Virtual Machine"></a>Container vs Virtual Machine</h2><p><img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1104696765,4217423537&fm=11&gp=0.jpg" alt></p>
+<h2 id="Container-vs-Virtual-Machine"><a href="#Container-vs-Virtual-Machine" class="headerlink" title="Container vs Virtual Machine"></a>Container vs Virtual Machine</h2><p><img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1104696765,4217423537&fm=11&gp=0.jpg" alt="container vs VM"></p>
 <p>Containers share OS kernel and work independently; VM contains an entire OS system for each app</p>
 <h2 id="Docker-easy-setup"><a href="#Docker-easy-setup" class="headerlink" title="Docker easy setup"></a>Docker easy setup</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># install depenencies</span></span><br><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2 </span><br><span class="line"></span><br><span class="line"><span class="comment"># setting yum source</span></span><br><span class="line">sudo yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo </span><br><span class="line"></span><br><span class="line"><span class="comment"># install docker-ce (community edition)</span></span><br><span class="line">sudo yum install docker-ce</span><br><span class="line"></span><br><span class="line"><span class="comment"># setting auto start</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># starting docker service</span></span><br><span class="line">sudo systemctl start docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># set user groups</span></span><br><span class="line"><span class="comment"># create user group</span></span><br><span class="line">sudo groupadd docker</span><br><span class="line"><span class="comment"># add current user into docker group</span></span><br><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
 
@@ -428,6 +451,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Container/" rel="tag"># Container</a>
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
       
 
       
@@ -527,7 +558,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -538,7 +569,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -549,7 +580,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>107. Binary Tree Level Order Traversal II</title>
+    <url>/2020/06/03/107-Binary-Tree-Level-Order-Traversal-II/</url>
+    <content><![CDATA[<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Given a binary tree, return the bottom-up level order traversal of its nodes&apos; values. (ie, from left to right, level by level from leaf to root).</span><br><span class="line"></span><br><span class="line">For example:</span><br><span class="line">Given binary tree [3,9,20,null,null,15,7],</span><br><span class="line"></span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7</span><br><span class="line">return its bottom-up level order traversal as:</span><br><span class="line"></span><br><span class="line">[</span><br><span class="line">  [15,7],</span><br><span class="line">  [9,20],</span><br><span class="line">  [3]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1-BFS"><a href="#Sol-1-BFS" class="headerlink" title="Sol 1 BFS"></a>Sol 1 BFS</h3><!-- Thinking -->
+<p>We need to traverse the binary tree and remember node level.</p>
+<p>If we traverse the tree layer by layer, it may be simpler to get the node level.</p>
+<p>So I traverse the binary tree using BFS.</p>
+<!-- Coding -->
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">levelOrderBottom</span><span class="params">(self, root: TreeNode)</span> -&gt; List[List[int]]:</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        q = collections.deque([root])</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            ans.insert(<span class="number">0</span>,[])</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(q)):</span><br><span class="line">                node = q.popleft()</span><br><span class="line">                ans[<span class="number">0</span>].append(node.val)</span><br><span class="line">                <span class="keyword">if</span> node.left != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.right)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>BFS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>94. Binary Tree Inorder Traversal</title>
     <url>/2020/06/06/94-Binary-Tree-Inorder-Traversal/</url>
     <content><![CDATA[<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Given a binary tree, return the inorder traversal of its nodes&apos; values.</span><br><span class="line"></span><br><span class="line">Example:</span><br><span class="line"></span><br><span class="line">Input: [1,null,2,3]</span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   3</span><br><span class="line"></span><br><span class="line">Output: [1,3,2]</span><br><span class="line">Follow up: Recursive solution is trivial, could you do it iteratively?</span><br></pre></td></tr></table></figure>
@@ -41,7 +63,7 @@
 <!-- Coding -->
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDepth</span><span class="params">(self, root: TreeNode)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> root.left == <span class="literal">None</span> <span class="keyword">or</span> root.right == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> max(<span class="number">1</span>+self.minDepth(root.left), <span class="number">1</span>+self.minDepth(root.right))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> min(<span class="number">1</span>+self.minDepth(root.left), <span class="number">1</span>+self.minDepth(root.right))</span><br></pre></td></tr></table></figure>
 
-<h3 id="Sol-2"><a href="#Sol-2" class="headerlink" title="Sol 2"></a>Sol 2</h3><!-- Thinking -->
+<h3 id="Sol-2-BFS"><a href="#Sol-2-BFS" class="headerlink" title="Sol 2 BFS"></a>Sol 2 BFS</h3><!-- Thinking -->
 <p>BFS should be faster in this problem.</p>
 <!-- Coding -->
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDepth</span><span class="params">(self, root: TreeNode)</span> -&gt; int:</span></span><br><span class="line">        q = collections.deque([root])</span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        level = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            level += <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(q)):</span><br><span class="line">                node = q.popleft()</span><br><span class="line">                <span class="keyword">if</span> node.left != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.right)</span><br><span class="line">                <span class="keyword">if</span> node.left == <span class="literal">None</span> <span class="keyword">and</span> node.right == <span class="literal">None</span>:</span><br><span class="line">                    <span class="keyword">return</span> level</span><br></pre></td></tr></table></figure>
@@ -50,58 +72,9 @@
       <categories>
         <category>leetcode</category>
       </categories>
-  </entry>
-  <entry>
-    <title>107. Binary Tree Level Order Traversal II</title>
-    <url>/2020/06/03/107-Binary-Tree-Level-Order-Traversal-II/</url>
-    <content><![CDATA[<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Given a binary tree, return the bottom-up level order traversal of its nodes&apos; values. (ie, from left to right, level by level from leaf to root).</span><br><span class="line"></span><br><span class="line">For example:</span><br><span class="line">Given binary tree [3,9,20,null,null,15,7],</span><br><span class="line"></span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7</span><br><span class="line">return its bottom-up level order traversal as:</span><br><span class="line"></span><br><span class="line">[</span><br><span class="line">  [15,7],</span><br><span class="line">  [9,20],</span><br><span class="line">  [3]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1-BFS"><a href="#Sol-1-BFS" class="headerlink" title="Sol 1 BFS"></a>Sol 1 BFS</h3><!-- Thinking -->
-<p>We need to traverse the binary tree and remember node level.</p>
-<p>If we traverse the tree layer by layer, it may be simpler to get the node level.</p>
-<p>So I traverse the binary tree using BFS.</p>
-<!-- Coding -->
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">levelOrderBottom</span><span class="params">(self, root: TreeNode)</span> -&gt; List[List[int]]:</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        q = collections.deque([root])</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            ans.insert(<span class="number">0</span>,[])</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(q)):</span><br><span class="line">                node = q.popleft()</span><br><span class="line">                ans[<span class="number">0</span>].append(node.val)</span><br><span class="line">                <span class="keyword">if</span> node.left != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.right)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>MacOS_shortcut</title>
-    <url>/2020/05/25/MacOS-shortcut/</url>
-    <content><![CDATA[<h1 id="MacOS-快捷键"><a href="#MacOS-快捷键" class="headerlink" title="MacOS 快捷键"></a>MacOS 快捷键</h1><h2 id="全局"><a href="#全局" class="headerlink" title="全局"></a>全局</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Shift + P / F1 显示命令面板</span><br><span class="line">Command + P 快速打开</span><br><span class="line">Command + Shift + N 打开新窗口</span><br><span class="line">Command + W 关闭窗口</span><br></pre></td></tr></table></figure>
-
-<h2 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + X 剪切（未选中文本的情况下，剪切光标所在行）</span><br><span class="line">Command + C 复制（未选中文本的情况下，复制光标所在行）</span><br><span class="line">Option + Up 向上移动行</span><br><span class="line">Option + Down 向下移动行</span><br><span class="line">Option + Shift + Up 向上复制行</span><br><span class="line">Option + Shift + Down 向下复制行</span><br><span class="line">Command + Shift + K 删除行</span><br><span class="line">Command + Enter 下一行插入</span><br><span class="line">Command + Shift + Enter 上一行插入</span><br><span class="line">Command + Shift + \ 跳转到匹配的括号</span><br><span class="line">Command + [ 减少缩进</span><br><span class="line">Command + ] 增加缩进</span><br><span class="line">Home 跳转至行首</span><br><span class="line">End 跳转到行尾</span><br><span class="line">Command + Up 跳转至文件开头</span><br><span class="line">Command + Down 跳转至文件结尾</span><br><span class="line">Ctrl + PgUp 按行向上滚动</span><br><span class="line">Ctrl + PgDown 按行向下滚动</span><br><span class="line">Command + PgUp 按屏向上滚动</span><br><span class="line">Command + PgDown 按屏向下滚动</span><br><span class="line">Command + Shift + [ 折叠代码块</span><br><span class="line">Command + Shift + ] 展开代码块</span><br><span class="line">Command + K Command + [ 折叠全部子代码块</span><br><span class="line">Command + K Command + ] 展开全部子代码块</span><br><span class="line">Command + K Command + 0 折叠全部代码块</span><br><span class="line">Command + K Command + J 展开全部代码块</span><br><span class="line">Command + K Command + C 添加行注释</span><br><span class="line">Command + K Command + U 移除行注释</span><br><span class="line">Command + / 添加、移除行注释</span><br><span class="line">Option + Shift + A 添加、移除块注释</span><br><span class="line">Option + Z 自动换行、取消自动换行</span><br></pre></td></tr></table></figure>
-
-<h2 id="多光标与选择"><a href="#多光标与选择" class="headerlink" title="多光标与选择"></a>多光标与选择</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Option + 点击 插入多个光标</span><br><span class="line">Command + Option + Up 向上插入光标</span><br><span class="line">Command + Option + Down 向下插入光标</span><br><span class="line">Command + U 撤销上一个光标操作</span><br><span class="line">Option + Shift + I 在所选行的行尾插入光标</span><br><span class="line">Command + I 选中当前行</span><br><span class="line">Command + Shift + L 选中所有与当前选中内容相同部分</span><br><span class="line">Command + F2 选中所有与当前选中单词相同的单词</span><br><span class="line">Command + Ctrl + Shift + Left 折叠选中</span><br><span class="line">Command + Ctrl + Shift + Right 展开选中</span><br><span class="line">Alt + Shift + 拖动鼠标 选中代码块</span><br><span class="line">Command + Shift + Option + Up 列选择 向上</span><br><span class="line">Command + Shift + Option + Down 列选择 向下</span><br><span class="line">Command + Shift + Option + Left 列选择 向左</span><br><span class="line">Command + Shift + Option + Right 列选择 向右</span><br><span class="line">Command + Shift + Option + PgUp 列选择 向上翻页</span><br><span class="line">Command + Shift + Option + PgDown 列选择 向下翻页</span><br></pre></td></tr></table></figure>
-
-<h2 id="查找替换"><a href="#查找替换" class="headerlink" title="查找替换"></a>查找替换</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + F 查找</span><br><span class="line">Command + Option + F 替换</span><br><span class="line">Command + G 查找下一个</span><br><span class="line">Command + Shift + G 查找上一个</span><br><span class="line">Option + Enter 选中所有匹配项</span><br><span class="line">Command + D 向下选中相同内容</span><br><span class="line">Command + K Command + D 移除前一个向下选中相同内容</span><br></pre></td></tr></table></figure>
-
-<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Ctrl + Space 打开建议</span><br><span class="line">Command + Shift + Space 参数提示</span><br><span class="line">Tab Emmet插件缩写补全</span><br><span class="line">Option + Shift + F 格式化</span><br><span class="line">Command + K Command + F 格式化选中内容</span><br><span class="line">F12 跳转到声明位置</span><br><span class="line">Option + F12 查看具体声明内容</span><br><span class="line">Command + K F12 分屏查看具体声明内容</span><br><span class="line">Command + . 快速修复</span><br><span class="line">Shift + F12 显示引用</span><br><span class="line">F2 重命名符号</span><br><span class="line">Command + Shift + . 替换为上一个值</span><br><span class="line">Command + Shift + , 替换为下一个值</span><br><span class="line">Command + K Command + X 删除行尾多余空格</span><br><span class="line">Command + K M 更改文件语言</span><br></pre></td></tr></table></figure>
-
-<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + T 显示所有符号</span><br><span class="line">Ctrl + G 跳转至某行</span><br><span class="line">Command + P 跳转到某个文件</span><br><span class="line">Command + Shift + O 跳转到某个符号</span><br><span class="line">Command + Shift + M 打开问题面板</span><br><span class="line">F8 下一个错误或警告位置</span><br><span class="line">Shift + F8 上一个错误或警告位置</span><br><span class="line">Ctrl + Shift + Tab 编辑器历史记录</span><br><span class="line">Ctrl + - 后退</span><br><span class="line">Ctrl + Shift + - 前进</span><br><span class="line">Ctrl + Shift + M Tab 切换焦点</span><br></pre></td></tr></table></figure>
-
-<h2 id="编辑器管理"><a href="#编辑器管理" class="headerlink" title="编辑器管理"></a>编辑器管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + W 关闭编辑器</span><br><span class="line">Command + K F 关闭文件夹</span><br><span class="line">Command + \ 编辑器分屏</span><br><span class="line">Command + 1 切换到第一分组</span><br><span class="line">Command + 2 切换到第二分组</span><br><span class="line">Command + 3 切换到第三分组</span><br><span class="line">Command + K Command + Left 切换到上一分组</span><br><span class="line">Command + K Command + Right 切换到下一分组</span><br><span class="line">Command + K Command + Shift + Left 左移编辑器</span><br><span class="line">Command + K Command + Shift + Right 右移编辑器</span><br><span class="line">Command + K Left 激活左侧编辑组</span><br><span class="line">Command + K Right 激活右侧编辑组</span><br></pre></td></tr></table></figure>
-
-<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + N 新建文件</span><br><span class="line">Command + O 打开文件</span><br><span class="line">Command + S 保存文件</span><br><span class="line">Command + Shift + S 另存为</span><br><span class="line">Command + Option + S 全部保存</span><br><span class="line">Command + W 关闭</span><br><span class="line">Command + K Command + W 全部关闭</span><br><span class="line">Command + Shift + T 重新打开被关闭的编辑器</span><br><span class="line">Command + K Enter 保持打开</span><br><span class="line">Ctrl + Tab 打开下一个</span><br><span class="line">Ctrl + Shift + Tab 打开上一个</span><br><span class="line">Command + K P 复制当前文件路径</span><br><span class="line">Command + K R 在资源管理器中查看当前文件</span><br><span class="line">Command + K O 新窗口打开当前文件</span><br></pre></td></tr></table></figure>
-
-<h2 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Ctrl + F 全屏、退出全屏</span><br><span class="line">Command + Option + 1 切换编辑器分屏方式（横、竖）</span><br><span class="line">Command + + 放大</span><br><span class="line">Command + - 缩小</span><br><span class="line">Command + B 显示、隐藏侧边栏</span><br><span class="line">Command + Shift + E 显示资源管理器 或 切换焦点</span><br><span class="line">Command + Shift + F 显示搜索框</span><br><span class="line">Ctrl + Shift + G 显示Git面板</span><br><span class="line">Command + Shift + D 显示调试面板</span><br><span class="line">Command + Shift + X 显示插件面板</span><br><span class="line">Command + Shift + H 全局搜索替换</span><br><span class="line">Command + Shift + J 显示、隐藏高级搜索</span><br><span class="line">Command + Shift + C 打开新终端</span><br><span class="line">Command + Shift + U 显示输出面板</span><br><span class="line">Command + Shift + V Markdown预览窗口</span><br><span class="line">Command + K V 分屏显示 Markdown预览窗口</span><br></pre></td></tr></table></figure>
-
-<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">F9 设置 或 取消断点</span><br><span class="line">F5 开始 或 继续</span><br><span class="line">F11 进入</span><br><span class="line">Shift + F11 跳出</span><br><span class="line">F10 跳过</span><br><span class="line">Command + K Command + I 显示悬停信息</span><br></pre></td></tr></table></figure>
-
-<h2 id="集成终端"><a href="#集成终端" class="headerlink" title="集成终端"></a>集成终端</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Ctrl + ` 显示终端</span><br><span class="line">Ctrl + Shift + ` 新建终端</span><br><span class="line">Command + Up 向上滚动</span><br><span class="line">Command + Down 向下滚动</span><br><span class="line">PgUp 向上翻页</span><br><span class="line">PgDown 向下翻页</span><br><span class="line">Command + Home 滚动到顶部</span><br><span class="line">Command + End 滚动到底部</span><br></pre></td></tr></table></figure>
-
-<p>转至<a href="https://segmentfault.com/a/1190000012811886" target="_blank" rel="noopener">小谷xg</a></p>
-]]></content>
-      <categories>
-        <category>note</category>
-      </categories>
       <tags>
-        <tag>MacOS</tag>
+        <tag>BFS</tag>
+        <tag>Recursion</tag>
       </tags>
   </entry>
   <entry>
@@ -130,7 +103,7 @@
 <li>allows developers to use suitable tools for each service, because container can isolate each service</li>
 <li>helps optimising the infrastructure usage, because containers allow running serveral different applications on a single machine without any conflict</li>
 </ol>
-<h2 id="Container-vs-Virtual-Machine"><a href="#Container-vs-Virtual-Machine" class="headerlink" title="Container vs Virtual Machine"></a>Container vs Virtual Machine</h2><p><img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1104696765,4217423537&fm=11&gp=0.jpg" alt></p>
+<h2 id="Container-vs-Virtual-Machine"><a href="#Container-vs-Virtual-Machine" class="headerlink" title="Container vs Virtual Machine"></a>Container vs Virtual Machine</h2><p><img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1104696765,4217423537&fm=11&gp=0.jpg" alt="container vs VM"></p>
 <p>Containers share OS kernel and work independently; VM contains an entire OS system for each app</p>
 <h2 id="Docker-easy-setup"><a href="#Docker-easy-setup" class="headerlink" title="Docker easy setup"></a>Docker easy setup</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># install depenencies</span></span><br><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2 </span><br><span class="line"></span><br><span class="line"><span class="comment"># setting yum source</span></span><br><span class="line">sudo yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo </span><br><span class="line"></span><br><span class="line"><span class="comment"># install docker-ce (community edition)</span></span><br><span class="line">sudo yum install docker-ce</span><br><span class="line"></span><br><span class="line"><span class="comment"># setting auto start</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># starting docker service</span></span><br><span class="line">sudo systemctl start docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># set user groups</span></span><br><span class="line"><span class="comment"># create user group</span></span><br><span class="line">sudo groupadd docker</span><br><span class="line"><span class="comment"># add current user into docker group</span></span><br><span class="line">sudo usermod -aG docker <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
 
@@ -141,6 +114,270 @@
 <li>dockerUI</li>
 </ol>
 ]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
+      <tags>
+        <tag>Container</tag>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MacOS_shortcut</title>
+    <url>/2020/05/25/MacOS-shortcut/</url>
+    <content><![CDATA[<h2 id="全局"><a href="#全局" class="headerlink" title="全局"></a>全局</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Shift + P / F1 显示命令面板</span><br><span class="line">Command + P 快速打开</span><br><span class="line">Command + Shift + N 打开新窗口</span><br><span class="line">Command + W 关闭窗口</span><br></pre></td></tr></table></figure>
+
+<h2 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + X 剪切（未选中文本的情况下，剪切光标所在行）</span><br><span class="line">Command + C 复制（未选中文本的情况下，复制光标所在行）</span><br><span class="line">Option + Up 向上移动行</span><br><span class="line">Option + Down 向下移动行</span><br><span class="line">Option + Shift + Up 向上复制行</span><br><span class="line">Option + Shift + Down 向下复制行</span><br><span class="line">Command + Shift + K 删除行</span><br><span class="line">Command + Enter 下一行插入</span><br><span class="line">Command + Shift + Enter 上一行插入</span><br><span class="line">Command + Shift + \ 跳转到匹配的括号</span><br><span class="line">Command + [ 减少缩进</span><br><span class="line">Command + ] 增加缩进</span><br><span class="line">Home 跳转至行首</span><br><span class="line">End 跳转到行尾</span><br><span class="line">Command + Up 跳转至文件开头</span><br><span class="line">Command + Down 跳转至文件结尾</span><br><span class="line">Ctrl + PgUp 按行向上滚动</span><br><span class="line">Ctrl + PgDown 按行向下滚动</span><br><span class="line">Command + PgUp 按屏向上滚动</span><br><span class="line">Command + PgDown 按屏向下滚动</span><br><span class="line">Command + Shift + [ 折叠代码块</span><br><span class="line">Command + Shift + ] 展开代码块</span><br><span class="line">Command + K Command + [ 折叠全部子代码块</span><br><span class="line">Command + K Command + ] 展开全部子代码块</span><br><span class="line">Command + K Command + 0 折叠全部代码块</span><br><span class="line">Command + K Command + J 展开全部代码块</span><br><span class="line">Command + K Command + C 添加行注释</span><br><span class="line">Command + K Command + U 移除行注释</span><br><span class="line">Command + / 添加、移除行注释</span><br><span class="line">Option + Shift + A 添加、移除块注释</span><br><span class="line">Option + Z 自动换行、取消自动换行</span><br></pre></td></tr></table></figure>
+
+<h2 id="多光标与选择"><a href="#多光标与选择" class="headerlink" title="多光标与选择"></a>多光标与选择</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Option + 点击 插入多个光标</span><br><span class="line">Command + Option + Up 向上插入光标</span><br><span class="line">Command + Option + Down 向下插入光标</span><br><span class="line">Command + U 撤销上一个光标操作</span><br><span class="line">Option + Shift + I 在所选行的行尾插入光标</span><br><span class="line">Command + I 选中当前行</span><br><span class="line">Command + Shift + L 选中所有与当前选中内容相同部分</span><br><span class="line">Command + F2 选中所有与当前选中单词相同的单词</span><br><span class="line">Command + Ctrl + Shift + Left 折叠选中</span><br><span class="line">Command + Ctrl + Shift + Right 展开选中</span><br><span class="line">Alt + Shift + 拖动鼠标 选中代码块</span><br><span class="line">Command + Shift + Option + Up 列选择 向上</span><br><span class="line">Command + Shift + Option + Down 列选择 向下</span><br><span class="line">Command + Shift + Option + Left 列选择 向左</span><br><span class="line">Command + Shift + Option + Right 列选择 向右</span><br><span class="line">Command + Shift + Option + PgUp 列选择 向上翻页</span><br><span class="line">Command + Shift + Option + PgDown 列选择 向下翻页</span><br></pre></td></tr></table></figure>
+
+<h2 id="查找替换"><a href="#查找替换" class="headerlink" title="查找替换"></a>查找替换</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + F 查找</span><br><span class="line">Command + Option + F 替换</span><br><span class="line">Command + G 查找下一个</span><br><span class="line">Command + Shift + G 查找上一个</span><br><span class="line">Option + Enter 选中所有匹配项</span><br><span class="line">Command + D 向下选中相同内容</span><br><span class="line">Command + K Command + D 移除前一个向下选中相同内容</span><br></pre></td></tr></table></figure>
+
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Ctrl + Space 打开建议</span><br><span class="line">Command + Shift + Space 参数提示</span><br><span class="line">Tab Emmet插件缩写补全</span><br><span class="line">Option + Shift + F 格式化</span><br><span class="line">Command + K Command + F 格式化选中内容</span><br><span class="line">F12 跳转到声明位置</span><br><span class="line">Option + F12 查看具体声明内容</span><br><span class="line">Command + K F12 分屏查看具体声明内容</span><br><span class="line">Command + . 快速修复</span><br><span class="line">Shift + F12 显示引用</span><br><span class="line">F2 重命名符号</span><br><span class="line">Command + Shift + . 替换为上一个值</span><br><span class="line">Command + Shift + , 替换为下一个值</span><br><span class="line">Command + K Command + X 删除行尾多余空格</span><br><span class="line">Command + K M 更改文件语言</span><br></pre></td></tr></table></figure>
+
+<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + T 显示所有符号</span><br><span class="line">Ctrl + G 跳转至某行</span><br><span class="line">Command + P 跳转到某个文件</span><br><span class="line">Command + Shift + O 跳转到某个符号</span><br><span class="line">Command + Shift + M 打开问题面板</span><br><span class="line">F8 下一个错误或警告位置</span><br><span class="line">Shift + F8 上一个错误或警告位置</span><br><span class="line">Ctrl + Shift + Tab 编辑器历史记录</span><br><span class="line">Ctrl + - 后退</span><br><span class="line">Ctrl + Shift + - 前进</span><br><span class="line">Ctrl + Shift + M Tab 切换焦点</span><br></pre></td></tr></table></figure>
+
+<h2 id="编辑器管理"><a href="#编辑器管理" class="headerlink" title="编辑器管理"></a>编辑器管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + W 关闭编辑器</span><br><span class="line">Command + K F 关闭文件夹</span><br><span class="line">Command + \ 编辑器分屏</span><br><span class="line">Command + 1 切换到第一分组</span><br><span class="line">Command + 2 切换到第二分组</span><br><span class="line">Command + 3 切换到第三分组</span><br><span class="line">Command + K Command + Left 切换到上一分组</span><br><span class="line">Command + K Command + Right 切换到下一分组</span><br><span class="line">Command + K Command + Shift + Left 左移编辑器</span><br><span class="line">Command + K Command + Shift + Right 右移编辑器</span><br><span class="line">Command + K Left 激活左侧编辑组</span><br><span class="line">Command + K Right 激活右侧编辑组</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + N 新建文件</span><br><span class="line">Command + O 打开文件</span><br><span class="line">Command + S 保存文件</span><br><span class="line">Command + Shift + S 另存为</span><br><span class="line">Command + Option + S 全部保存</span><br><span class="line">Command + W 关闭</span><br><span class="line">Command + K Command + W 全部关闭</span><br><span class="line">Command + Shift + T 重新打开被关闭的编辑器</span><br><span class="line">Command + K Enter 保持打开</span><br><span class="line">Ctrl + Tab 打开下一个</span><br><span class="line">Ctrl + Shift + Tab 打开上一个</span><br><span class="line">Command + K P 复制当前文件路径</span><br><span class="line">Command + K R 在资源管理器中查看当前文件</span><br><span class="line">Command + K O 新窗口打开当前文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Ctrl + F 全屏、退出全屏</span><br><span class="line">Command + Option + 1 切换编辑器分屏方式（横、竖）</span><br><span class="line">Command + + 放大</span><br><span class="line">Command + - 缩小</span><br><span class="line">Command + B 显示、隐藏侧边栏</span><br><span class="line">Command + Shift + E 显示资源管理器 或 切换焦点</span><br><span class="line">Command + Shift + F 显示搜索框</span><br><span class="line">Ctrl + Shift + G 显示Git面板</span><br><span class="line">Command + Shift + D 显示调试面板</span><br><span class="line">Command + Shift + X 显示插件面板</span><br><span class="line">Command + Shift + H 全局搜索替换</span><br><span class="line">Command + Shift + J 显示、隐藏高级搜索</span><br><span class="line">Command + Shift + C 打开新终端</span><br><span class="line">Command + Shift + U 显示输出面板</span><br><span class="line">Command + Shift + V Markdown预览窗口</span><br><span class="line">Command + K V 分屏显示 Markdown预览窗口</span><br></pre></td></tr></table></figure>
+
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">F9 设置 或 取消断点</span><br><span class="line">F5 开始 或 继续</span><br><span class="line">F11 进入</span><br><span class="line">Shift + F11 跳出</span><br><span class="line">F10 跳过</span><br><span class="line">Command + K Command + I 显示悬停信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="集成终端"><a href="#集成终端" class="headerlink" title="集成终端"></a>集成终端</h2><pre><code class="text">Ctrl + ` 显示终端
+Ctrl + Shift + ` 新建终端
+Command + Up 向上滚动
+Command + Down 向下滚动
+PgUp 向上翻页
+PgDown 向下翻页
+Command + Home 滚动到顶部
+Command + End 滚动到底部
+
+```text
+
+转自 [小谷xg](https://segmentfault.com/a/1190000012811886)</code></pre>
+]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
+      <tags>
+        <tag>MacOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>The Rise Of Worse Is Better</title>
+    <url>/2020/06/07/The-Rise-Of-Worse-Is-Better/</url>
+    <content><![CDATA[<p>Richard P. Gabriel 的 “The Rise Of Worse Is Better” 是计算机科学界中的经典文章。</p>
+<p>它是 “Lisp: Good News, Bad News, How to Win Big.” 短文中的节录。</p>
+<p>文章比较了软件设计中两种设计哲学：MIT/Stanford style 和 New Jersey style。</p>
+<a id="more"></a>
+<p>作者认为 MIT/Stanford style 的本质可以表达为 “the right thing”。</p>
+<p>要达到 MIT/Stanford style 软件设计风格，设计者必须遵循4条准则：</p>
+<ol>
+<li>简单性 – 软件实现和软件接口两者的设计都必须要简单，同时简单的接口比简单的实现更重要。</li>
+<li>正确性 – 设计在可观察的各个方面都必须正确。设计不允许不正确。</li>
+<li>一致性 – 设计必须具有一致性。为了避免不一致性，可以在设计的简单性和完整性上稍作取舍。一致性和正确性同样重要。</li>
+<li>完整性 – 设计必须覆盖实际会遇到的各个重要场景。所有合理的可预料的情况都必须覆盖。不应该为了简单性而过多的放弃完整性。</li>
+</ol>
+<blockquote>
+<ol>
+<li><strong>Simplicity</strong> – the design must be simple, both in implementation and interface. It is more important for the interface to be simple than the implementation.</li>
+<li><strong>Correctness</strong> – the design must be correct in all observable aspects. Incorrectness is simply not allowed.</li>
+<li><strong>Consistency</strong> – the design must not be inconsistent. A design is allowed to be slightly less simple and less complete to avoid inconsistency. Consistency is as important as correctness.</li>
+<li><strong>Completeness</strong> – the design must cover as many important situations as is practical. All reasonably expected cases must be covered. Simplicity is not allowed to overly reduce completeness.</li>
+</ol>
+</blockquote>
+<p>而 New Jersey style 的设计准则只有些许不同：</p>
+<ol>
+<li>简单性 – 实现和接口的设计都必须简单，简单的实现比简单的接口更重要，简单性是最重要的准则。</li>
+<li>正确性 – 简单性比正确行稍微更重要一些。</li>
+<li>一致性 – 设计不能太过不一致。一些情况下，可以牺牲一致性来保证简单性。但更好的做法是丢弃一些应对不常用场景的设计部分。</li>
+<li>完整性 – 完整性可以为了满足其他准则而牺牲。事实上，当危及到简单性，必须对完整性作出牺牲。当简单性得以保证，可以牺牲一致性来获得完整性。接口的一致性是比较无用处的。</li>
+</ol>
+<blockquote>
+<ol>
+<li><strong>Simplicity</strong> – the design must be simple, both in implementation and interface. It is more important for the implementation to be simple than the interface. Simplicity is the most important consideration in a design.</li>
+<li><strong>Correctness</strong> – the design must be correct in all observable aspects. It is slightly better to be simple than correct.</li>
+<li><strong>Consistency</strong> – the design must not be overly inconsistent. Consistency can be sacrificed for simplicity in some cases, but it is better to drop those parts of the design that deal with less common circumstances than to introduce either implementational complexity or inconsistency.</li>
+<li><strong>Completeness</strong> – the design must cover as many important situations as is practical. All reasonably expected cases should be covered. Completeness can be sacrificed in favor of any other quality. In fact, completeness must be sacrificed whenever implementation simplicity is jeopardized. Consistency can be sacrificed to achieve completeness if simplicity is retained; especially worthless is consistency of interface.</li>
+</ol>
+</blockquote>
+<p>两种设计哲学主要区别于对 4 条准则的排序。MIT/Stanford style 认为设计的正确性和一致性同样是最重要的原则，它的价值排序是 (Correctness = Consistency &gt; Simplicity &gt; Completeness)。而 New Jersey Style 则认为设计的简单性是首要考虑的准则，它的价值排序是 (Simplicity &gt; Correctness &gt; Consistensy &gt; Completeness)。两种设计哲学都同时认为完整性的价值的最低的。</p>
+<p>作者认为软件设计不一定要像 MIT/Stanford style 一样过分追求正确性和完整性，更好的做法是先完成一半的工作，然后让社区开发者共同开发，合力追求正确性和完整性。</p>
+<blockquote>
+<p>The lesson to be learned from this is that it is often undesirable to go for the right thing first. It is better to get half of the right thing available so that it spreads like a virus. Once people are hooked on it, take the time to improve it to 90% of the right thing.</p>
+</blockquote>
+<h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a href="http://dreamsongs.com/RiseOfWorseIsBetter.html" target="_blank" rel="noopener">The Rise Of Worse Is Better</a></p>
+]]></content>
+      <categories>
+        <category>reading</category>
+      </categories>
+      <tags>
+        <tag>OS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Record of deploying a Flask project on cloud server</title>
+    <url>/2020/05/29/Record-of-deploying-a-Flask-project-on-cloud-server/</url>
+    <content><![CDATA[<p>This is a record of deploying a Flask application on a CentOS7 CVM server. This article includes basic environment setting, tools installation and some tutorial links. Python3.6, Flask, Gunicorn, Supervisor will be used here.</p>
+<a id="more"></a>
+
+<h2 id="Environment-setting"><a href="#Environment-setting" class="headerlink" title="Environment setting"></a>Environment setting</h2><p>Aliyun cloud virtual machine (CVM)</p>
+<p>Server os: CentOS 7.3</p>
+<h2 id="Install-Python3-6"><a href="#Install-Python3-6" class="headerlink" title="Install Python3.6"></a>Install Python3.6</h2><p>The packages management tool <code>Yum</code> is based on Python2, we need to install Python3 without influencing Python2</p>
+<ul>
+<li><p>Install dependencies</p>
+<blockquote>
+<p><code>yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel</code></p>
+</blockquote>
+</li>
+<li><p>Download python3.6</p>
+<blockquote>
+<p><code>wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz</code></p>
+</blockquote>
+<p>Unzip <code>Python-3.6.0.tg</code> by <code>tar</code> command</p>
+<blockquote>
+<p><code>tar -xzvf Python-3.6.0.tgz -C  /tmp</code></p>
+</blockquote>
+<p>Install Python</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>  /tmp/Python-3.6.0/\</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>\</span><br><span class="line">make\</span><br><span class="line">make altinstall</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Configuration</p>
+<ul>
+<li><p>add soft link (添加软连接)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>/usr/bin\</span><br><span class="line">mv  python python.backup\</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/bin/python3.6 /usr/bin/python\</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/bin/python3.6 /usr/bin/python3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>modify python dependencies in yum from python2 to python3.6</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/bin\</span><br><span class="line">ls yum*</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>change the headers from <code>!/usr/bin/python</code> to <code>!/usr/bin/python2</code> inside each yum* files</p>
+</li>
+<li><p>also do the same modifications to <code>/usr/bin/gnome-tweak-tool</code> and <code>/usr/libexec/urlgrabber-ext-down</code></p>
+</li>
+</ul>
+</li>
+<li><p>Bugs may encounter</p>
+<ul>
+<li><code>zipimport.ZipImportError: can&#39;t decompress data; zlib not available</code></li>
+<li><code>./Modules/zlibmodule.c:10:10: fatal error: zlib.h: No such file or directory</code></li>
+</ul>
+</li>
+<li><p>references</p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000015628625" target="_blank" rel="noopener">CentOS 7 下 安装 Python3.7</a></li>
+<li><a href="https://blog.csdn.net/hobohero/article/details/54381475" target="_blank" rel="noopener">CentOS7安装Python3.6</a></li>
+<li><a href="https://blog.csdn.net/jaket5219999/article/details/80894517" target="_blank" rel="noopener">linux 一行命令安装python3.7</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="WSGI-container-–-Gunicorn"><a href="#WSGI-container-–-Gunicorn" class="headerlink" title="WSGI container – Gunicorn"></a>WSGI container – <strong>Gunicorn</strong></h2><p>WSGI is an interface between python web framework and HTTP server.<br>WSGI helps Python to regconise HTTP requests.<br>Gunicorn is a WSGI container, it helps create a Python web server.<br><em>simple conf, high performance, multi-thread, open-source</em></p>
+<ul>
+<li><p>Copy local project to cloud server</p>
+<ul>
+<li>connect cloud server by <code>ssh</code><blockquote>
+<p><code>ssh &lt;username&gt;@&lt;host-num&gt;</code></p>
+</blockquote>
+</li>
+<li>create folder<blockquote>
+<p><code>mkdir &lt;project name&gt;</code><br><code>cd &lt;project name&gt;</code></p>
+</blockquote>
+</li>
+<li>create venv<blockquote>
+<p><code>python3 -m venv env</code></p>
+</blockquote>
+</li>
+<li>transfer project folder recursively<blockquote>
+<p><code>scp -r &lt;path of project&gt; root@&lt;host&gt;:/&lt;dir&gt;</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Set up Gunicorn</p>
+<ul>
+<li><p>get into virtual env</p>
+<blockquote>
+<p>source venv/bin/activate</p>
+</blockquote>
+</li>
+<li><p>install Gunicorn</p>
+<blockquote>
+<p>pip3 install gunicorn</p>
+</blockquote>
+</li>
+<li><p>setting</p>
+<blockquote>
+<p>vim gunicorn.conf</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># gunicorn.conf</span><br><span class="line">worker = 3</span><br><span class="line">bind = &apos;0.0.0.0:8000&apos;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>pip3.6 install -r requirements.txt</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>References</p>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/22126999" target="_blank" rel="noopener">第二期 · 阿里云Python+Flask环境搭建</a></li>
+<li><a href="https://www.jianshu.com/p/52d8e3deaa16" target="_blank" rel="noopener">gunicorn学习介绍</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Supervisor"><a href="#Supervisor" class="headerlink" title="Supervisor"></a><strong>Supervisor</strong></h2><p>Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems. Supervisor has advantages of auto-recovery and auto-restart.</p>
+<ul>
+<li><p>Set up Supervisor</p>
+<ul>
+<li><p>install Supervisor</p>
+<blockquote>
+<p>yum install supervisor</p>
+</blockquote>
+</li>
+<li><p>setting</p>
+<ul>
+<li>go to supervisor conf path<blockquote>
+<p>cd /etc/supervisord.d</p>
+</blockquote>
+</li>
+<li>create <code>&lt;project-name&gt;.ini</code></li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[program:&lt;project name&gt;]</span></span><br><span class="line"><span class="attr">command</span>=&lt;path of gunicorn&gt; run:app -c &lt;path of gunicorn&gt;/gunicorn.conf</span><br><span class="line"><span class="attr">directory</span>=&lt;path of project&gt;</span><br><span class="line"><span class="attr">user</span>=&lt;username&gt;</span><br><span class="line"><span class="attr">autostart</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">autorestart</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">stdout_logfile</span>=&lt;path of project&gt;/logs/gunicorn_supervisor.log</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>load supervisor setting</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">supervisorctl reread\</span><br><span class="line">supervisorctl update\</span><br><span class="line">supervisorctl start &lt;project&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>References</p>
+<ul>
+<li><a href="https://www.centos.bz/2018/06/centos7-3%E9%85%8D%E7%BD%AEsupervisor%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">Centos7.3配置Supervisor遇到的一些小问题</a></li>
+<li><a href="https://hooklife.me/linux/Supervisor%E5%9C%A8deepin%E5%AE%89%E8%A3%85%E3%80%81%E5%8D%B8%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">supervisor在deepin安装、使用与卸载</a></li>
+<li><a href="https://www.chengxulvtu.com/supervisor-on-centos-7/" target="_blank" rel="noopener">CentOS 7 配置 Supervisor</a></li>
+<li><a href="https://www.restran.net/2015/10/04/supervisord-tutorial/" target="_blank" rel="noopener">Python 进程管理工具 Supervisor 使用教程</a></li>
+<li><a href="https://philipzheng.gitbooks.io/docker_practice/content/cases/supervisor.html" target="_blank" rel="noopener">使用 Supervisor 來管理程式</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><ul>
+<li>references<ul>
+<li><a href="https://www.zhihu.com/question/38528616" target="_blank" rel="noopener">Nginx、Gunicorn在服务器中分别起什么作用？</a></li>
+<li><a href="https://www.zhihu.com/question/20709415" target="_blank" rel="noopener">nginx能否不借助wsgi直接部署Python应用？</a></li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>record</category>
+      </categories>
+      <tags>
+        <tag>Deployment</tag>
+        <tag>Gunicorn</tag>
+        <tag>Supervisor</tag>
+        <tag>Flask</tag>
+      </tags>
   </entry>
   <entry>
     <title>Record of building HexoBlog on Github page</title>
@@ -296,8 +533,8 @@
         <category>leetcode</category>
       </categories>
       <tags>
+        <tag>Recursion</tag>
         <tag>BST</tag>
-        <tag>recusion</tag>
       </tags>
   </entry>
   <entry>
@@ -349,159 +586,13 @@
 <li><a href="https://blog.csdn.net/FENGQIYUNRAN/article/details/87547699" target="_blank" rel="noopener">中间件—分布式任务调度—Celery</a></li>
 </ul>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Record of deploying a Flask project on cloud server</title>
-    <url>/2020/05/29/Record-of-deploying-a-Flask-project-on-cloud-server/</url>
-    <content><![CDATA[<p>This is a record of deploying a Flask application on a CentOS7 CVM server. This article includes basic environment setting, tools installation and some tutorial links. Python3.6, Flask, Gunicorn, Supervisor will be used here.</p>
-<a id="more"></a>
-
-<h2 id="Environment-setting"><a href="#Environment-setting" class="headerlink" title="Environment setting"></a>Environment setting</h2><p>Aliyun cloud virtual machine (CVM)</p>
-<p>Server os: CentOS 7.3</p>
-<h2 id="Install-Python3-6"><a href="#Install-Python3-6" class="headerlink" title="Install Python3.6"></a>Install Python3.6</h2><p>The packages management tool <code>Yum</code> is based on Python2, we need to install Python3 without influencing Python2</p>
-<ul>
-<li><p>Install dependencies</p>
-<blockquote>
-<p><code>yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel</code></p>
-</blockquote>
-</li>
-<li><p>Download python3.6</p>
-<blockquote>
-<p><code>wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz</code></p>
-</blockquote>
-<p>Unzip <code>Python-3.6.0.tg</code> by <code>tar</code> command</p>
-<blockquote>
-<p><code>tar -xzvf Python-3.6.0.tgz -C  /tmp</code></p>
-</blockquote>
-<p>Install Python</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>  /tmp/Python-3.6.0/\</span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>\</span><br><span class="line">make\</span><br><span class="line">make altinstall</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Configuration</p>
-<ul>
-<li><p>add soft link (添加软连接)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span>/usr/bin\</span><br><span class="line">mv  python python.backup\</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/bin/python3.6 /usr/bin/python\</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/bin/python3.6 /usr/bin/python3</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>modify python dependencies in yum from python2 to python3.6</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/bin\</span><br><span class="line">ls yum*</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>change the headers from <code>!/usr/bin/python</code> to <code>!/usr/bin/python2</code> inside each yum* files</p>
-</li>
-<li><p>also do the same modifications to <code>/usr/bin/gnome-tweak-tool</code> and <code>/usr/libexec/urlgrabber-ext-down</code></p>
-</li>
-</ul>
-</li>
-<li><p>Bugs may encounter</p>
-<ul>
-<li><code>zipimport.ZipImportError: can&#39;t decompress data; zlib not available</code></li>
-<li><code>./Modules/zlibmodule.c:10:10: fatal error: zlib.h: No such file or directory</code></li>
-</ul>
-</li>
-<li><p>references</p>
-<ul>
-<li><a href="https://segmentfault.com/a/1190000015628625" target="_blank" rel="noopener">CentOS 7 下 安装 Python3.7</a></li>
-<li><a href="https://blog.csdn.net/hobohero/article/details/54381475" target="_blank" rel="noopener">CentOS7安装Python3.6</a></li>
-<li><a href="https://blog.csdn.net/jaket5219999/article/details/80894517" target="_blank" rel="noopener">linux 一行命令安装python3.7</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="WSGI-container-–-Gunicorn"><a href="#WSGI-container-–-Gunicorn" class="headerlink" title="WSGI container – Gunicorn"></a>WSGI container – <strong>Gunicorn</strong></h2><p>WSGI is an interface between python web framework and HTTP server.<br>WSGI helps Python to regconise HTTP requests.<br>Gunicorn is a WSGI container, it helps create a Python web server.<br><em>simple conf, high performance, multi-thread, open-source</em></p>
-<ul>
-<li><p>Copy local project to cloud server</p>
-<ul>
-<li>connect cloud server by <code>ssh</code><blockquote>
-<p><code>ssh &lt;username&gt;@&lt;host-num&gt;</code></p>
-</blockquote>
-</li>
-<li>create folder<blockquote>
-<p><code>mkdir &lt;project name&gt;</code><br><code>cd &lt;project name&gt;</code></p>
-</blockquote>
-</li>
-<li>create venv<blockquote>
-<p><code>python3 -m venv env</code></p>
-</blockquote>
-</li>
-<li>transfer project folder recursively<blockquote>
-<p><code>scp -r &lt;path of project&gt; root@&lt;host&gt;:/&lt;dir&gt;</code></p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>Set up Gunicorn</p>
-<ul>
-<li><p>get into virtual env</p>
-<blockquote>
-<p>source venv/bin/activate</p>
-</blockquote>
-</li>
-<li><p>install Gunicorn</p>
-<blockquote>
-<p>pip3 install gunicorn</p>
-</blockquote>
-</li>
-<li><p>setting</p>
-<blockquote>
-<p>vim gunicorn.conf</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># gunicorn.conf</span><br><span class="line">worker = 3</span><br><span class="line">bind = &apos;0.0.0.0:8000&apos;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>pip3.6 install -r requirements.txt</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>References</p>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/22126999" target="_blank" rel="noopener">第二期 · 阿里云Python+Flask环境搭建</a></li>
-<li><a href="https://www.jianshu.com/p/52d8e3deaa16" target="_blank" rel="noopener">gunicorn学习介绍</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="Supervisor"><a href="#Supervisor" class="headerlink" title="Supervisor"></a><strong>Supervisor</strong></h2><p>Supervisor is a client/server system that allows its users to monitor and control a number of processes on UNIX-like operating systems. Supervisor has advantages of auto-recovery and auto-restart.</p>
-<ul>
-<li><p>Set up Supervisor</p>
-<ul>
-<li><p>install Supervisor</p>
-<blockquote>
-<p>yum install supervisor</p>
-</blockquote>
-</li>
-<li><p>setting</p>
-<ul>
-<li>go to supervisor conf path<blockquote>
-<p>cd /etc/supervisord.d</p>
-</blockquote>
-</li>
-<li>create <code>&lt;project-name&gt;.ini</code></li>
-</ul>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[program:&lt;project name&gt;]</span></span><br><span class="line"><span class="attr">command</span>=&lt;path of gunicorn&gt; run:app -c &lt;path of gunicorn&gt;/gunicorn.conf</span><br><span class="line"><span class="attr">directory</span>=&lt;path of project&gt;</span><br><span class="line"><span class="attr">user</span>=&lt;username&gt;</span><br><span class="line"><span class="attr">autostart</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">autorestart</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">stdout_logfile</span>=&lt;path of project&gt;/logs/gunicorn_supervisor.log</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>load supervisor setting</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">supervisorctl reread\</span><br><span class="line">supervisorctl update\</span><br><span class="line">supervisorctl start &lt;project&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>References</p>
-<ul>
-<li><a href="https://www.centos.bz/2018/06/centos7-3%E9%85%8D%E7%BD%AEsupervisor%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">Centos7.3配置Supervisor遇到的一些小问题</a></li>
-<li><a href="https://hooklife.me/linux/Supervisor%E5%9C%A8deepin%E5%AE%89%E8%A3%85%E3%80%81%E5%8D%B8%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_blank" rel="noopener">supervisor在deepin安装、使用与卸载</a></li>
-<li><a href="https://www.chengxulvtu.com/supervisor-on-centos-7/" target="_blank" rel="noopener">CentOS 7 配置 Supervisor</a></li>
-<li><a href="https://www.restran.net/2015/10/04/supervisord-tutorial/" target="_blank" rel="noopener">Python 进程管理工具 Supervisor 使用教程</a></li>
-<li><a href="https://philipzheng.gitbooks.io/docker_practice/content/cases/supervisor.html" target="_blank" rel="noopener">使用 Supervisor 來管理程式</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><ul>
-<li>references<ul>
-<li><a href="https://www.zhihu.com/question/38528616" target="_blank" rel="noopener">Nginx、Gunicorn在服务器中分别起什么作用？</a></li>
-<li><a href="https://www.zhihu.com/question/20709415" target="_blank" rel="noopener">nginx能否不借助wsgi直接部署Python应用？</a></li>
-</ul>
-</li>
-</ul>
-]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
+      <tags>
+        <tag>Celery</tag>
+        <tag>Distributed Computing</tag>
+      </tags>
   </entry>
   <entry>
     <title>mashupSite</title>
