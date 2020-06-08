@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>107. Binary Tree Level Order Traversal II</title>
-    <url>/2020/06/03/107-Binary-Tree-Level-Order-Traversal-II/</url>
-    <content><![CDATA[<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Given a binary tree, return the bottom-up level order traversal of its nodes&apos; values. (ie, from left to right, level by level from leaf to root).</span><br><span class="line"></span><br><span class="line">For example:</span><br><span class="line">Given binary tree [3,9,20,null,null,15,7],</span><br><span class="line"></span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7</span><br><span class="line">return its bottom-up level order traversal as:</span><br><span class="line"></span><br><span class="line">[</span><br><span class="line">  [15,7],</span><br><span class="line">  [9,20],</span><br><span class="line">  [3]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1-BFS"><a href="#Sol-1-BFS" class="headerlink" title="Sol 1 BFS"></a>Sol 1 BFS</h3><!-- Thinking -->
-<p>We need to traverse the binary tree and remember node level.</p>
-<p>If we traverse the tree layer by layer, it may be simpler to get the node level.</p>
-<p>So I traverse the binary tree using BFS.</p>
-<!-- Coding -->
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">levelOrderBottom</span><span class="params">(self, root: TreeNode)</span> -&gt; List[List[int]]:</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        q = collections.deque([root])</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            ans.insert(<span class="number">0</span>,[])</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(q)):</span><br><span class="line">                node = q.popleft()</span><br><span class="line">                ans[<span class="number">0</span>].append(node.val)</span><br><span class="line">                <span class="keyword">if</span> node.left != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.right)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>BFS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>94. Binary Tree Inorder Traversal</title>
     <url>/2020/06/06/94-Binary-Tree-Inorder-Traversal/</url>
     <content><![CDATA[<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Given a binary tree, return the inorder traversal of its nodes&apos; values.</span><br><span class="line"></span><br><span class="line">Example:</span><br><span class="line"></span><br><span class="line">Input: [1,null,2,3]</span><br><span class="line">   1</span><br><span class="line">    \</span><br><span class="line">     2</span><br><span class="line">    /</span><br><span class="line">   3</span><br><span class="line"></span><br><span class="line">Output: [1,3,2]</span><br><span class="line">Follow up: Recursive solution is trivial, could you do it iteratively?</span><br></pre></td></tr></table></figure>
@@ -44,6 +22,28 @@
       <tags>
         <tag>DFS</tag>
         <tag>Recursion</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>107. Binary Tree Level Order Traversal II</title>
+    <url>/2020/06/03/107-Binary-Tree-Level-Order-Traversal-II/</url>
+    <content><![CDATA[<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Given a binary tree, return the bottom-up level order traversal of its nodes&apos; values. (ie, from left to right, level by level from leaf to root).</span><br><span class="line"></span><br><span class="line">For example:</span><br><span class="line">Given binary tree [3,9,20,null,null,15,7],</span><br><span class="line"></span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7</span><br><span class="line">return its bottom-up level order traversal as:</span><br><span class="line"></span><br><span class="line">[</span><br><span class="line">  [15,7],</span><br><span class="line">  [9,20],</span><br><span class="line">  [3]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1-BFS"><a href="#Sol-1-BFS" class="headerlink" title="Sol 1 BFS"></a>Sol 1 BFS</h3><!-- Thinking -->
+<p>We need to traverse the binary tree and remember node level.</p>
+<p>If we traverse the tree layer by layer, it may be simpler to get the node level.</p>
+<p>So I traverse the binary tree using BFS.</p>
+<!-- Coding -->
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">levelOrderBottom</span><span class="params">(self, root: TreeNode)</span> -&gt; List[List[int]]:</span></span><br><span class="line">        <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        q = collections.deque([root])</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            ans.insert(<span class="number">0</span>,[])</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(q)):</span><br><span class="line">                node = q.popleft()</span><br><span class="line">                ans[<span class="number">0</span>].append(node.val)</span><br><span class="line">                <span class="keyword">if</span> node.left != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.left)</span><br><span class="line">                <span class="keyword">if</span> node.right != <span class="literal">None</span>:</span><br><span class="line">                    q.append(node.right)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>BFS</tag>
       </tags>
   </entry>
   <entry>
@@ -73,8 +73,336 @@
         <category>leetcode</category>
       </categories>
       <tags>
-        <tag>BFS</tag>
         <tag>Recursion</tag>
+        <tag>BFS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>98. Validate Binary Search Tree</title>
+    <url>/2020/05/28/98-Validate-Binary-Search-Tree/</url>
+    <content><![CDATA[<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Given a binary tree, determine if it is a valid binary search tree (BST).</span><br><span class="line"></span><br><span class="line">Assume a BST is defined as follows:</span><br><span class="line"></span><br><span class="line">The left subtree of a node contains only nodes with keys less than the node&apos;s key.</span><br><span class="line">The right subtree of a node contains only nodes with keys greater than the node&apos;s key.</span><br><span class="line">Both the left and right subtrees must also be binary search trees.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line">   / \</span><br><span class="line">  1   3</span><br><span class="line"></span><br><span class="line">Input: [2,1,3]</span><br><span class="line">Output: true</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  1   4</span><br><span class="line">     / \</span><br><span class="line">    3   6</span><br><span class="line"></span><br><span class="line">Input: [5,1,4,null,null,3,6]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: The root node&apos;s value is 5 but its right child&apos;s value is 4.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1-recusive"><a href="#Sol-1-recusive" class="headerlink" title="Sol 1 recusive"></a>Sol 1 recusive</h3><!-- Thinking -->
+<p>Acording to rule of BST, the current node must be larger than its left child and all of its offspring.</p>
+<p>we can to pass the upper and lower boundary into a recursive function</p>
+<!-- Coding -->
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root: TreeNode)</span> -&gt; bool:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(root, lower, upper)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> root.left != <span class="literal">None</span> :</span><br><span class="line">                <span class="keyword">if</span> root.left.val &gt;= root.val <span class="keyword">or</span> root.left.val &lt;= lower:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> root.right != <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">if</span> root.right.val &lt;= root.val <span class="keyword">or</span> root.right.val &gt;= upper:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> helper(root.left, lower, root.val) <span class="keyword">and</span> helper(root.right, root.val, upper)</span><br><span class="line">        <span class="keyword">return</span> helper(root, float(<span class="string">'-inf'</span>), float(<span class="string">'+inf'</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Sol-2"><a href="#Sol-2" class="headerlink" title="Sol 2"></a>Sol 2</h3><!-- Thinking -->
+<p>traverse the tree by inorder traverse, and check if the order is sorted.</p>
+<!-- Coding -->
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root: TreeNode)</span> -&gt; bool:</span></span><br><span class="line">        stack, last = [], float(<span class="string">'-inf'</span>)</span><br><span class="line">        <span class="keyword">while</span> stack <span class="keyword">or</span> root:</span><br><span class="line">            <span class="keyword">while</span> root:</span><br><span class="line">                stack.append(root)</span><br><span class="line">                root = root.left</span><br><span class="line">            root = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> root.val &lt;= last:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            last = root.val</span><br><span class="line">            root = root.right</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>Recursion</tag>
+        <tag>BST</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 常用命令</title>
+    <url>/2020/06/08/Linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>本文包括基本文本处理命令，监控命令，网络分析命令等的参数及常用使用方法的记录。</p>
+<a id="more"></a>
+<h2 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h2><p>vim,grep,sed,awk</p>
+<h2 id="find-查找文件"><a href="#find-查找文件" class="headerlink" title="find 查找文件"></a>find 查找文件</h2><h3 id="按时间查找"><a href="#按时间查找" class="headerlink" title="按时间查找"></a><strong>按时间查找</strong></h3><p>modification time (<strong>mtime</strong>)：<br>當該檔案的『內容資料』變更時，就會更新這個時間！內容資料指的是檔案的內容，而不是檔案的屬性或權限喔！</p>
+<p>status time (<strong>ctime</strong>)：<br>當該檔案的『狀態 (status)』改變時，就會更新這個時間，舉例來說，像是權限與屬性被更改了，都會更新這個時間啊。 </p>
+<p>access time (<strong>atime</strong>)：<br>當『該檔案的內容被取用』時，就會更新這個讀取時間 (access)。舉例來說，我們使用 cat 去讀取 /etc/man_db.conf ， 就會更新該檔案的 atime 了。</p>
+<p>修改时间在 7 天前：<code>find -atime +7</code></p>
+<p>修改时间在 7 天内：<code>find -atime -7</code></p>
+<p>修改时间在 7 分钟前：<code>find -amin +7</code></p>
+<p>修改时间在 7 分钟内：<code>find -amin -7</code></p>
+<h3 id="按文件信息查找"><a href="#按文件信息查找" class="headerlink" title="按文件信息查找"></a><strong>按文件信息查找</strong></h3><ul>
+<li><p>按文件名: <code>-name</code> / <code>-iname</code></p>
+<p>  <code>-iname</code> 可忽略大小写</p>
+</li>
+<li><p>按大小: <code>-size</code></p>
+<p>  找尋所有大於 50MB 的檔案</p>
+<p>  <code>find /var -type f -size +50M</code></p>
+<p>  找尋所有小於 50MB 的檔案</p>
+<p>  <code>find /var -type f -size -50M</code></p>
+</li>
+<li><p>按路径: <code>-path</code> / <code>-ipath</code></p>
+</li>
+<li><p>按文件类型: <code>-type</code></p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>explanation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>d</strong></td>
+<td><strong>directory</strong></td>
+</tr>
+<tr>
+<td><strong>f</strong></td>
+<td><strong>regular file</strong></td>
+</tr>
+<tr>
+<td>l</td>
+<td>symbolic link</td>
+</tr>
+<tr>
+<td>c</td>
+<td>character (unbuffered) special</td>
+</tr>
+<tr>
+<td>b</td>
+<td>block (buffered) special</td>
+</tr>
+<tr>
+<td>p</td>
+<td>named pipe (FIFO)</td>
+</tr>
+<tr>
+<td>s</td>
+<td>socket</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li><p><strong>按文件权限查找</strong> -perm</p>
+</li>
+<li><p><strong>执行指令</strong> -exec</p>
+<p>  將目前目錄下所有權限為 777 的檔案找出來，用 chmod 將這些檔案的權限更改為 644</p>
+<p>  <code>find . -type f -perm 0777 -print -exec chmod 644 {} \;</code></p>
+</li>
+</ul>
+<h2 id="监控命令"><a href="#监控命令" class="headerlink" title="监控命令"></a>监控命令</h2><h3 id="netstat-查看端口"><a href="#netstat-查看端口" class="headerlink" title="netstat 查看端口"></a>netstat 查看端口</h3><ul>
+<li>参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-r, –route</td>
+<td>display routing table</td>
+</tr>
+<tr>
+<td>-I, –interfaces=<iface></iface></td>
+<td>display interface table for <iface></iface></td>
+</tr>
+<tr>
+<td>-i, –interfaces</td>
+<td>display interface table (网卡)</td>
+</tr>
+<tr>
+<td>-g, –groups</td>
+<td>display multicast group memberships</td>
+</tr>
+<tr>
+<td>-s, –statistics</td>
+<td>display networking statistics (like SNMP)</td>
+</tr>
+<tr>
+<td>-M, –masquerade</td>
+<td>display masqueraded connections</td>
+</tr>
+<tr>
+<td>-v, –verbose</td>
+<td>be verbose</td>
+</tr>
+<tr>
+<td>-n, –numeric</td>
+<td>don’t resolve names</td>
+</tr>
+<tr>
+<td>–numeric-hosts</td>
+<td>don’t resolve host names</td>
+</tr>
+<tr>
+<td>–numeric-ports</td>
+<td>don’t resolve port names</td>
+</tr>
+<tr>
+<td>–numeric-users</td>
+<td>don’t resolve user names</td>
+</tr>
+<tr>
+<td>-N, –symbolic</td>
+<td>resolve hardware names</td>
+</tr>
+<tr>
+<td>-e, –extend</td>
+<td>display other/more information</td>
+</tr>
+<tr>
+<td>-p, –programs</td>
+<td>display PID/Program name for sockets</td>
+</tr>
+<tr>
+<td>-c, –continuous</td>
+<td>continuous listing</td>
+</tr>
+<tr>
+<td>-l, –listening</td>
+<td>display listening server sockets</td>
+</tr>
+<tr>
+<td>-a, –all, –listening</td>
+<td>display all sockets (default: connected)</td>
+</tr>
+<tr>
+<td>-o, –timers</td>
+<td>display timers</td>
+</tr>
+<tr>
+<td>-F, –fib</td>
+<td>display Forwarding Information Base (default)</td>
+</tr>
+<tr>
+<td>-C, –cache</td>
+<td>display routing cache instead of FIB</td>
+</tr>
+<tr>
+<td>-T, –notrim</td>
+<td>stop trimming long addresses</td>
+</tr>
+<tr>
+<td>-Z, –context</td>
+<td>display SELinux security context for sockets</td>
+</tr>
+</tbody></table>
+<ul>
+<li>常见用法</li>
+</ul>
+<p>找出程序运行的端口</p>
+<p><code>netstat -ap | grep ssh</code></p>
+<p>查看 UDP 端口使用情况</p>
+<p><code>netstat -apu</code> (all, program, udp)</p>
+<h3 id="iostat"><a href="#iostat" class="headerlink" title="iostat"></a>iostat</h3><h3 id="ps-查询进程"><a href="#ps-查询进程" class="headerlink" title="ps 查询进程"></a>ps 查询进程</h3><p><strong>ps 可输出当前系统中进程的快照（静态）。若想查看动态进程信息，可以使用 top</strong></p>
+<ul>
+<li><p>ps 常用参数</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-a</td>
+<td>显示除控制进程（session leader）和无终端进程外的所有进程</td>
+</tr>
+<tr>
+<td>-A</td>
+<td>显示所有进程</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>此参数的效果和指定-A参数相同</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>显示完整格式的输出</td>
+</tr>
+<tr>
+<td>-u&lt;用户识别码&gt;</td>
+<td>列出属于该用户的进程的状况，也可使用用户名称来指定</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>显示进程中的线程</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>显示长列表</td>
+</tr>
+<tr>
+<td>a</td>
+<td>显示跟任意终端关联的所有进程</td>
+</tr>
+<tr>
+<td>u</td>
+<td>采用基于用户的格式显示</td>
+</tr>
+<tr>
+<td>x</td>
+<td>显示所有的进程，甚至包括未分配任何终端的进程</td>
+</tr>
+<tr>
+<td>o format</td>
+<td>仅显示由format指定的列</td>
+</tr>
+<tr>
+<td>k sort</td>
+<td>指定用以将输出排序的列</td>
+</tr>
+<tr>
+<td>–format format</td>
+<td>仅显示由format指定的列</td>
+</tr>
+<tr>
+<td>–forest</td>
+<td>用层级结构显示出进程和父进程之间的关系</td>
+</tr>
+<tr>
+<td>–sort order</td>
+<td>指定将输出按哪列排序</td>
+</tr>
+<tr>
+<td>-C cmdlist</td>
+<td>显示包含在cmdlist列表中的进程</td>
+</tr>
+<tr>
+<td>-g grplist</td>
+<td>显示会话或组ID在grplist列表中的进程</td>
+</tr>
+<tr>
+<td>-p pidlist</td>
+<td>显示PID在pidlist列表中的进程</td>
+</tr>
+<tr>
+<td>-s sesslist</td>
+<td>显示会话ID在sesslist列表中的进程</td>
+</tr>
+<tr>
+<td>-t ttylist</td>
+<td>显示终端ID在ttylist列表中的进程</td>
+</tr>
+<tr>
+<td>-u userlist</td>
+<td>显示有效用户ID在userlist列表中的进程</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>常见用法</p>
+<p>  查找指定进程</p>
+<p>  <code>ps -ef|grep httpd</code></p>
+<p>  列出目前所有的正在内存当中的程序</p>
+<p>  <code>ps -aux</code></p>
+<p>  按照 (CPU，内存) 进行排序，-表示逆序，+表示正序</p>
+<p>  <code>ps -aux --sort=-pcpu,+pmem</code></p>
+<p>  用树的风格显示进程的层次关系</p>
+<p>  <code>ps -f --forest -C nginx</code></p>
+<p>  显示某进程的所有线程</p>
+<p>  <code>ps -Lf &lt;pid&gt;</code></p>
+<p>  以树状结构显示进程</p>
+<p>  <code>pstree -p work | grep nginx</code></p>
+</li>
+</ul>
+<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>使用方式</p>
+<p>top [-d number] | top [-bnp]</p>
+<h3 id="tcpdump"><a href="#tcpdump" class="headerlink" title="tcpdump"></a>tcpdump</h3><h3 id="iptable"><a href="#iptable" class="headerlink" title="iptable"></a>iptable</h3><h2 id="网络分析工具"><a href="#网络分析工具" class="headerlink" title="网络分析工具"></a>网络分析工具</h2><p><strong>ping</strong>，透过 ICMP 封包 来进行整个网络的状况报告<br><strong>traceroute</strong>，用来检测发出数据包的主机到目标主机之间所经过的网关数量<br><strong>netstat</strong>，用于显示与IP/TCP/UDP/ICMP协议相关的统计数据，一般用于检验本机各端口的网络连接情况<br><strong>nslookup</strong>，查询 DNS 记录，查询域名解析是否正常<br><strong>ifconfig</strong>，用来查看和配置网络设备。当网络环境发生改变时可通过此命令对网络进行相应的配置。用ifconfig命令配置的网卡信息，在网卡重启后机器重启后，配置就不存在。要想将上述的配置信息永远的存的电脑里，那就要修改网卡的配置文件了。</p>
+<p>iptables -A INPUT -p tcp -s 192.168.1.2 –dport 80 -j ACCEPT   (允许来自192.168.1.2这台主机访问80端口)</p>
+<h2 id="磁盘io分析工具"><a href="#磁盘io分析工具" class="headerlink" title="磁盘io分析工具"></a>磁盘io分析工具</h2><p>iostat<br>iotop</p>
+]]></content>
+      <categories>
+        <category>note</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>运维</tag>
       </tags>
   </entry>
   <entry>
@@ -123,98 +451,136 @@
       </tags>
   </entry>
   <entry>
-    <title>MacOS_shortcut</title>
-    <url>/2020/05/25/MacOS-shortcut/</url>
-    <content><![CDATA[<h2 id="全局"><a href="#全局" class="headerlink" title="全局"></a>全局</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Shift + P / F1 显示命令面板</span><br><span class="line">Command + P 快速打开</span><br><span class="line">Command + Shift + N 打开新窗口</span><br><span class="line">Command + W 关闭窗口</span><br></pre></td></tr></table></figure>
-
-<h2 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + X 剪切（未选中文本的情况下，剪切光标所在行）</span><br><span class="line">Command + C 复制（未选中文本的情况下，复制光标所在行）</span><br><span class="line">Option + Up 向上移动行</span><br><span class="line">Option + Down 向下移动行</span><br><span class="line">Option + Shift + Up 向上复制行</span><br><span class="line">Option + Shift + Down 向下复制行</span><br><span class="line">Command + Shift + K 删除行</span><br><span class="line">Command + Enter 下一行插入</span><br><span class="line">Command + Shift + Enter 上一行插入</span><br><span class="line">Command + Shift + \ 跳转到匹配的括号</span><br><span class="line">Command + [ 减少缩进</span><br><span class="line">Command + ] 增加缩进</span><br><span class="line">Home 跳转至行首</span><br><span class="line">End 跳转到行尾</span><br><span class="line">Command + Up 跳转至文件开头</span><br><span class="line">Command + Down 跳转至文件结尾</span><br><span class="line">Ctrl + PgUp 按行向上滚动</span><br><span class="line">Ctrl + PgDown 按行向下滚动</span><br><span class="line">Command + PgUp 按屏向上滚动</span><br><span class="line">Command + PgDown 按屏向下滚动</span><br><span class="line">Command + Shift + [ 折叠代码块</span><br><span class="line">Command + Shift + ] 展开代码块</span><br><span class="line">Command + K Command + [ 折叠全部子代码块</span><br><span class="line">Command + K Command + ] 展开全部子代码块</span><br><span class="line">Command + K Command + 0 折叠全部代码块</span><br><span class="line">Command + K Command + J 展开全部代码块</span><br><span class="line">Command + K Command + C 添加行注释</span><br><span class="line">Command + K Command + U 移除行注释</span><br><span class="line">Command + / 添加、移除行注释</span><br><span class="line">Option + Shift + A 添加、移除块注释</span><br><span class="line">Option + Z 自动换行、取消自动换行</span><br></pre></td></tr></table></figure>
-
-<h2 id="多光标与选择"><a href="#多光标与选择" class="headerlink" title="多光标与选择"></a>多光标与选择</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Option + 点击 插入多个光标</span><br><span class="line">Command + Option + Up 向上插入光标</span><br><span class="line">Command + Option + Down 向下插入光标</span><br><span class="line">Command + U 撤销上一个光标操作</span><br><span class="line">Option + Shift + I 在所选行的行尾插入光标</span><br><span class="line">Command + I 选中当前行</span><br><span class="line">Command + Shift + L 选中所有与当前选中内容相同部分</span><br><span class="line">Command + F2 选中所有与当前选中单词相同的单词</span><br><span class="line">Command + Ctrl + Shift + Left 折叠选中</span><br><span class="line">Command + Ctrl + Shift + Right 展开选中</span><br><span class="line">Alt + Shift + 拖动鼠标 选中代码块</span><br><span class="line">Command + Shift + Option + Up 列选择 向上</span><br><span class="line">Command + Shift + Option + Down 列选择 向下</span><br><span class="line">Command + Shift + Option + Left 列选择 向左</span><br><span class="line">Command + Shift + Option + Right 列选择 向右</span><br><span class="line">Command + Shift + Option + PgUp 列选择 向上翻页</span><br><span class="line">Command + Shift + Option + PgDown 列选择 向下翻页</span><br></pre></td></tr></table></figure>
-
-<h2 id="查找替换"><a href="#查找替换" class="headerlink" title="查找替换"></a>查找替换</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + F 查找</span><br><span class="line">Command + Option + F 替换</span><br><span class="line">Command + G 查找下一个</span><br><span class="line">Command + Shift + G 查找上一个</span><br><span class="line">Option + Enter 选中所有匹配项</span><br><span class="line">Command + D 向下选中相同内容</span><br><span class="line">Command + K Command + D 移除前一个向下选中相同内容</span><br></pre></td></tr></table></figure>
-
-<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Ctrl + Space 打开建议</span><br><span class="line">Command + Shift + Space 参数提示</span><br><span class="line">Tab Emmet插件缩写补全</span><br><span class="line">Option + Shift + F 格式化</span><br><span class="line">Command + K Command + F 格式化选中内容</span><br><span class="line">F12 跳转到声明位置</span><br><span class="line">Option + F12 查看具体声明内容</span><br><span class="line">Command + K F12 分屏查看具体声明内容</span><br><span class="line">Command + . 快速修复</span><br><span class="line">Shift + F12 显示引用</span><br><span class="line">F2 重命名符号</span><br><span class="line">Command + Shift + . 替换为上一个值</span><br><span class="line">Command + Shift + , 替换为下一个值</span><br><span class="line">Command + K Command + X 删除行尾多余空格</span><br><span class="line">Command + K M 更改文件语言</span><br></pre></td></tr></table></figure>
-
-<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + T 显示所有符号</span><br><span class="line">Ctrl + G 跳转至某行</span><br><span class="line">Command + P 跳转到某个文件</span><br><span class="line">Command + Shift + O 跳转到某个符号</span><br><span class="line">Command + Shift + M 打开问题面板</span><br><span class="line">F8 下一个错误或警告位置</span><br><span class="line">Shift + F8 上一个错误或警告位置</span><br><span class="line">Ctrl + Shift + Tab 编辑器历史记录</span><br><span class="line">Ctrl + - 后退</span><br><span class="line">Ctrl + Shift + - 前进</span><br><span class="line">Ctrl + Shift + M Tab 切换焦点</span><br></pre></td></tr></table></figure>
-
-<h2 id="编辑器管理"><a href="#编辑器管理" class="headerlink" title="编辑器管理"></a>编辑器管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + W 关闭编辑器</span><br><span class="line">Command + K F 关闭文件夹</span><br><span class="line">Command + \ 编辑器分屏</span><br><span class="line">Command + 1 切换到第一分组</span><br><span class="line">Command + 2 切换到第二分组</span><br><span class="line">Command + 3 切换到第三分组</span><br><span class="line">Command + K Command + Left 切换到上一分组</span><br><span class="line">Command + K Command + Right 切换到下一分组</span><br><span class="line">Command + K Command + Shift + Left 左移编辑器</span><br><span class="line">Command + K Command + Shift + Right 右移编辑器</span><br><span class="line">Command + K Left 激活左侧编辑组</span><br><span class="line">Command + K Right 激活右侧编辑组</span><br></pre></td></tr></table></figure>
-
-<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + N 新建文件</span><br><span class="line">Command + O 打开文件</span><br><span class="line">Command + S 保存文件</span><br><span class="line">Command + Shift + S 另存为</span><br><span class="line">Command + Option + S 全部保存</span><br><span class="line">Command + W 关闭</span><br><span class="line">Command + K Command + W 全部关闭</span><br><span class="line">Command + Shift + T 重新打开被关闭的编辑器</span><br><span class="line">Command + K Enter 保持打开</span><br><span class="line">Ctrl + Tab 打开下一个</span><br><span class="line">Ctrl + Shift + Tab 打开上一个</span><br><span class="line">Command + K P 复制当前文件路径</span><br><span class="line">Command + K R 在资源管理器中查看当前文件</span><br><span class="line">Command + K O 新窗口打开当前文件</span><br></pre></td></tr></table></figure>
-
-<h2 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Ctrl + F 全屏、退出全屏</span><br><span class="line">Command + Option + 1 切换编辑器分屏方式（横、竖）</span><br><span class="line">Command + + 放大</span><br><span class="line">Command + - 缩小</span><br><span class="line">Command + B 显示、隐藏侧边栏</span><br><span class="line">Command + Shift + E 显示资源管理器 或 切换焦点</span><br><span class="line">Command + Shift + F 显示搜索框</span><br><span class="line">Ctrl + Shift + G 显示Git面板</span><br><span class="line">Command + Shift + D 显示调试面板</span><br><span class="line">Command + Shift + X 显示插件面板</span><br><span class="line">Command + Shift + H 全局搜索替换</span><br><span class="line">Command + Shift + J 显示、隐藏高级搜索</span><br><span class="line">Command + Shift + C 打开新终端</span><br><span class="line">Command + Shift + U 显示输出面板</span><br><span class="line">Command + Shift + V Markdown预览窗口</span><br><span class="line">Command + K V 分屏显示 Markdown预览窗口</span><br></pre></td></tr></table></figure>
-
-<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">F9 设置 或 取消断点</span><br><span class="line">F5 开始 或 继续</span><br><span class="line">F11 进入</span><br><span class="line">Shift + F11 跳出</span><br><span class="line">F10 跳过</span><br><span class="line">Command + K Command + I 显示悬停信息</span><br></pre></td></tr></table></figure>
-
-<h2 id="集成终端"><a href="#集成终端" class="headerlink" title="集成终端"></a>集成终端</h2><pre><code class="text">Ctrl + ` 显示终端
-Ctrl + Shift + ` 新建终端
-Command + Up 向上滚动
-Command + Down 向下滚动
-PgUp 向上翻页
-PgDown 向下翻页
-Command + Home 滚动到顶部
-Command + End 滚动到底部
-
-```text
-
-转自 [小谷xg](https://segmentfault.com/a/1190000012811886)</code></pre>
-]]></content>
-      <categories>
-        <category>note</category>
-      </categories>
-      <tags>
-        <tag>MacOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>The Rise Of Worse Is Better</title>
-    <url>/2020/06/07/The-Rise-Of-Worse-Is-Better/</url>
-    <content><![CDATA[<p>Richard P. Gabriel 的 “The Rise Of Worse Is Better” 是计算机科学界中的经典文章。</p>
-<p>它是 “Lisp: Good News, Bad News, How to Win Big.” 短文中的节录。</p>
-<p>文章比较了软件设计中两种设计哲学：MIT/Stanford style 和 New Jersey style。</p>
+    <title>Record of building HexoBlog on Github page</title>
+    <url>/2020/05/25/Record-of-building-HexoBlog-on-Github-page/</url>
+    <content><![CDATA[<p>This article contains step by step tutorial to set up a tech blog on Github server, basic operations of Hexo blog, and some useful plugins.</p>
 <a id="more"></a>
-<p>作者认为 MIT/Stanford style 的本质可以表达为 “the right thing”。</p>
-<p>要达到 MIT/Stanford style 软件设计风格，设计者必须遵循4条准则：</p>
+
+<h2 id="Installations"><a href="#Installations" class="headerlink" title="Installations"></a>Installations</h2><ul>
+<li>Git<ul>
+<li>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</li>
+<li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Download</a></li>
+</ul>
+</li>
+<li>Node.js<ul>
+<li>As an asynchronous event driven JavaScript runtime, Node.js is designed to build scalable network applications.</li>
+<li><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Download</a></li>
+</ul>
+</li>
+<li>Hexo<ul>
+<li>Hexo is a fast, simple and powerful blog framework. Hexo parses your article by Markdown rendering engin, it can produce static files with beautiful theme in a few second.</li>
+<li>install Hexo by npm(node package management)<ul>
+<li><code>npm install -g hexo-cli</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>hexo-deployer-git<ul>
+<li>this is a plugin for deploying hexo blog on github</li>
+<li><code>npm install hexo-deployer-git --save</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Create-Github-repository"><a href="#Create-Github-repository" class="headerlink" title="Create Github repository"></a>Create Github repository</h2><ul>
+<li><p>initialise a <strong>Github repository</strong></p>
+</li>
+<li><p>login github locally</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.email &lt;xxx@163.com&gt;</span><br><span class="line">git config --global user.name &lt;xxx&gt;</span><br><span class="line">ssh-keygen -t rsa -C &lt;xxx@163.com&gt;     // generate ssh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>open .ssh folder, copy the ssh key string by <code>cat id_rsa.pub</code></p>
+</li>
+<li><p>open github webpage - settings - SSH keys - add ssh keys</p>
+</li>
+<li><p>paste the ssh key here</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Hexo-server"><a href="#Hexo-server" class="headerlink" title="Hexo server"></a>Hexo server</h2><ul>
+<li>initiate <strong>hexo</strong><ul>
+<li><strong>initialise</strong> a new blog by <code>hexo init blog</code></li>
+<li><strong>generate</strong> the blog with modifications by <code>hexo generate</code> or <code>hexo g</code></li>
+<li>run the blog <strong>server</strong> locally for preview by <code>hexo server</code> or <code>hexo s</code></li>
+<li><strong>deploy</strong> the blog by <code>hexo deploy</code> or <code>hexo d</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Connecting-local-Hexo-with-Github-repository"><a href="#Connecting-local-Hexo-with-Github-repository" class="headerlink" title="Connecting local Hexo with Github repository"></a>Connecting local Hexo with Github repository</h2><p>This step help us to deploy the generated static web templates to Github page server</p>
+<p>Modify the configuration of <code>hexo deploy</code> command</p>
 <ol>
-<li>简单性 – 软件实现和软件接口两者的设计都必须要简单，同时简单的接口比简单的实现更重要。</li>
-<li>正确性 – 设计在可观察的各个方面都必须正确。设计不允许不正确。</li>
-<li>一致性 – 设计必须具有一致性。为了避免不一致性，可以在设计的简单性和完整性上稍作取舍。一致性和正确性同样重要。</li>
-<li>完整性 – 设计必须覆盖实际会遇到的各个重要场景。所有合理的可预料的情况都必须覆盖。不应该为了简单性而过多的放弃完整性。</li>
+<li><p>cd <code>&lt;root of hexo folder&gt;</code></p>
+</li>
+<li><p>modify <code>_config.yml</code> file</p>
+ <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">    type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">    repo:</span> <span class="string">'&lt;address of your github reporsitory&gt;'</span></span><br><span class="line"><span class="attr">    branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Restart the server to update the configurations with following cmd in order</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
-<blockquote>
+<p>Now the Hexo blog is running on Github server.</p>
+<p>Blog url: <code>&lt;username&gt;.gitbub.io</code></p>
+<h2 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h2><ul>
+<li>Add post</li>
+</ul>
+<p>In Hexo, post means articles that we wrote, post inherits the format of scaffold</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new &lt;scaffold name&gt; &lt;post name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Hexo will first <strong>scan</strong> <code>scaffolds/</code> folder and find <code>&lt;scaffold name&gt;.md</code>, then Hexo <strong>copy the format</strong> of <code>&lt;scaffold name&gt;.md</code> to a <strong>new file</strong> <code>&lt;post name&gt;.md</code> and put it in <code>source/_posts/</code></p>
+<ul>
+<li>Add page</li>
+</ul>
+<p>In Hexo, page means web page in hexo blog, such as about, categories, tags, archive(built-in with hexo)</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page &lt;page name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Hexo will create a new dir <code>source/&lt;page name&gt;/index.md</code></p>
+<ul>
+<li>Category and tag</li>
+</ul>
+<p>Hexo also supports categories and tags for categorizing posts. First we need to create pages for displaying categories and tags.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+
+<p>Then hexo will create a folder named (categories) and a folder named (tags), with (index.md) inside both of them.</p>
+<h2 id="Search-engine-for-Next-theme"><a href="#Search-engine-for-Next-theme" class="headerlink" title="Search engine for Next theme"></a>Search engine for Next theme</h2><ol>
+<li><p>first install hexo-generator-searchdb (<code>npm install hexo-generator-searchdb --save</code>)</p>
+</li>
+<li><p>configure <code>&lt;hexo folder&gt;/_config.yml</code></p>
+ <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line"><span class="attr">  path:</span> <span class="string">search.xml</span></span><br><span class="line"><span class="attr">  field:</span> <span class="string">post</span></span><br><span class="line"><span class="attr">  format:</span> <span class="string">html</span></span><br><span class="line"><span class="attr">  limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>configure <code>/theme/next/_config.yml</code></p>
+ <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="Word-counting"><a href="#Word-counting" class="headerlink" title="Word counting"></a>Word counting</h2><p>This feature is supported by the Next theme with dependancy <code>hexo-wordcount</code></p>
+<p>it supports word count and reading minutes estimation</p>
 <ol>
-<li><strong>Simplicity</strong> – the design must be simple, both in implementation and interface. It is more important for the interface to be simple than the implementation.</li>
-<li><strong>Correctness</strong> – the design must be correct in all observable aspects. Incorrectness is simply not allowed.</li>
-<li><strong>Consistency</strong> – the design must not be inconsistent. A design is allowed to be slightly less simple and less complete to avoid inconsistency. Consistency is as important as correctness.</li>
-<li><strong>Completeness</strong> – the design must cover as many important situations as is practical. All reasonably expected cases must be covered. Simplicity is not allowed to overly reduce completeness.</li>
+<li><p>Install the dependancy by <code>npm i --save hexo-wordcount</code></p>
+</li>
+<li><p>configure <code>themes/next/_config.yml</code></p>
+ <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post wordcount display settings</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/willin/hexo-wordcount</span></span><br><span class="line"><span class="attr">post_wordcount:</span></span><br><span class="line"><span class="attr">    item_text:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    wordcount:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    min2read:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    totalcount:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    separated_meta:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
-</blockquote>
-<p>而 New Jersey style 的设计准则只有些许不同：</p>
-<ol>
-<li>简单性 – 实现和接口的设计都必须简单，简单的实现比简单的接口更重要，简单性是最重要的准则。</li>
-<li>正确性 – 简单性比正确行稍微更重要一些。</li>
-<li>一致性 – 设计不能太过不一致。一些情况下，可以牺牲一致性来保证简单性。但更好的做法是丢弃一些应对不常用场景的设计部分。</li>
-<li>完整性 – 完整性可以为了满足其他准则而牺牲。事实上，当危及到简单性，必须对完整性作出牺牲。当简单性得以保证，可以牺牲一致性来获得完整性。接口的一致性是比较无用处的。</li>
-</ol>
-<blockquote>
-<ol>
-<li><strong>Simplicity</strong> – the design must be simple, both in implementation and interface. It is more important for the implementation to be simple than the interface. Simplicity is the most important consideration in a design.</li>
-<li><strong>Correctness</strong> – the design must be correct in all observable aspects. It is slightly better to be simple than correct.</li>
-<li><strong>Consistency</strong> – the design must not be overly inconsistent. Consistency can be sacrificed for simplicity in some cases, but it is better to drop those parts of the design that deal with less common circumstances than to introduce either implementational complexity or inconsistency.</li>
-<li><strong>Completeness</strong> – the design must cover as many important situations as is practical. All reasonably expected cases should be covered. Completeness can be sacrificed in favor of any other quality. In fact, completeness must be sacrificed whenever implementation simplicity is jeopardized. Consistency can be sacrificed to achieve completeness if simplicity is retained; especially worthless is consistency of interface.</li>
-</ol>
-</blockquote>
-<p>两种设计哲学主要区别于对 4 条准则的排序。MIT/Stanford style 认为设计的正确性和一致性同样是最重要的原则，它的价值排序是 (Correctness = Consistency &gt; Simplicity &gt; Completeness)。而 New Jersey Style 则认为设计的简单性是首要考虑的准则，它的价值排序是 (Simplicity &gt; Correctness &gt; Consistensy &gt; Completeness)。两种设计哲学都同时认为完整性的价值的最低的。</p>
-<p>作者认为软件设计不一定要像 MIT/Stanford style 一样过分追求正确性和完整性，更好的做法是先完成一半的工作，然后让社区开发者共同开发，合力追求正确性和完整性。</p>
-<blockquote>
-<p>The lesson to be learned from this is that it is often undesirable to go for the right thing first. It is better to get half of the right thing available so that it spreads like a virus. Once people are hooked on it, take the time to improve it to 90% of the right thing.</p>
-</blockquote>
-<h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a href="http://dreamsongs.com/RiseOfWorseIsBetter.html" target="_blank" rel="noopener">The Rise Of Worse Is Better</a></p>
+<h2 id="other-skills"><a href="#other-skills" class="headerlink" title="other skills"></a>other skills</h2><ul>
+<li>put <code>&lt;!-- more --&gt;</code> in your post to show <strong>read more</strong> button at that exact position.</li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 官网</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">GitHub + Hexo 搭建个人网站详细教程</a></li>
+<li><a href="https://blog.csdn.net/u011475210/article/details/79023429" target="_blank" rel="noopener">我的个人博客之旅：从jekyll到hexo</a></li>
+<li><a href="http://coderunthings.com/2017/08/20/howhexoworks/" target="_blank" rel="noopener">hexo是怎么工作的</a></li>
+<li><a href="http://ijiaober.github.io/2014/08/05/hexo/hexo-04/" target="_blank" rel="noopener">多级分类</a></li>
+</ul>
 ]]></content>
       <categories>
-        <category>reading</category>
+        <category>record</category>
       </categories>
       <tags>
-        <tag>OS</tag>
+        <tag>Hexo</tag>
+        <tag>Node.js</tag>
+        <tag>Github Page</tag>
       </tags>
   </entry>
   <entry>
@@ -380,161 +746,98 @@ Command + End 滚动到底部
       </tags>
   </entry>
   <entry>
-    <title>Record of building HexoBlog on Github page</title>
-    <url>/2020/05/25/Record-of-building-HexoBlog-on-Github-page/</url>
-    <content><![CDATA[<p>This article contains step by step tutorial to set up a tech blog on Github server, basic operations of Hexo blog, and some useful plugins.</p>
+    <title>The Rise Of Worse Is Better</title>
+    <url>/2020/06/07/The-Rise-Of-Worse-Is-Better/</url>
+    <content><![CDATA[<p>Richard P. Gabriel 的 “The Rise Of Worse Is Better” 是计算机科学界中的经典文章。</p>
+<p>它是 “Lisp: Good News, Bad News, How to Win Big.” 短文中的节录。</p>
+<p>文章比较了软件设计中两种设计哲学：MIT/Stanford style 和 New Jersey style。</p>
 <a id="more"></a>
-
-<h2 id="Installations"><a href="#Installations" class="headerlink" title="Installations"></a>Installations</h2><ul>
-<li>Git<ul>
-<li>Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.</li>
-<li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Download</a></li>
-</ul>
-</li>
-<li>Node.js<ul>
-<li>As an asynchronous event driven JavaScript runtime, Node.js is designed to build scalable network applications.</li>
-<li><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Download</a></li>
-</ul>
-</li>
-<li>Hexo<ul>
-<li>Hexo is a fast, simple and powerful blog framework. Hexo parses your article by Markdown rendering engin, it can produce static files with beautiful theme in a few second.</li>
-<li>install Hexo by npm(node package management)<ul>
-<li><code>npm install -g hexo-cli</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>hexo-deployer-git<ul>
-<li>this is a plugin for deploying hexo blog on github</li>
-<li><code>npm install hexo-deployer-git --save</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="Create-Github-repository"><a href="#Create-Github-repository" class="headerlink" title="Create Github repository"></a>Create Github repository</h2><ul>
-<li><p>initialise a <strong>Github repository</strong></p>
-</li>
-<li><p>login github locally</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.email &lt;xxx@163.com&gt;</span><br><span class="line">git config --global user.name &lt;xxx&gt;</span><br><span class="line">ssh-keygen -t rsa -C &lt;xxx@163.com&gt;     // generate ssh</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>open .ssh folder, copy the ssh key string by <code>cat id_rsa.pub</code></p>
-</li>
-<li><p>open github webpage - settings - SSH keys - add ssh keys</p>
-</li>
-<li><p>paste the ssh key here</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Hexo-server"><a href="#Hexo-server" class="headerlink" title="Hexo server"></a>Hexo server</h2><ul>
-<li>initiate <strong>hexo</strong><ul>
-<li><strong>initialise</strong> a new blog by <code>hexo init blog</code></li>
-<li><strong>generate</strong> the blog with modifications by <code>hexo generate</code> or <code>hexo g</code></li>
-<li>run the blog <strong>server</strong> locally for preview by <code>hexo server</code> or <code>hexo s</code></li>
-<li><strong>deploy</strong> the blog by <code>hexo deploy</code> or <code>hexo d</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="Connecting-local-Hexo-with-Github-repository"><a href="#Connecting-local-Hexo-with-Github-repository" class="headerlink" title="Connecting local Hexo with Github repository"></a>Connecting local Hexo with Github repository</h2><p>This step help us to deploy the generated static web templates to Github page server</p>
-<p>Modify the configuration of <code>hexo deploy</code> command</p>
+<p>作者认为 MIT/Stanford style 的本质可以表达为 “the right thing”。</p>
+<p>要达到 MIT/Stanford style 软件设计风格，设计者必须遵循4条准则：</p>
 <ol>
-<li><p>cd <code>&lt;root of hexo folder&gt;</code></p>
-</li>
-<li><p>modify <code>_config.yml</code> file</p>
- <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">    type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">    repo:</span> <span class="string">'&lt;address of your github reporsitory&gt;'</span></span><br><span class="line"><span class="attr">    branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Restart the server to update the configurations with following cmd in order</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>简单性 – 软件实现和软件接口两者的设计都必须要简单，同时简单的接口比简单的实现更重要。</li>
+<li>正确性 – 设计在可观察的各个方面都必须正确。设计不允许不正确。</li>
+<li>一致性 – 设计必须具有一致性。为了避免不一致性，可以在设计的简单性和完整性上稍作取舍。一致性和正确性同样重要。</li>
+<li>完整性 – 设计必须覆盖实际会遇到的各个重要场景。所有合理的可预料的情况都必须覆盖。不应该为了简单性而过多的放弃完整性。</li>
 </ol>
-<p>Now the Hexo blog is running on Github server.</p>
-<p>Blog url: <code>&lt;username&gt;.gitbub.io</code></p>
-<h2 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h2><ul>
-<li>Add post</li>
-</ul>
-<p>In Hexo, post means articles that we wrote, post inherits the format of scaffold</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new &lt;scaffold name&gt; &lt;post name&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Hexo will first <strong>scan</strong> <code>scaffolds/</code> folder and find <code>&lt;scaffold name&gt;.md</code>, then Hexo <strong>copy the format</strong> of <code>&lt;scaffold name&gt;.md</code> to a <strong>new file</strong> <code>&lt;post name&gt;.md</code> and put it in <code>source/_posts/</code></p>
-<ul>
-<li>Add page</li>
-</ul>
-<p>In Hexo, page means web page in hexo blog, such as about, categories, tags, archive(built-in with hexo)</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page &lt;page name&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Hexo will create a new dir <code>source/&lt;page name&gt;/index.md</code></p>
-<ul>
-<li>Category and tag</li>
-</ul>
-<p>Hexo also supports categories and tags for categorizing posts. First we need to create pages for displaying categories and tags.</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
-
-<p>Then hexo will create a folder named (categories) and a folder named (tags), with (index.md) inside both of them.</p>
-<h2 id="Search-engine-for-Next-theme"><a href="#Search-engine-for-Next-theme" class="headerlink" title="Search engine for Next theme"></a>Search engine for Next theme</h2><ol>
-<li><p>first install hexo-generator-searchdb (<code>npm install hexo-generator-searchdb --save</code>)</p>
-</li>
-<li><p>configure <code>&lt;hexo folder&gt;/_config.yml</code></p>
- <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line"><span class="attr">  path:</span> <span class="string">search.xml</span></span><br><span class="line"><span class="attr">  field:</span> <span class="string">post</span></span><br><span class="line"><span class="attr">  format:</span> <span class="string">html</span></span><br><span class="line"><span class="attr">  limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>configure <code>/theme/next/_config.yml</code></p>
- <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="Word-counting"><a href="#Word-counting" class="headerlink" title="Word counting"></a>Word counting</h2><p>This feature is supported by the Next theme with dependancy <code>hexo-wordcount</code></p>
-<p>it supports word count and reading minutes estimation</p>
+<blockquote>
 <ol>
-<li><p>Install the dependancy by <code>npm i --save hexo-wordcount</code></p>
-</li>
-<li><p>configure <code>themes/next/_config.yml</code></p>
- <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post wordcount display settings</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/willin/hexo-wordcount</span></span><br><span class="line"><span class="attr">post_wordcount:</span></span><br><span class="line"><span class="attr">    item_text:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    wordcount:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    min2read:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    totalcount:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    separated_meta:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-</li>
+<li><strong>Simplicity</strong> – the design must be simple, both in implementation and interface. It is more important for the interface to be simple than the implementation.</li>
+<li><strong>Correctness</strong> – the design must be correct in all observable aspects. Incorrectness is simply not allowed.</li>
+<li><strong>Consistency</strong> – the design must not be inconsistent. A design is allowed to be slightly less simple and less complete to avoid inconsistency. Consistency is as important as correctness.</li>
+<li><strong>Completeness</strong> – the design must cover as many important situations as is practical. All reasonably expected cases must be covered. Simplicity is not allowed to overly reduce completeness.</li>
 </ol>
-<h2 id="other-skills"><a href="#other-skills" class="headerlink" title="other skills"></a>other skills</h2><ul>
-<li>put <code>&lt;!-- more --&gt;</code> in your post to show <strong>read more</strong> button at that exact position.</li>
-</ul>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 官网</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">GitHub + Hexo 搭建个人网站详细教程</a></li>
-<li><a href="https://blog.csdn.net/u011475210/article/details/79023429" target="_blank" rel="noopener">我的个人博客之旅：从jekyll到hexo</a></li>
-<li><a href="http://coderunthings.com/2017/08/20/howhexoworks/" target="_blank" rel="noopener">hexo是怎么工作的</a></li>
-<li><a href="http://ijiaober.github.io/2014/08/05/hexo/hexo-04/" target="_blank" rel="noopener">多级分类</a></li>
-</ul>
+</blockquote>
+<p>而 New Jersey style 的设计准则只有些许不同：</p>
+<ol>
+<li>简单性 – 实现和接口的设计都必须简单，简单的实现比简单的接口更重要，简单性是最重要的准则。</li>
+<li>正确性 – 简单性比正确行稍微更重要一些。</li>
+<li>一致性 – 设计不能太过不一致。一些情况下，可以牺牲一致性来保证简单性。但更好的做法是丢弃一些应对不常用场景的设计部分。</li>
+<li>完整性 – 完整性可以为了满足其他准则而牺牲。事实上，当危及到简单性，必须对完整性作出牺牲。当简单性得以保证，可以牺牲一致性来获得完整性。接口的一致性是比较无用处的。</li>
+</ol>
+<blockquote>
+<ol>
+<li><strong>Simplicity</strong> – the design must be simple, both in implementation and interface. It is more important for the implementation to be simple than the interface. Simplicity is the most important consideration in a design.</li>
+<li><strong>Correctness</strong> – the design must be correct in all observable aspects. It is slightly better to be simple than correct.</li>
+<li><strong>Consistency</strong> – the design must not be overly inconsistent. Consistency can be sacrificed for simplicity in some cases, but it is better to drop those parts of the design that deal with less common circumstances than to introduce either implementational complexity or inconsistency.</li>
+<li><strong>Completeness</strong> – the design must cover as many important situations as is practical. All reasonably expected cases should be covered. Completeness can be sacrificed in favor of any other quality. In fact, completeness must be sacrificed whenever implementation simplicity is jeopardized. Consistency can be sacrificed to achieve completeness if simplicity is retained; especially worthless is consistency of interface.</li>
+</ol>
+</blockquote>
+<p>两种设计哲学主要区别于对 4 条准则的排序。MIT/Stanford style 认为设计的正确性和一致性同样是最重要的原则，它的价值排序是 (Correctness = Consistency &gt; Simplicity &gt; Completeness)。而 New Jersey Style 则认为设计的简单性是首要考虑的准则，它的价值排序是 (Simplicity &gt; Correctness &gt; Consistensy &gt; Completeness)。两种设计哲学都同时认为完整性的价值的最低的。</p>
+<p>作者认为软件设计不一定要像 MIT/Stanford style 一样过分追求正确性和完整性，更好的做法是先完成一半的工作，然后让社区开发者共同开发，合力追求正确性和完整性。</p>
+<blockquote>
+<p>The lesson to be learned from this is that it is often undesirable to go for the right thing first. It is better to get half of the right thing available so that it spreads like a virus. Once people are hooked on it, take the time to improve it to 90% of the right thing.</p>
+</blockquote>
+<h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a href="http://dreamsongs.com/RiseOfWorseIsBetter.html" target="_blank" rel="noopener">The Rise Of Worse Is Better</a></p>
 ]]></content>
       <categories>
-        <category>record</category>
+        <category>reading</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>Node.js</tag>
-        <tag>Github Page</tag>
+        <tag>OS</tag>
       </tags>
   </entry>
   <entry>
-    <title>98. Validate Binary Search Tree</title>
-    <url>/2020/05/28/98-Validate-Binary-Search-Tree/</url>
-    <content><![CDATA[<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Given a binary tree, determine if it is a valid binary search tree (BST).</span><br><span class="line"></span><br><span class="line">Assume a BST is defined as follows:</span><br><span class="line"></span><br><span class="line">The left subtree of a node contains only nodes with keys less than the node&apos;s key.</span><br><span class="line">The right subtree of a node contains only nodes with keys greater than the node&apos;s key.</span><br><span class="line">Both the left and right subtrees must also be binary search trees.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line">   / \</span><br><span class="line">  1   3</span><br><span class="line"></span><br><span class="line">Input: [2,1,3]</span><br><span class="line">Output: true</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">    5</span><br><span class="line">   / \</span><br><span class="line">  1   4</span><br><span class="line">     / \</span><br><span class="line">    3   6</span><br><span class="line"></span><br><span class="line">Input: [5,1,4,null,null,3,6]</span><br><span class="line">Output: false</span><br><span class="line">Explanation: The root node&apos;s value is 5 but its right child&apos;s value is 4.</span><br></pre></td></tr></table></figure>
+    <title>MacOS_shortcut</title>
+    <url>/2020/05/25/MacOS-shortcut/</url>
+    <content><![CDATA[<h2 id="全局"><a href="#全局" class="headerlink" title="全局"></a>全局</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Shift + P / F1 显示命令面板</span><br><span class="line">Command + P 快速打开</span><br><span class="line">Command + Shift + N 打开新窗口</span><br><span class="line">Command + W 关闭窗口</span><br></pre></td></tr></table></figure>
 
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="Sol-1-recusive"><a href="#Sol-1-recusive" class="headerlink" title="Sol 1 recusive"></a>Sol 1 recusive</h3><!-- Thinking -->
-<p>Acording to rule of BST, the current node must be larger than its left child and all of its offspring.</p>
-<p>we can to pass the upper and lower boundary into a recursive function</p>
-<!-- Coding -->
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.left = None</span></span><br><span class="line"><span class="comment">#         self.right = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root: TreeNode)</span> -&gt; bool:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(root, lower, upper)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> root == <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> root.left != <span class="literal">None</span> :</span><br><span class="line">                <span class="keyword">if</span> root.left.val &gt;= root.val <span class="keyword">or</span> root.left.val &lt;= lower:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">if</span> root.right != <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">if</span> root.right.val &lt;= root.val <span class="keyword">or</span> root.right.val &gt;= upper:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">return</span> helper(root.left, lower, root.val) <span class="keyword">and</span> helper(root.right, root.val, upper)</span><br><span class="line">        <span class="keyword">return</span> helper(root, float(<span class="string">'-inf'</span>), float(<span class="string">'+inf'</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + X 剪切（未选中文本的情况下，剪切光标所在行）</span><br><span class="line">Command + C 复制（未选中文本的情况下，复制光标所在行）</span><br><span class="line">Option + Up 向上移动行</span><br><span class="line">Option + Down 向下移动行</span><br><span class="line">Option + Shift + Up 向上复制行</span><br><span class="line">Option + Shift + Down 向下复制行</span><br><span class="line">Command + Shift + K 删除行</span><br><span class="line">Command + Enter 下一行插入</span><br><span class="line">Command + Shift + Enter 上一行插入</span><br><span class="line">Command + Shift + \ 跳转到匹配的括号</span><br><span class="line">Command + [ 减少缩进</span><br><span class="line">Command + ] 增加缩进</span><br><span class="line">Home 跳转至行首</span><br><span class="line">End 跳转到行尾</span><br><span class="line">Command + Up 跳转至文件开头</span><br><span class="line">Command + Down 跳转至文件结尾</span><br><span class="line">Ctrl + PgUp 按行向上滚动</span><br><span class="line">Ctrl + PgDown 按行向下滚动</span><br><span class="line">Command + PgUp 按屏向上滚动</span><br><span class="line">Command + PgDown 按屏向下滚动</span><br><span class="line">Command + Shift + [ 折叠代码块</span><br><span class="line">Command + Shift + ] 展开代码块</span><br><span class="line">Command + K Command + [ 折叠全部子代码块</span><br><span class="line">Command + K Command + ] 展开全部子代码块</span><br><span class="line">Command + K Command + 0 折叠全部代码块</span><br><span class="line">Command + K Command + J 展开全部代码块</span><br><span class="line">Command + K Command + C 添加行注释</span><br><span class="line">Command + K Command + U 移除行注释</span><br><span class="line">Command + / 添加、移除行注释</span><br><span class="line">Option + Shift + A 添加、移除块注释</span><br><span class="line">Option + Z 自动换行、取消自动换行</span><br></pre></td></tr></table></figure>
 
-<h3 id="Sol-2"><a href="#Sol-2" class="headerlink" title="Sol 2"></a>Sol 2</h3><!-- Thinking -->
-<p>traverse the tree by inorder traverse, and check if the order is sorted.</p>
-<!-- Coding -->
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"># class TreeNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, val=0, left=None, right=None):</span></span><br><span class="line"><span class="comment">#         self.val = val</span></span><br><span class="line"><span class="comment">#         self.left = left</span></span><br><span class="line"><span class="comment">#         self.right = right</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValidBST</span><span class="params">(self, root: TreeNode)</span> -&gt; bool:</span></span><br><span class="line">        stack, last = [], float(<span class="string">'-inf'</span>)</span><br><span class="line">        <span class="keyword">while</span> stack <span class="keyword">or</span> root:</span><br><span class="line">            <span class="keyword">while</span> root:</span><br><span class="line">                stack.append(root)</span><br><span class="line">                root = root.left</span><br><span class="line">            root = stack.pop()</span><br><span class="line">            <span class="keyword">if</span> root.val &lt;= last:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            last = root.val</span><br><span class="line">            root = root.right</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<h2 id="多光标与选择"><a href="#多光标与选择" class="headerlink" title="多光标与选择"></a>多光标与选择</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Option + 点击 插入多个光标</span><br><span class="line">Command + Option + Up 向上插入光标</span><br><span class="line">Command + Option + Down 向下插入光标</span><br><span class="line">Command + U 撤销上一个光标操作</span><br><span class="line">Option + Shift + I 在所选行的行尾插入光标</span><br><span class="line">Command + I 选中当前行</span><br><span class="line">Command + Shift + L 选中所有与当前选中内容相同部分</span><br><span class="line">Command + F2 选中所有与当前选中单词相同的单词</span><br><span class="line">Command + Ctrl + Shift + Left 折叠选中</span><br><span class="line">Command + Ctrl + Shift + Right 展开选中</span><br><span class="line">Alt + Shift + 拖动鼠标 选中代码块</span><br><span class="line">Command + Shift + Option + Up 列选择 向上</span><br><span class="line">Command + Shift + Option + Down 列选择 向下</span><br><span class="line">Command + Shift + Option + Left 列选择 向左</span><br><span class="line">Command + Shift + Option + Right 列选择 向右</span><br><span class="line">Command + Shift + Option + PgUp 列选择 向上翻页</span><br><span class="line">Command + Shift + Option + PgDown 列选择 向下翻页</span><br></pre></td></tr></table></figure>
 
+<h2 id="查找替换"><a href="#查找替换" class="headerlink" title="查找替换"></a>查找替换</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + F 查找</span><br><span class="line">Command + Option + F 替换</span><br><span class="line">Command + G 查找下一个</span><br><span class="line">Command + Shift + G 查找上一个</span><br><span class="line">Option + Enter 选中所有匹配项</span><br><span class="line">Command + D 向下选中相同内容</span><br><span class="line">Command + K Command + D 移除前一个向下选中相同内容</span><br></pre></td></tr></table></figure>
+
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Ctrl + Space 打开建议</span><br><span class="line">Command + Shift + Space 参数提示</span><br><span class="line">Tab Emmet插件缩写补全</span><br><span class="line">Option + Shift + F 格式化</span><br><span class="line">Command + K Command + F 格式化选中内容</span><br><span class="line">F12 跳转到声明位置</span><br><span class="line">Option + F12 查看具体声明内容</span><br><span class="line">Command + K F12 分屏查看具体声明内容</span><br><span class="line">Command + . 快速修复</span><br><span class="line">Shift + F12 显示引用</span><br><span class="line">F2 重命名符号</span><br><span class="line">Command + Shift + . 替换为上一个值</span><br><span class="line">Command + Shift + , 替换为下一个值</span><br><span class="line">Command + K Command + X 删除行尾多余空格</span><br><span class="line">Command + K M 更改文件语言</span><br></pre></td></tr></table></figure>
+
+<h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + T 显示所有符号</span><br><span class="line">Ctrl + G 跳转至某行</span><br><span class="line">Command + P 跳转到某个文件</span><br><span class="line">Command + Shift + O 跳转到某个符号</span><br><span class="line">Command + Shift + M 打开问题面板</span><br><span class="line">F8 下一个错误或警告位置</span><br><span class="line">Shift + F8 上一个错误或警告位置</span><br><span class="line">Ctrl + Shift + Tab 编辑器历史记录</span><br><span class="line">Ctrl + - 后退</span><br><span class="line">Ctrl + Shift + - 前进</span><br><span class="line">Ctrl + Shift + M Tab 切换焦点</span><br></pre></td></tr></table></figure>
+
+<h2 id="编辑器管理"><a href="#编辑器管理" class="headerlink" title="编辑器管理"></a>编辑器管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + W 关闭编辑器</span><br><span class="line">Command + K F 关闭文件夹</span><br><span class="line">Command + \ 编辑器分屏</span><br><span class="line">Command + 1 切换到第一分组</span><br><span class="line">Command + 2 切换到第二分组</span><br><span class="line">Command + 3 切换到第三分组</span><br><span class="line">Command + K Command + Left 切换到上一分组</span><br><span class="line">Command + K Command + Right 切换到下一分组</span><br><span class="line">Command + K Command + Shift + Left 左移编辑器</span><br><span class="line">Command + K Command + Shift + Right 右移编辑器</span><br><span class="line">Command + K Left 激活左侧编辑组</span><br><span class="line">Command + K Right 激活右侧编辑组</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + N 新建文件</span><br><span class="line">Command + O 打开文件</span><br><span class="line">Command + S 保存文件</span><br><span class="line">Command + Shift + S 另存为</span><br><span class="line">Command + Option + S 全部保存</span><br><span class="line">Command + W 关闭</span><br><span class="line">Command + K Command + W 全部关闭</span><br><span class="line">Command + Shift + T 重新打开被关闭的编辑器</span><br><span class="line">Command + K Enter 保持打开</span><br><span class="line">Ctrl + Tab 打开下一个</span><br><span class="line">Ctrl + Shift + Tab 打开上一个</span><br><span class="line">Command + K P 复制当前文件路径</span><br><span class="line">Command + K R 在资源管理器中查看当前文件</span><br><span class="line">Command + K O 新窗口打开当前文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Command + Ctrl + F 全屏、退出全屏</span><br><span class="line">Command + Option + 1 切换编辑器分屏方式（横、竖）</span><br><span class="line">Command + + 放大</span><br><span class="line">Command + - 缩小</span><br><span class="line">Command + B 显示、隐藏侧边栏</span><br><span class="line">Command + Shift + E 显示资源管理器 或 切换焦点</span><br><span class="line">Command + Shift + F 显示搜索框</span><br><span class="line">Ctrl + Shift + G 显示Git面板</span><br><span class="line">Command + Shift + D 显示调试面板</span><br><span class="line">Command + Shift + X 显示插件面板</span><br><span class="line">Command + Shift + H 全局搜索替换</span><br><span class="line">Command + Shift + J 显示、隐藏高级搜索</span><br><span class="line">Command + Shift + C 打开新终端</span><br><span class="line">Command + Shift + U 显示输出面板</span><br><span class="line">Command + Shift + V Markdown预览窗口</span><br><span class="line">Command + K V 分屏显示 Markdown预览窗口</span><br></pre></td></tr></table></figure>
+
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">F9 设置 或 取消断点</span><br><span class="line">F5 开始 或 继续</span><br><span class="line">F11 进入</span><br><span class="line">Shift + F11 跳出</span><br><span class="line">F10 跳过</span><br><span class="line">Command + K Command + I 显示悬停信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="集成终端"><a href="#集成终端" class="headerlink" title="集成终端"></a>集成终端</h2><pre><code class="text">Ctrl + ` 显示终端
+Ctrl + Shift + ` 新建终端
+Command + Up 向上滚动
+Command + Down 向下滚动
+PgUp 向上翻页
+PgDown 向下翻页
+Command + Home 滚动到顶部
+Command + End 滚动到底部
+
+```text
+
+转自 [小谷xg](https://segmentfault.com/a/1190000012811886)</code></pre>
 ]]></content>
       <categories>
-        <category>leetcode</category>
+        <category>note</category>
       </categories>
       <tags>
-        <tag>Recursion</tag>
-        <tag>BST</tag>
+        <tag>MacOS</tag>
       </tags>
   </entry>
   <entry>
