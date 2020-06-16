@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Flask,Web,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hy">
-<meta property="og:url" content="http://henryexhenry.github.io/tags/Distributed-Computing/index.html">
+<meta name="description" content="本文主要从架构以及请求处理流程的角度介绍 Python 的主流网页框架 Flask。">
+<meta name="keywords" content="Flask,Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flask 架构及请求处理">
+<meta property="og:url" content="http://henryexhenry.github.io/2020/06/16/Flask-架构及请求处理/index.html">
 <meta property="og:site_name" content="Hy">
+<meta property="og:description" content="本文主要从架构以及请求处理流程的角度介绍 Python 的主流网页框架 Flask。">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-06-16T15:43:33.247Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hy">
+<meta name="twitter:title" content="Flask 架构及请求处理">
+<meta name="twitter:description" content="本文主要从架构以及请求处理流程的角度介绍 Python 的主流网页框架 Flask。">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://henryexhenry.github.io/tags/Distributed-Computing/">
+  <link rel="canonical" href="http://henryexhenry.github.io/2020/06/16/Flask-架构及请求处理/">
 
 
 
 
 
-  <title>Tag: Distributed Computing | Hy</title>
+  <title>Flask 架构及请求处理 | Hy</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -276,52 +281,234 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Distributed Computing<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://henryexhenry.github.io/2020/06/16/Flask-架构及请求处理/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WongYuenFung">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hy">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/06/03/celery-分布式任务队列/" itemprop="url">
-              
-                <span itemprop="name">celery 分布式任务队列</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Flask 架构及请求处理</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-06-03T23:42:58+08:00" content="2020-06-03">
-          06-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-16T23:34:38+08:00">
+                2020-06-16
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/note/" itemprop="url" rel="index">
+                    <span itemprop="name">note</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要从架构以及请求处理流程的角度介绍 Python 的主流网页框架 Flask。</p>
+<a id="more"></a>
+<h2 id="Flask-的特点"><a href="#Flask-的特点" class="headerlink" title="Flask 的特点"></a>Flask 的特点</h2><p>Flask 依赖于 Werkzeug WSGI 工具包 和 Jinja 引擎。</p>
+<p>debug mode 下，Flask 会自动开启 Werkzeug 内置的 调试器 debugger 和 重载器 reloader（检测文件变动）。</p>
+<p>URL 规则以装饰器的方式写出。<br>用 url_for() 函数名 来代替直接指明 URL，这样可以避免一个一个的修改 URL 规则。<br>URL 中的动态参数也需要从 url_for() 传入。</p>
+<h2 id="Flask-的文件结构"><a href="#Flask-的文件结构" class="headerlink" title="Flask 的文件结构"></a>Flask 的文件结构</h2><p>模版存放在根目录的 templates</p>
+<p>静态资源存放在根目录的 static</p>
+<h2 id="Flask-的架构模式"><a href="#Flask-的架构模式" class="headerlink" title="Flask 的架构模式"></a>Flask 的架构模式</h2><p>Flask 用视图函数来处理请求并生成响应。</p>
+<p>Flask 是 MVC（MTV）架构。</p>
+<p>Model -&gt; Flask 本身没有内置的数据模型，但可以通过外部库来实现，比如 SQLAlchemy</p>
+<p>View -&gt; MVC 中的 View 对应于 Flask 中的 templates</p>
+<p>Controller -&gt; MVC 中的 Controller 对应于 Flask 中的 视图函数（View）</p>
+<h2 id="Flask-请求处理流程"><a href="#Flask-请求处理流程" class="headerlink" title="Flask 请求处理流程"></a>Flask 请求处理流程</h2><ol>
+<li><p>程序启动：输入 flask run 命令后，Flask 会调用 flask.cli.run_command() 函数，最后会调用 werkzeug.serving 模块中的 run_simple() 函数。</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_simple</span><span class="params">(hostname, port, application, use_reloader=False, use_debugger=False, ...)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> use_debugger:</span><br><span class="line">        <span class="keyword">from</span> werkzeug.debug <span class="keyword">import</span> DebuggedApplication</span><br><span class="line">        application = DebuggedApplication(application, ...)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> static_files:</span><br><span class="line">        <span class="keyword">from</span> werkzeug.wsgi <span class="keyword">import</span> SharedDataMiddleware</span><br><span class="line">        application = SharedDataMiddleware(application, static_files)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">inner</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            fd = int(os.environ[<span class="string">'WERKZEUG_SERVER_FD'</span>])</span><br><span class="line">        <span class="keyword">except</span> (LookupError, ValueError):</span><br><span class="line">            fd = <span class="literal">None</span></span><br><span class="line">        srv = make_server(hostname, port, application, ...)</span><br><span class="line">        <span class="keyword">if</span> fd <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            log_startup(srv.socket)</span><br><span class="line">        srv.serve_forever()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> use_reloader:</span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        inner()</span><br></pre></td></tr></table></figure>
+
+<p> DebuggedApplication 和 SharedDataMiddleware 都是 Werkzeug 提供的中间件。函数在调用完中间件之后，会调用 make_server() 方法创建服务器 srv，然后调用 serve_forever() 来运行服务器。</p>
+</li>
+<li><p>请求处理：Flask 类的 <code>__call__()</code> 方法调用了 <code>wsgi_app()</code> 方法，这个 <code>wsgi_app()</code> 就是 Flask 中的 WSGI 程序。它接收 environ 和 start_response 作为参数。</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Flask</span><span class="params">(_PackageBoundObject)</span>:</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wsgi_app</span><span class="params">(self, environ, start_response)</span>:</span></span><br><span class="line">        ctx = self.request_context(environ) <span class="comment"># 根据 environ 生成请求上下文，同时生成 Request 对象，存放到 ctx 的 request 属性</span></span><br><span class="line">        error = <span class="literal">None</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                ctx.push() <span class="comment"># 将请求上下文入栈（请求上下文栈）</span></span><br><span class="line">                response = full_dispatch_request()</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                error = e</span><br><span class="line">                response = self.handle_exception(e)</span><br><span class="line">            <span class="keyword">except</span>:</span><br><span class="line">                error = sys.exc_info()[<span class="number">1</span>]</span><br><span class="line">                <span class="keyword">raise</span></span><br><span class="line">                <span class="keyword">return</span> response(environ, start_response)</span><br><span class="line">            <span class="keyword">finally</span>:</span><br><span class="line">                ...</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, environ, start_response)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.wsgi_app(environ, start_response)</span><br></pre></td></tr></table></figure>
+
+<p> wsgi_app() 根据 environ 生成请求上下文 requestContext 对象，同时生成 Request 对象并存放到 ctx 的 request 属性。随后将请求上下文入栈（请求上下文栈）。<br> 先尝试从 full_dispatch_request() 方法获得响应，如果出错则根据错误类型获得响应。</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Flask</span><span class="params">(_PackageBoundObject)</span>:</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">full_dispatch_request</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""分发请求，并对请求进行预处理和后处理。同时捕捉 HTTP 异常"""</span></span><br><span class="line">        self.try_trigger_before_first_request_functions()</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            request_started.send(self) <span class="comment"># 发送请求进入的信号</span></span><br><span class="line">            rv = self.preprocess_request() <span class="comment"># 预处理请求</span></span><br><span class="line">            <span class="keyword">if</span> rv <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                rv = self.dispatch_request() <span class="comment"># 进一步处理请求，获取返回值</span></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            rv = self.handle_user_exception(e) <span class="comment"># 处理异常</span></span><br><span class="line">        <span class="keyword">return</span> self.finalize_request(rv) <span class="comment"># 最终处理</span></span><br></pre></td></tr></table></figure>
+
+<p> full_dispatch_request() 方法会进行 <strong>request 分发</strong>：preprocess_request() 会调用所有使用 before_request 钩子注册的函数，接下来 dispatch_request() 方法会匹配并调用对应的视图函数，获取返回值，赋值给 rv, 最后 finalized_request() 会先接收 rv 并调用 after_request 钩子函数，然后生成响应对象，回到 wsgi_app()。</p>
+</li>
+<li><p>路由系统</p>
+</li>
+</ol>
+<ul>
+<li><p>注册路由</p>
+<p>  flask 的 route 装饰器内部调用了 add_url_rule() 来添加 URL 规则。</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Flask</span><span class="params">(_PackageBoundObject)</span>:</span></span><br><span class="line">    ...</span><br><span class="line"><span class="meta">    @setupmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_url_rule</span><span class="params">(self, rule, endpoint=None, view_func=None, ...)</span>:</span></span><br><span class="line">        ...</span><br><span class="line">        rule = url_rule_class(rule, methods=methods, **options) <span class="comment"># （werkzeug.routing.Rule 实例）</span></span><br><span class="line">        ...</span><br><span class="line">        self.url_map.add(rule) <span class="comment"># （werkzeug.routing.Map 实例）</span></span><br><span class="line">        <span class="keyword">if</span> view_func <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            ...</span><br><span class="line">            self.view_functions[endpoint] = view_func</span><br></pre></td></tr></table></figure>
+
+<p>  此函数主要引入了 url_map  和 view_func 两个对象。</p>
+<p>  URL 规则通过 url_rule_class() 方法返回一个 Rule 实例，它保存了 【端点 到 URL 规则】 的映射关系。</p>
+<p>  <strong>url_map</strong> 是 Werkzeug 的路由表 Map类 的实例。它保存了所有 Rule 实例。</p>
+<p>  <strong>view_func</strong> 是一个字典，存储了 【端点 到 视图函数】 的映射。</p>
+</li>
+<li><p>匹配路由</p>
+<p>  full_dispatch_request() 方法中的 dispatch_request() 方法实现了从 请求的 URL 找到端点，再从端点找到对应的视图函数并调用。</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Flask</span><span class="params">(_PackageBoundObject)</span>:</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dispatch_request</span><span class="params">(self)</span>:</span></span><br><span class="line">        req = _request_ctx_stack.top.request</span><br><span class="line">        ...</span><br><span class="line">        rule = req.url_rule</span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">return</span> self.view_functions[rule.endpoint](**req.view_args)</span><br></pre></td></tr></table></figure>
+
+<p>  URL 的匹配工作在 请求上下文对象的构造过程中， 由 match_request() 方法完成，并将匹配出的 URL 赋值到请求上下文的 url_rule 属性当中。</p>
+</li>
+</ul>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Flask/" rel="tag"># Flask</a>
+          
+            <a href="/tags/Web/" rel="tag"># Web</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/09/105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal/" rel="next" title="105. Construct Binary Tree from Preorder and Inorder Traversal">
+                <i class="fa fa-chevron-left"></i> 105. Construct Binary Tree from Preorder and Inorder Traversal
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -329,6 +516,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -349,8 +540,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -410,6 +610,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask-的特点"><span class="nav-number">1.</span> <span class="nav-text">Flask 的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask-的文件结构"><span class="nav-number">2.</span> <span class="nav-text">Flask 的文件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask-的架构模式"><span class="nav-number">3.</span> <span class="nav-text">Flask 的架构模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flask-请求处理流程"><span class="nav-number">4.</span> <span class="nav-text">Flask 请求处理流程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -550,6 +766,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
